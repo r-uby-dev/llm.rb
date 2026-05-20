@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="llm.rb">
+  <a href="https://github.com/llmrb/llm.rb">
     <img src="https://github.com/llmrb/llm.rb/raw/main/llm.png" width="200" height="200" border="0" alt="llm.rb">
   </a>
 </p>
