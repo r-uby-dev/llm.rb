@@ -113,7 +113,7 @@ end</code></pre>
 <section id="ask">
   <h2>ask</h2>
   <p>
-    <a href="https://0x1eef.github.io/x/llm.rb/LLM/Context.html">LLM::Context</a>
+    <a href="https://0x1eef.github.io/x/llm.rb/LLM/Agent.html">LLM::Agent</a>
     also provides <code>ask</code>, a convenience interface that is compatible with
     RubyLLM's <code>ask</code> method. It accepts a prompt, an optional <code>with:</code>
     attachment path or paths, an optional <code>stream:</code> target, and an optional
@@ -124,11 +124,11 @@ end</code></pre>
   <pre><code class="language-ruby">require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm)
+agent = LLM::Agent.new(llm)
 
-puts ctx.ask("Hello world").content
-puts ctx.ask("Summarize this document.", with: "README.md").content
-ctx.ask("Stream this reply.") { $stdout << _1 }</code></pre>
+puts agent.ask("Hello world").content
+puts agent.ask("Summarize this document.", with: "README.md").content
+agent.ask("Stream this reply.") { $stdout << _1 }</code></pre>
 </section>
 
 <strong>Protocols &amp; Skills</strong>
@@ -145,8 +145,8 @@ ctx.ask("Stream this reply.") { $stdout << _1 }</code></pre>
     or
     <a href="https://0x1eef.github.io/x/llm.rb/LLM/Agent.html">LLM::Agent</a>.
     In this example, the MCP server runs over stdio and
-    <a href="https://0x1eef.github.io/x/llm.rb/LLM/Context.html">LLM::Context</a>
-    uses the same tool loop as local tools. For <strong>stdio</strong>, <code>mcp.session</code>
+    <a href="https://0x1eef.github.io/x/llm.rb/LLM/Agent.html">LLM::Agent</a>
+    manages the tool loop. For <strong>stdio</strong>, <code>mcp.session</code>
     is the preferred pattern because it keeps one MCP session alive across
     discovery and tool calls:
   </p>
@@ -156,9 +156,8 @@ llm = LLM.openai(key: ENV["KEY"])
 mcp = LLM::MCP.stdio(argv: ["ruby", "server.rb"])
 
 mcp.session do
-  ctx = LLM::Context.new(llm, stream: $stdout, tools: mcp.tools)
-  ctx.talk "Use the available tools to inspect the environment."
-  ctx.talk(ctx.wait(:call)) while ctx.functions?
+  agent = LLM::Agent.new(llm, stream: $stdout, tools: mcp.tools)
+  agent.talk "Use the available tools to inspect the environment."
 end</code></pre>
   <p>
     MCP can also be used without <code>session</code>. Although it works it is generally
@@ -171,9 +170,8 @@ end</code></pre>
 llm = LLM.openai(key: ENV["KEY"])
 mcp = LLM::MCP.stdio(argv: ["ruby", "server.rb"])
 
-ctx = LLM::Context.new(llm, tools: mcp.tools)
-ctx.talk("Use the available tools to inspect the environment.")
-ctx.talk(ctx.wait(:call)) while ctx.functions?</code></pre>
+agent = LLM::Agent.new(llm, tools: mcp.tools)
+agent.talk("Use the available tools to inspect the environment.")</code></pre>
   <p>
     The HTTP transport can be used with or without the <code>session</code> method,
     and unlike the stdio transport it can remain efficient without the
@@ -190,9 +188,8 @@ mcp = LLM::MCP.http(
   transport: :net_http_persistent
 )
 
-ctx = LLM::Context.new(llm, tools: mcp.tools)
-ctx.talk("Use the available tools to inspect the environment.")
-ctx.talk(ctx.wait(:call)) while ctx.functions?</code></pre>
+agent = LLM::Agent.new(llm, tools: mcp.tools)
+agent.talk("Use the available tools to inspect the environment.")</code></pre>
 </section>
 
 <section id="a2a">
@@ -215,9 +212,8 @@ a2a = LLM::A2A.rest(
   headers: {"Authorization" => "Bearer token"}
 )
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, tools: a2a.skills)
-ctx.talk "Analyze this CSV and summarize the trends."
-ctx.talk(ctx.wait(:call)) while ctx.functions?</code></pre>
+agent = LLM::Agent.new(llm, tools: a2a.skills)
+agent.talk "Analyze this CSV and summarize the trends."</code></pre>
   <p>Use persistent HTTP connections:</p>
   <pre><code class="language-ruby">require "llm"
 
@@ -311,8 +307,8 @@ ReleaseAgent.new(llm, stream: $stdout).talk("Prepare the next release.")</code><
   <pre><code class="language-ruby">require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, stream: $stdout)
-ctx.talk("Explain TCP keepalive in one paragraph.")</code></pre>
+agent = LLM::Agent.new(llm, stream: $stdout)
+agent.talk("Explain TCP keepalive in one paragraph.")</code></pre>
 
   <h3>Structured streaming with LLM::Stream</h3>
   <p>
@@ -426,31 +422,31 @@ agent.talk "Read README.md and CHANGELOG.md and compare them."</code></pre>
 </section>
 
 <section id="serialization">
-  <h2>Saving and restoring context</h2>
+  <h2>Saving and restoring agents</h2>
   <p>
-    <code>LLM::Context</code> holds all conversation state — messages,
-    tool returns, usage. You can serialize this to JSON and restore it
-    later, which makes it straightforward to persist conversations across
-    requests, retries, or process restarts.
+    <code>LLM::Agent</code> holds conversation state through its underlying
+    context — messages, tool returns, usage. You can serialize this to JSON
+    and restore it later, which makes it straightforward to persist
+    conversations across requests, retries, or process restarts.
   </p>
   <pre><code class="language-ruby">require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
 
 # Build up state
-ctx1 = LLM::Context.new(llm)
-ctx1.talk "Remember that my favorite language is Ruby"
-string = ctx1.to_json
+agent1 = LLM::Agent.new(llm)
+agent1.talk "Remember that my favorite language is Ruby"
+string = agent1.to_json
 
 # Later, in another process or request
-ctx2 = LLM::Context.new(llm, stream: $stdout)
-ctx2.restore(string:)
-ctx2.talk "What is my favorite language?"</code></pre>
+agent2 = LLM::Agent.new(llm, stream: $stdout)
+agent2.restore(string:)
+agent2.talk "What is my favorite language?"</code></pre>
   <p>
     The built-in ActiveRecord and Sequel plugins (covered below) use this
     same serialization under the hood. You can also save to a file with
-    <code>ctx.save(path:)</code> and restore with
-    <code>ctx.restore(path:)</code>.
+    <code>agent.save(path:)</code> and restore with
+    <code>agent.restore(path:)</code>.
   </p>
 </section>
 
@@ -503,10 +499,10 @@ ctx2.talk "What is my favorite language?"</code></pre>
   <pre><code class="language-ruby">require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, mode: :responses, store: false)
+agent = LLM::Agent.new(llm, mode: :responses, store: false)
 
-ctx.talk("Your task is to answer questions", role: :developer)
-res = ctx.talk("What is the capital of France?")
+agent.talk("Your task is to answer questions", role: :developer)
+res = agent.talk("What is the capital of France?")
 puts res.content</code></pre>
 </section>
 
@@ -531,8 +527,8 @@ puts res.content</code></pre>
 end
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, schema: Report)
-res = ctx.talk("Structure this report: 'API latency spiked.'")
+agent = LLM::Agent.new(llm, schema: Report)
+res = agent.talk("Structure this report: 'API latency spiked.'")
 puts res.content!</code></pre>
 
   <h3>Fluent schemas</h3>
@@ -545,8 +541,8 @@ puts res.content!</code></pre>
   summary: LLM::Schema.new.string.required
 )
 
-ctx = LLM::Context.new(llm, schema:)
-res = ctx.talk("Classify this.")</code></pre>
+agent = LLM::Agent.new(llm, schema:)
+res = agent.talk("Classify this.")</code></pre>
 </section>
 
 <section id="reasoning">
@@ -575,12 +571,12 @@ res = ctx.talk("Classify this.")</code></pre>
 end
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm,
+agent = LLM::Agent.new(llm,
   model: "gpt-5.4-mini",
   mode: :responses,
   reasoning: { effort: "medium" },
   stream: Stream.new)
-ctx.talk("Solve 17 * 19 and show your work.")</code></pre>
+agent.talk("Solve 17 * 19 and show your work.")</code></pre>
 
   <h3>Reading reasoning from the response</h3>
   <p>
@@ -589,8 +585,8 @@ ctx.talk("Solve 17 * 19 and show your work.")</code></pre>
     This is useful for offline analysis or debugging:
   </p>
   <pre><code class="language-ruby">llm = LLM.deepseek(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, model: "deepseek-reasoner")
-res = ctx.talk("Solve 17 * 19.")
+agent = LLM::Agent.new(llm, model: "deepseek-reasoner")
+res = agent.talk("Solve 17 * 19.")
 puts res.content
 puts res.reasoning_content</code></pre>
 </section>
@@ -622,7 +618,7 @@ class Stream < LLM::Stream
 end
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(
+agent = LLM::Agent.new(
   llm,
   stream: Stream.new,
   compactor: {
@@ -757,19 +753,19 @@ puts ctx.talk("What is my favorite language?").content</code></pre>
   <p>
     llm.rb supports multimodal prompts — text plus images, audio, or
     files. Build a prompt as an array, mixing text with helpers like
-    <code>ctx.image_url</code> or <code>ctx.local_file</code>:
+    <code>agent.image_url</code> or <code>agent.local_file</code>:
   </p>
 
   <h3>Image from a URL</h3>
-  <pre><code class="language-ruby">ctx.talk ["Describe this image",
-  ctx.image_url("https://example.com/cat.jpg")]</code></pre>
+  <pre><code class="language-ruby">agent.talk ["Describe this image",
+  agent.image_url("https://example.com/cat.jpg")]</code></pre>
 
   <h3>Local file attachment</h3>
   <p>
-    Use <code>ctx.ask(..., with:)</code> to attach a file directly.
+    Use <code>agent.ask(..., with:)</code> to attach a file directly.
     The provider adapter handles the format — no need to upload first:
   </p>
-  <pre><code class="language-ruby">puts ctx.ask("Summarize this document.", with: "README.md").content</code></pre>
+  <pre><code class="language-ruby">puts agent.ask("Summarize this document.", with: "README.md").content</code></pre>
 
   <h3>Generating audio</h3>
   <pre><code class="language-ruby">res = llm.audio.create_speech(input: "Hello world")
@@ -784,7 +780,7 @@ IO.copy_stream res.images[0], "dogonrocket.png"</code></pre>
   <h2>Observing requests and tool calls</h2>
   <p>
     Tracing is attached at the provider level. Once assigned, all requests
-    and tool calls through that provider are instrumented — no per-context
+    and tool calls through that provider are instrumented — no per-agent
     setup needed.
   </p>
 
@@ -793,8 +789,8 @@ IO.copy_stream res.images[0], "dogonrocket.png"</code></pre>
     Print request details to a stream. Useful for development and debugging:
   </p>
   <pre><code class="language-ruby">llm.tracer = LLM::Tracer::Logger.new(llm, io: $stdout)
-ctx = LLM::Context.new(llm)
-ctx.talk("Hello")</code></pre>
+agent = LLM::Agent.new(llm)
+agent.talk("Hello")</code></pre>
 
   <h3>Telemetry tracer</h3>
   <p>
@@ -802,8 +798,8 @@ ctx.talk("Hello")</code></pre>
     integrating with APM tools:
   </p>
   <pre><code class="language-ruby">llm.tracer = LLM::Tracer::Telemetry.new(llm)
-ctx = LLM::Context.new(llm)
-ctx.talk("Hello")
+agent = LLM::Agent.new(llm)
+agent.talk("Hello")
 pp llm.tracer.spans</code></pre>
 
   <h3>Langsmith tracer</h3>
@@ -818,26 +814,26 @@ pp llm.tracer.spans</code></pre>
   <h2>Production patterns</h2>
   <p>
     These are small switches that make llm.rb production-ready — not a
-    second framework. Providers are meant to be shared, contexts stay
+    second framework. Providers are meant to be shared, agents stay
     isolated, and performance or cost controls layer onto the same core
     objects.
   </p>
 
   <h3>Thread safety</h3>
   <p>
-    Share provider instances across threads. Create one context per thread
+    Share provider instances across threads. Create one agent per thread
     or request — that's where the mutable state lives:
   </p>
   <pre><code class="language-ruby">llm = LLM.openai(key: ENV["KEY"])
 
 Thread.new do
-  ctx = LLM::Context.new(llm)
-  ctx.talk("Hello from thread 1")
+  agent = LLM::Agent.new(llm)
+  agent.talk("Hello from thread 1")
 end
 
 Thread.new do
-  ctx = LLM::Context.new(llm)
-  ctx.talk("Hello from thread 2")
+  agent = LLM::Agent.new(llm)
+  agent.talk("Hello from thread 2")
 end</code></pre>
 
   <h3>Performance</h3>
@@ -850,12 +846,12 @@ llm = LLM.openai(key: ENV["KEY"], persistent: true)</code></pre>
 
   <h3>Cost tracking</h3>
   <p>
-    Each context tracks its own usage. <code>ctx.cost</code> returns
+    Each agent tracks its own usage. <code>agent.cost</code> returns
     the estimated spend so far:
   </p>
-  <pre><code class="language-ruby">ctx = LLM::Context.new(llm)
-ctx.talk("Hello")
-puts "Estimated cost: $#{ctx.cost}"</code></pre>
+  <pre><code class="language-ruby">agent = LLM::Agent.new(llm)
+agent.talk("Hello")
+puts "Estimated cost: $#{agent.cost}"</code></pre>
 
   <h3>Model registry</h3>
   <p>
@@ -873,18 +869,18 @@ puts "Context window: #{info.context} tokens"</code></pre>
 <section id="repl-example">
   <h2>Building a REPL</h2>
   <p>
-    A simple interactive loop using <code>LLM::Context</code> directly.
+    A simple interactive loop using <code>LLM::Agent</code>.
     Each line of input becomes a turn, and streaming sends output to the
     terminal as it arrives:
   </p>
   <pre><code class="language-ruby">require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, stream: $stdout)
+agent = LLM::Agent.new(llm, stream: $stdout)
 
 loop do
   print "> "
-  ctx.talk(STDIN.gets || break)
+  agent.talk(STDIN.gets || break)
   puts
 end</code></pre>
 </section>
@@ -892,7 +888,7 @@ end</code></pre>
 <section id="request-cancellation">
   <h2>Cancelling a request mid-stream</h2>
   <p>
-    Need to stop a long generation? <code>ctx.interrupt!</code> cancels
+    Need to stop a long generation? <code>agent.interrupt!</code> cancels
     the active provider request and notifies any running tools through
     <code>on_interrupt</code>. Useful in web apps where one message may
     need to cancel an earlier in-flight request:
@@ -901,15 +897,15 @@ end</code></pre>
 require "io/console"
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, stream: $stdout)
+agent = LLM::Agent.new(llm, stream: $stdout)
 worker = Thread.new do
-  ctx.talk("Write a very long essay about network protocols.")
+  agent.talk("Write a very long essay about network protocols.")
 rescue LLM::Interrupt
   puts "Request was interrupted!"
 end
 
 STDIN.getch
-ctx.interrupt!
+agent.interrupt!
 worker.join</code></pre>
 </section>
 

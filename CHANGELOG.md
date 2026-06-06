@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+### Change
+
+* **Clarify `LLM::Agent` as the default high-level runtime** <br>
+  Document that `LLM::Context` remains at the heart of llm.rb, but
+  `LLM::Agent` is the better default unless an application needs advanced
+  manual tool loops. `LLM::Agent` manages the tool loop for callers and
+  enables guards against runaway or repeated tool-call loops.
+
 ## v11.2.0
 
 Changes since `v11.1.0`.

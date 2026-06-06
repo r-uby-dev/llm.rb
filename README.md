@@ -138,10 +138,10 @@ to either
 or
 [LLM::Agent](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html).
 In this example, the MCP server runs over stdio and
-[LLM::Context](https://0x1eef.github.io/x/llm.rb/LLM/Context.html)
-uses the same tool loop as local tools. For **stdio**, `mcp.session`
-is the preferred pattern because it keeps one MCP session alive across
-discovery and tool calls:
+[LLM::Agent](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html)
+manages the tool loop. For **stdio**, `mcp.session` is the preferred
+pattern because it keeps one MCP session alive across discovery and
+tool calls:
 
 ```ruby
 require "llm"
@@ -150,9 +150,8 @@ llm = LLM.openai(key: ENV["KEY"])
 mcp = LLM::MCP.stdio(argv: ["ruby", "server.rb"])
 
 mcp.session do
-  ctx = LLM::Context.new(llm, stream: $stdout, tools: mcp.tools)
-  ctx.talk "Use the available tools to inspect the environment."
-  ctx.talk(ctx.wait(:call)) while ctx.functions?
+  agent = LLM::Agent.new(llm, stream: $stdout, tools: mcp.tools)
+  agent.talk "Use the available tools to inspect the environment."
 end
 ```
 
@@ -167,9 +166,8 @@ require "llm"
 llm = LLM.openai(key: ENV["KEY"])
 mcp = LLM::MCP.stdio(argv: ["ruby", "server.rb"])
 
-ctx = LLM::Context.new(llm, tools: mcp.tools)
-ctx.talk("Use the available tools to inspect the environment.")
-ctx.talk(ctx.wait(:call)) while ctx.functions?
+agent = LLM::Agent.new(llm, tools: mcp.tools)
+agent.talk("Use the available tools to inspect the environment.")
 ```
 
 The HTTP transport can be used with or without the `session` method,
@@ -188,9 +186,8 @@ mcp = LLM::MCP.http(
   transport: :net_http_persistent
 )
 
-ctx = LLM::Context.new(llm, tools: mcp.tools)
-ctx.talk("Use the available tools to inspect the environment.")
-ctx.talk(ctx.wait(:call)) while ctx.functions?
+agent = LLM::Agent.new(llm, tools: mcp.tools)
+agent.talk("Use the available tools to inspect the environment.")
 ```
 
 #### A2A (Agent 2 Agent)
@@ -214,9 +211,8 @@ a2a = LLM::A2A.rest(
   headers: {"Authorization" => "Bearer token"}
 )
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, tools: a2a.skills)
-ctx.talk "Analyze this CSV and summarize the trends."
-ctx.talk(ctx.wait(:call)) while ctx.functions?
+agent = LLM::Agent.new(llm, tools: a2a.skills)
+agent.talk "Analyze this CSV and summarize the trends."
 ```
 
 Use persistent HTTP connections:
@@ -317,8 +313,8 @@ class Stream < LLM::Stream
 end
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, stream: Stream.new)
-ctx.talk "Write a haiku about Ruby."
+agent = LLM::Agent.new(llm, stream: Stream.new)
+agent.talk "Write a haiku about Ruby."
 ```
 
 #### LLM::Stream (advanced)
@@ -375,30 +371,31 @@ agent.talk "Read README.md and CHANGELOG.md and compare them."
 
 #### Serialization
 
-The [`LLM::Context`](https://0x1eef.github.io/x/llm.rb/LLM/Context.html)
+The [`LLM::Agent`](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html)
 object can be serialized to JSON, which makes it suitable for storing
 in a file, a database column, or a Redis queue. The built-in
-ActiveRecord and Sequel plugins are built on top of this feature:
+ActiveRecord and Sequel plugins are built on top of the same underlying
+serialization feature:
 
 ```ruby
 require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
 
-# Serialize a context
-ctx1 = LLM::Context.new(llm)
-ctx1.talk "Remember that my favorite language is Ruby"
-string = ctx1.to_json
+# Serialize an agent
+agent1 = LLM::Agent.new(llm)
+agent1.talk "Remember that my favorite language is Ruby"
+string = agent1.to_json
 
-# Restore a context (from JSON)
-ctx2 = LLM::Context.new(llm, stream: $stdout)
-ctx2.restore(string:)
-ctx2.talk "What is my favorite language?"
+# Restore an agent (from JSON)
+agent2 = LLM::Agent.new(llm, stream: $stdout)
+agent2.restore(string:)
+agent2.talk "What is my favorite language?"
 ```
 
 #### ask
 
-[`LLM::Context`](https://0x1eef.github.io/x/llm.rb/LLM/Context.html)
+[`LLM::Agent`](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html)
 also provides `ask`, a convenience interface that is compatible with
 RubyLLM's `ask` method. It accepts a prompt, an optional `with:`
 attachment path or paths, an optional `stream:` target, and an optional
@@ -410,11 +407,11 @@ so use `.content` when you want the text directly:
 require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm)
+agent = LLM::Agent.new(llm)
 
-puts ctx.ask("Hello world").content
-puts ctx.ask("Summarize this document.", with: "README.md").content
-ctx.ask("Stream this reply.") { $stdout << _1 }
+puts agent.ask("Hello world").content
+puts agent.ask("Summarize this document.", with: "README.md").content
+agent.ask("Stream this reply.") { $stdout << _1 }
 ```
 
 ## Installation
@@ -427,8 +424,8 @@ gem install llm.rb
 
 #### REPL
 
-This example uses [`LLM::Context`](https://0x1eef.github.io/x/llm.rb/LLM/Context.html)
-directly for an interactive REPL. <br> See the
+This example uses [`LLM::Agent`](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html)
+for an interactive REPL. <br> See the
 [deepdive (web)](https://llmrb.github.io/llm.rb/) or
 [deepdive (markdown)](resources/deepdive.md) for more examples.
 
@@ -436,11 +433,11 @@ directly for an interactive REPL. <br> See the
 require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, stream: $stdout)
+agent = LLM::Agent.new(llm, stream: $stdout)
 
 loop do
   print "> "
-  ctx.talk(STDIN.gets || break)
+  agent.talk(STDIN.gets || break)
   puts
 end
 ```
@@ -449,36 +446,36 @@ end
 
 In llm.rb, a prompt can be a string, an [`LLM::Prompt`](https://0x1eef.github.io/x/llm.rb/LLM/Prompt.html), or an array.
 When you use an array, each element can be plain text or a tagged object such as
-[`ctx.image_url(...)`](https://0x1eef.github.io/x/llm.rb/LLM/Context.html#image_url-instance_method),
-[`ctx.local_file(...)`](https://0x1eef.github.io/x/llm.rb/LLM/Context.html#local_file-instance_method),
-or [`ctx.remote_file(...)`](https://0x1eef.github.io/x/llm.rb/LLM/Context.html#remote_file-instance_method).
+[`agent.image_url(...)`](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html#image_url-instance_method),
+[`agent.local_file(...)`](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html#local_file-instance_method),
+or [`agent.remote_file(...)`](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html#remote_file-instance_method).
 Those tagged objects carry the metadata the provider adapter needs to turn one
 Ruby prompt into the provider-specific multimodal request schema.
 
 If the model understands that file type, you can attach a local file directly
-with `ctx.ask(..., with: path)` instead of uploading it first through a
+with `agent.ask(..., with: path)` instead of uploading it first through a
 provider Files API. Under the hood, llm.rb tags the path as a
-[`ctx.local_file(...)`](https://0x1eef.github.io/x/llm.rb/LLM/Context.html#local_file-instance_method)
+[`agent.local_file(...)`](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html#local_file-instance_method)
 object:
 
 ```ruby
 require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm)
-puts ctx.ask("Summarize this document.", with: "README.md").content
+agent = LLM::Agent.new(llm)
+puts agent.ask("Summarize this document.", with: "README.md").content
 ```
 
 #### Context Compaction
 
-This example uses [`LLM::Context`](https://0x1eef.github.io/x/llm.rb/LLM/Context.html),
+This example uses [`LLM::Agent`](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html),
 [`LLM::Compactor`](https://0x1eef.github.io/x/llm.rb/LLM/Compactor.html), and
 [`LLM::Stream`](https://0x1eef.github.io/x/llm.rb/LLM/Stream.html) together so
-long-lived contexts can summarize older history and expose the lifecycle
+long-lived conversations can summarize older history and expose the lifecycle
 through stream hooks. This approach is inspired by General Intelligence
 Systems. The
 compactor can also use its own `model:` if you want summarization to run on a
-different model from the main context. `token_threshold:` accepts either a
+different model from the main conversation. `token_threshold:` accepts either a
 fixed token count or a percentage string like `"90%"`, which resolves
 against the active model context window and triggers compaction once total
 token usage goes over that percentage. See the
@@ -499,7 +496,7 @@ class Stream < LLM::Stream
 end
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(
+agent = LLM::Agent.new(
   llm,
   stream: Stream.new,
   compactor: {
@@ -518,9 +515,8 @@ visible assistant output. See the
 [deepdive (web)](https://llmrb.github.io/llm.rb/) or
 [deepdive (markdown)](resources/deepdive.md) for more examples.
 
-To use the Responses API (OpenAI-specific), initialize a
-context or agent with `mode: :responses` and keep using
-`talk` for turns.
+To use the Responses API (OpenAI-specific), initialize an agent with
+`mode: :responses` and keep using `talk` for turns.
 
 ```ruby
 require "llm"
@@ -536,20 +532,20 @@ class Stream < LLM::Stream
 end
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(
+agent = LLM::Agent.new(
   llm,
   model: "gpt-5.4-mini",
   mode: :responses,
   reasoning: {effort: "medium"},
   stream: Stream.new
 )
-ctx.talk("Solve 17 * 19 and show your work.")
+agent.talk("Solve 17 * 19 and show your work.")
 ```
 
 #### Request Cancellation
 
 Need to cancel a stream? llm.rb has you covered through
-[`LLM::Context#interrupt!`](https://0x1eef.github.io/x/llm.rb/LLM/Context.html#interrupt-21-instance_method).
+[`LLM::Agent#interrupt!`](https://0x1eef.github.io/x/llm.rb/LLM/Agent.html#interrupt-21-instance_method).
 <br> See the [deepdive (web)](https://llmrb.github.io/llm.rb/)
 or [deepdive (markdown)](resources/deepdive.md) for more examples.
 
@@ -558,15 +554,15 @@ require "llm"
 require "io/console"
 
 llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, stream: $stdout)
+agent = LLM::Agent.new(llm, stream: $stdout)
 worker = Thread.new do
-  ctx.talk("Write a very long essay about network protocols.")
+  agent.talk("Write a very long essay about network protocols.")
 rescue LLM::Interrupt
   puts "Request was interrupted!"
 end
 
 STDIN.getch
-ctx.interrupt!
+agent.interrupt!
 worker.join
 ```
 
@@ -727,7 +723,7 @@ end
 
 This example uses [`LLM::MCP`](https://0x1eef.github.io/x/llm.rb/LLM/MCP.html)
 over HTTP so remote GitHub MCP tools run through the same
-`LLM::Context` tool path as local tools. It expects a GitHub token in
+`LLM::Agent` tool path as local tools. It expects a GitHub token in
 `ENV["GITHUB_PAT"]`. See the
 [deepdive (web)](https://llmrb.github.io/llm.rb/) or
 [deepdive (markdown)](resources/deepdive.md) for more examples.
@@ -743,9 +739,8 @@ mcp = LLM::MCP.http(
   persistent: true
 )
 
-ctx = LLM::Context.new(llm, stream: $stdout, tools: mcp.tools)
-ctx.talk("Pull information about my GitHub account.")
-ctx.talk(ctx.wait(:call)) while ctx.functions?
+agent = LLM::Agent.new(llm, stream: $stdout, tools: mcp.tools)
+agent.talk("Pull information about my GitHub account.")
 ```
 
 ## Resources
