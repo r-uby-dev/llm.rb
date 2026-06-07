@@ -2,7 +2,6 @@
 
 require "llm"
 require "test/cmd"
-require_relative "stream"
 
 Dir[File.join(__dir__, "tools", "*.rb")].sort.each { require(_1) }
 
@@ -26,7 +25,6 @@ class Stream < LLM::Stream
   end
 
   def on_tool_call(tool, error)
-    queue << (error || ctx.spawn(tool, :thread))
     puts "[tool] call #{tool.name} (error=#{error})"
   end
 
