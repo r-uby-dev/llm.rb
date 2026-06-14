@@ -30,12 +30,19 @@ also includes built-in ActiveRecord and Sequel support, plus concurrent
 tool execution through threads, tasks (via async gem), fibers, ractors,
 and fork (via xchan.rb gem).
 
-**See also:**
+## Applications
 
-* [mruby-llm](https://github.com/llmrb/mruby-llm) - the llm.rb runtime for mruby
-* [wasm-llm](https://github.com/llmrb/wasm-llm) - the llm.rb runtime ported to WebAssembly
-* [rails-llm](https://github.com/llmrb/rails-llm) - the llm.rb runtime optimized for Rails
-* [robert](https://github.com/llmrb/robert) - FreeBSD teacher as a 3MB, statically linked binary
+#### matz - the mruby expert
+
+> ssh matz@r.uby.dev
+
+See [https://r.uby.dev](https://r.uby.dev) for more information.
+
+#### robert - the freebsd expert
+
+> ssh robert@4.4bsd.dev
+
+See [https://4.4bsd.dev](https://4.4bsd.dev) for more information.
 
 ## Quick start
 
