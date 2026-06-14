@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/License-0BSD-orange.svg?" alt="License">
   </a>
   <a href="https://github.com/llmrb/llm.rb/tags">
-    <img src="https://img.shields.io/badge/version-11.2.0-green.svg?" alt="Version">
+    <img src="https://img.shields.io/badge/version-11.3.0-green.svg?" alt="Version">
   </a>
 </p>
 

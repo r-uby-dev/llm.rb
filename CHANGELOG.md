@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## v11.3.0
+
+Changes since `v11.2.0`.
+
+This release promotes `LLM::Agent` as the default high-level runtime,
+raises `LLM::NotFoundError` for provider 404 responses, and adds
+Symbol resolution to `LLM::Agent.confirm` and `LLM::Agent.skills` for
+dynamic tool confirmation and skill lists.
+
 ### Add
 
 * **Raise `LLM::NotFoundError` for provider 404 responses** <br>
@@ -26,6 +35,10 @@
       end
 
   Ported from llmrb/mruby-llm@89a232e3 and @2dd04e2d.
+
+  Extend the same pattern to `LLM::Agent.skills` so the skills DSL
+  accepts a Symbol that resolves through the agent instance at
+  initialization time.
 
 ### Change
 
