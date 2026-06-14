@@ -5,7 +5,7 @@ require_relative "lib/llm/version"
 Gem::Specification.new do |spec|
   spec.name = "llm.rb"
   spec.version = LLM::VERSION
-  spec.authors = ["0x1eef (Robert)", "Antar Azri", "Rodrigo Serrano", "Christos Maris"]
+  spec.authors = ["0x1eef (Robert)", "Antar Azri", "Rodrigo Serrano"]
   spec.email = ["robert@4.4bsd.dev"]
 
   spec.summary = "Ruby's most capable AI runtime"
