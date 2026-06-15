@@ -4,8 +4,8 @@
   </a>
 </p>
 <p align="center">
-  <a href="https://llmrb.github.io/llm.rb">
-    <img src="https://img.shields.io/badge/docs-llmrb.github.io-blue.svg" alt="Official llm.rb website">
+  <a href="https://r.uby.dev/llm">
+    <img src="https://img.shields.io/badge/docs-r.uby.dev/llm.io-blue.svg" alt="Official llm.rb website">
   </a>
   <a href="https://opensource.org/license/0bsd">
     <img src="https://img.shields.io/badge/License-0BSD-orange.svg?" alt="License">
