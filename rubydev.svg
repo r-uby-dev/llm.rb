@@ -1,0 +1,178 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 220" role="img" aria-labelledby="title desc">
+  <title id="title">r.uby.dev</title>
+  <desc id="desc">A wide r.uby.dev wordmark with three small ruby gemstones moving around the text.</desc>
+  <defs>
+    <linearGradient id="body" x1="45" y1="35" x2="211" y2="224" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff7468"/>
+      <stop offset="0.42" stop-color="#cc342d"/>
+      <stop offset="1" stop-color="#5b090d"/>
+    </linearGradient>
+    <linearGradient id="table" x1="75" y1="31" x2="166" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fff3ec"/>
+      <stop offset="0.26" stop-color="#ff8f84"/>
+      <stop offset="1" stop-color="#d62f2c"/>
+    </linearGradient>
+    <linearGradient id="right" x1="150" y1="59" x2="219" y2="195" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#bb2026"/>
+      <stop offset="1" stop-color="#3c0407"/>
+    </linearGradient>
+    <linearGradient id="center" x1="99" y1="104" x2="146" y2="226" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ff6c61"/>
+      <stop offset="0.48" stop-color="#c82d2a"/>
+      <stop offset="1" stop-color="#8d1618"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="38%" cy="22%" r="66%">
+      <stop offset="0" stop-color="#fff8ed" stop-opacity="0.68"/>
+      <stop offset="0.42" stop-color="#ffb0a7" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#ffb0a7" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wordmark" x1="0" y1="76" x2="0" y2="138" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.48" stop-color="#e1e4e8"/>
+      <stop offset="1" stop-color="#aeb8c2"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="90" y1="0" x2="470" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#30363d"/>
+      <stop offset="0.5" stop-color="#cc342d"/>
+      <stop offset="1" stop-color="#30363d"/>
+    </linearGradient>
+    <filter id="shadow" x="-18%" y="-18%" width="136%" height="146%">
+      <feDropShadow dx="0" dy="10" stdDeviation="9" flood-color="#000" flood-opacity="0.34"/>
+    </filter>
+    <filter id="textShadow" x="-20%" y="-45%" width="140%" height="190%">
+      <feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+    <symbol id="gemstone" viewBox="0 0 256 256">
+      <path d="M33 91 78 30h100l45 61-95 134Z" fill="url(#body)" stroke="#250507" stroke-width="7" stroke-linejoin="round"/>
+      <path d="M78 30h100l-50 61Z" fill="url(#table)" stroke="#250507" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M33 91h95l-52 44Z" fill="#e93c35" stroke="#250507" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M223 91h-95l52 44Z" fill="url(#right)" stroke="#250507" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M76 135 128 225 33 91Z" fill="#9f1b1d" stroke="#250507" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M180 135 128 225 223 91Z" fill="#62080d" stroke="#250507" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M76 135h104l-52 90Z" fill="url(#center)" stroke="#250507" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M78 30 128 91 76 135 33 91Z" fill="#d9322d" opacity="0.72"/>
+      <path d="M178 30 128 91 180 135 223 91Z" fill="#8f1519" opacity="0.72"/>
+      <path d="M128 91 76 135h104Z" fill="#ff6257" opacity="0.5"/>
+      <path d="M49 91 84 43h43L86 96Z" fill="url(#glow)"/>
+      <path d="M85 62 101 43h35L93 87Z" fill="#fff6eb" opacity="0.52"/>
+      <path d="M97 153h62" fill="none" stroke="#ffaba2" stroke-width="4" stroke-linecap="round" opacity="0.25"/>
+    </symbol>
+  </defs>
+  <style>
+    svg {
+      color-scheme: light dark;
+      --wordmark-fill: #24292f;
+      --wordmark-halo: #ffffff;
+      --wordmark-outline: #d0d7de;
+      --rule: #d0d7de;
+      --rule-strong: #8c959f;
+      --accent-shadow: #d0d7de;
+    }
+    .wordmark-halo {
+      fill: none;
+      stroke: var(--wordmark-halo);
+      stroke-width: 16;
+      stroke-linejoin: round;
+      paint-order: stroke;
+    }
+    .wordmark-outline {
+      fill: none;
+      stroke: var(--wordmark-outline);
+      stroke-width: 8;
+      stroke-linejoin: round;
+      paint-order: stroke;
+    }
+    .wordmark-fill {
+      fill: var(--wordmark-fill);
+    }
+    .rule {
+      stroke: var(--rule);
+    }
+    .rule-strong {
+      stroke: var(--rule-strong);
+    }
+    .accent-shadow {
+      stroke: var(--accent-shadow);
+    }
+    .gem {
+      animation-duration: 8.5s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    .gem-a { animation-name: gem-a; }
+    .gem-b { animation-name: gem-b; animation-duration: 9.5s; }
+    .gem-c { animation-name: gem-c; animation-duration: 10s; }
+    .gem-front {
+      opacity: 0;
+      animation-duration: 18s;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in-out;
+    }
+    .gem-front-a { animation-name: gem-front-a; }
+    .gem-front-b { animation-name: gem-front-b; animation-delay: -6s; }
+    .gem-front-c { animation-name: gem-front-c; animation-delay: -12s; }
+    @keyframes gem-a {
+      0%, 100% { transform: translate(42px, 82px) rotate(-10deg); }
+      35% { transform: translate(66px, 45px) rotate(5deg); }
+      70% { transform: translate(84px, 118px) rotate(-18deg); }
+    }
+    @keyframes gem-b {
+      0%, 100% { transform: translate(236px, 13px) rotate(3deg); }
+      33% { transform: translate(192px, 28px) rotate(-9deg); }
+      66% { transform: translate(292px, 24px) rotate(12deg); }
+    }
+    @keyframes gem-c {
+      0%, 100% { transform: translate(430px, 78px) rotate(8deg); }
+      38% { transform: translate(397px, 45px) rotate(-4deg); }
+      72% { transform: translate(446px, 117px) rotate(16deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .gem { animation: none; }
+      .gem-front { animation: none; opacity: 0; }
+      .gem-a { transform: translate(42px, 82px) rotate(-10deg); }
+      .gem-b { transform: translate(236px, 13px) rotate(3deg); }
+      .gem-c { transform: translate(430px, 78px) rotate(8deg); }
+    }
+    @keyframes gem-front-a {
+      0%, 42%, 51%, 100% { opacity: 0; }
+      45%, 48% { opacity: 0.9; }
+    }
+    @keyframes gem-front-b {
+      0%, 57%, 66%, 100% { opacity: 0; }
+      60%, 63% { opacity: 0.86; }
+    }
+    @keyframes gem-front-c {
+      0%, 72%, 81%, 100% { opacity: 0; }
+      75%, 78% { opacity: 0.88; }
+    }
+  </style>
+
+  <path class="rule" d="M32 38h496M32 182h496" stroke-width="1" opacity="0.62"/>
+  <path class="rule-strong" d="M90 32h380" stroke-width="2" stroke-linecap="round" opacity="0.72"/>
+
+  <g filter="url(#shadow)" opacity="0.92">
+    <g class="gem gem-a"><use href="#gemstone" width="78" height="78"/></g>
+    <g class="gem gem-b"><use href="#gemstone" width="84" height="84"/></g>
+    <g class="gem gem-c"><use href="#gemstone" width="78" height="78"/></g>
+  </g>
+
+  <g font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" text-anchor="middle">
+    <text class="wordmark-halo" x="280" y="126" fill="none" stroke="#ffffff"
+          font-size="72" font-weight="800"
+          filter="url(#textShadow)">r.uby.dev</text>
+    <text class="wordmark-outline" x="280" y="126" fill="none" stroke="#d0d7de"
+          font-size="72" font-weight="800">r.uby.dev</text>
+    <text class="wordmark-fill" x="280" y="126" fill="#24292f"
+          font-size="72" font-weight="800">r.uby.dev</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <g class="gem gem-a"><use class="gem-front gem-front-a" href="#gemstone" width="78" height="78"/></g>
+    <g class="gem gem-b"><use class="gem-front gem-front-b" href="#gemstone" width="84" height="84"/></g>
+    <g class="gem gem-c"><use class="gem-front gem-front-c" href="#gemstone" width="78" height="78"/></g>
+  </g>
+
+  <path class="accent-shadow" d="M90 176h380" stroke-width="8" stroke-linecap="round"/>
+  <path d="M90 176h380" stroke="url(#accentLine)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="280" cy="176" r="5" fill="#cc342d"/>
+</svg>

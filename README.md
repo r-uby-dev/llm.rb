@@ -1,44 +1,27 @@
 <p align="center">
-  <a href="https://github.com/llmrb/llm.rb">
-    <img src="https://github.com/llmrb/llm.rb/raw/main/llm.png" width="200" height="200" border="0" alt="llm.rb">
-  </a>
-</p>
-<p align="center">
-  <a href="https://r.uby.dev/llm">
-    <img src="https://img.shields.io/badge/docs-r.uby.dev/llm-blue.svg" alt="Official llm.rb website">
-  </a>
-  <a href="https://opensource.org/license/0bsd">
-    <img src="https://img.shields.io/badge/License-0BSD-orange.svg?" alt="License">
-  </a>
-  <a href="https://github.com/llmrb/llm.rb/tags">
-    <img src="https://img.shields.io/badge/version-11.3.0-green.svg?" alt="Version">
+  <a href="https://r.uby.dev">
+    <img src="rubydev.svg" width="400" height="200" border="0" alt="a r.uby.dev project">
   </a>
 </p>
 
-## About
+> A [r.uby.dev](https://r.uby.dev) project.
 
-llm.rb is Ruby's capable AI runtime.
+Ruby's capable AI runtime.
 
-It runs on Ruby's standard library by default. loads optional pieces
-only when needed, and offers a single runtime for providers, agents,
-tools, skills, MCP, A2A (Agent2Agent), RAG (vector stores & embeddings),
-streaming, files, and persisted state.
+It provides one Ruby interface for building with large language models:
+providers, agents, tools, skills, MCP, A2A, RAG, streaming, files, and                 persisted conversation state all share the same runtime.
 
-It supports OpenAI, OpenAI-compatible endpoints, Anthropic, Google
-Gemini, DeepSeek, xAI, Z.ai, AWS Bedrock, Ollama, and llama.cpp. It
-also includes built-in ActiveRecord and Sequel support, plus concurrent
-tool execution through threads, tasks (via async gem), fibers, ractors,
-and fork (via xchan.rb gem).
+The gem runs on Ruby's standard library by default and loads optional
+integrations only when needed. It supports OpenAI, OpenAI-compatible
+endpoints, Anthropic, Google Gemini, DeepSeek, xAI, Z.ai, AWS Bedrock,
+Ollama, and llama.cpp, with built-in ActiveRecord and Sequel support.
 
 ## Services
 
-The llm.rb runtime and its forks
-([mruby-llm](https://github.com/llmrb/mruby-llm),
-[wasm-llm](https://github.com/llmrb/wasm-llm))
-power a growing family of AI applications, and
-services. The following applications are publicly
-accessible over SSH and are free to try. No account
-required. Nothing to install.
+llm.rb is a [r.uby.dev](https://r.uby.dev) project
+that is part of a growing family of AI-related
+projects that also includes publically accessible
+SSH services.
 
 #### matz - the mruby expert
 
