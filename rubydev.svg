@@ -85,6 +85,10 @@
     .wordmark-fill {
       fill: var(--wordmark-fill);
     }
+    .tagline {
+      fill: var(--wordmark-fill);
+      opacity: 0.78;
+    }
     .rule {
       stroke: var(--rule);
     }
@@ -175,4 +179,7 @@
   <path class="accent-shadow" d="M90 176h380" stroke-width="8" stroke-linecap="round"/>
   <path d="M90 176h380" stroke="url(#accentLine)" stroke-width="4" stroke-linecap="round"/>
   <circle cx="280" cy="176" r="5" fill="#cc342d"/>
+  <text class="tagline" x="280" y="204"
+        font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        text-anchor="middle" font-size="18" font-weight="650">Building cool stuff with Ruby</text>
 </svg>
