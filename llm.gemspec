@@ -30,7 +30,7 @@ Gem::Specification.new do |spec|
 
   spec.homepage = "https://r.uby.dev/llm/"
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/llmrb/llm.rb"
+  spec.metadata["source_code_uri"] = "https://github.com/r-uby-dev/llm.rb"
   spec.metadata["documentation_uri"] = spec.homepage
   spec.metadata["changelog_uri"] = "https://r.uby.dev/api-docs/llm.rb/file.CHANGELOG.html"
 
