@@ -2,6 +2,34 @@
 
 ## Unreleased
 
+## v11.3.1
+
+Changes since `v11.3.0`.
+
+This release rebrands the project under the r.uby.dev umbrella, removes
+the Jekyll-based docs site in favor of a pure-markdown deepdive, and
+cleans up YARD documentation across the codebase.
+
+### Change
+
+* **Rebrand to r.uby.dev** <br>
+  Update README.md with the new logo, streamlined copy, and r.uby.dev
+  URLs. Rewrite `resources/deepdive.md` as a concise walkthrough and
+  bundle it with the gem. Remove the `docs/` directory (Jekyll site).
+  Update all references from `llmrb.github.io` to `r.uby.dev`.
+
+* **Update gemspec** <br>
+  Update homepage, metadata URLs, email, and author list. Switch the
+  YARD markdown processor from kramdown to redcarpet.
+
+### Fix
+
+* **Fix YARD documentation** <br>
+  Fix unnamed, misnamed, and missing `@param` tags across provider
+  adapters, transport classes, stream, tool, schema, registry, agent,
+  and ActiveRecord integration files. Fix backtick-wrapped constant
+  references and other YARD formatting issues.
+
 ## v11.3.0
 
 Changes since `v11.2.0`.
