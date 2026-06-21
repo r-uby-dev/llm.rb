@@ -38,6 +38,7 @@ Gem::Specification.new do |spec|
     "README.md", "LICENSE",
     "lib/*.rb", "lib/**/*.rb",
     "data/*.json", "CHANGELOG.md",
+    "resources/deepdive.md",
     "llm.gemspec"
   ]
   spec.require_paths = ["lib"]
