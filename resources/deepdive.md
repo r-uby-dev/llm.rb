@@ -178,7 +178,9 @@ a2a = LLM::A2A.rest(url: "...", transport: :curb)
 Any object that implements the `#<<` method can receive
 chunks from a stream. That includes objects like `$stdout`.
 This form of streaming is simple and limited. It is the
-equivalent of [LLM::Stream#on_content], and doesn't include
+equivalent of
+[`LLM::Stream#on_content`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html#on_content-instance_method),
+and doesn't include
 any of the other
 [`LLM::Stream`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html)
 hooks.
@@ -191,7 +193,7 @@ agent = LLM::Agent.new(llm, stream: $stdout)
 agent.talk "hello world"
 ```
 
-#### [`LLM::Stream`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html)
+#### LLM::Stream
 
 The [`LLM::Stream`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html)
 class provides many hooks that a subclass
