@@ -199,328 +199,55 @@ agent = LLM::Agent.new(llm, tools:, concurrency: :fork)
 agent.talk "Run the tools in parallel"
 ```
 
-## Extra
+#### ORM
 
-#### REPL
+Because both [`LLM::Context`](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html), and [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)
+can be serialized to JSON and stored in a simple string, both ActiveRecord
+and Sequel support can be implemented within a single column on a single row.
 
-This example uses [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)
-for an interactive REPL. <br> See the
-[deepdive (web)](https://r.uby.dev/llm/) or
-[deepdive (markdown)](resources/deepdive.md) for more examples.
-
-```ruby
-require "llm"
-
-llm = LLM.openai(key: ENV["KEY"])
-agent = LLM::Agent.new(llm, stream: $stdout)
-
-loop do
-  print "> "
-  agent.talk(STDIN.gets || break)
-  puts
-end
-```
-
-#### Multimodal: Local Files
-
-In llm.rb, a prompt can be a string, an [`LLM::Prompt`](https://r.uby.dev/api-docs/llm.rb/LLM/Prompt.html), or an array.
-When you use an array, each element can be plain text or a tagged object such as
-[`agent.image_url(...)`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html#image_url-instance_method),
-[`agent.local_file(...)`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html#local_file-instance_method),
-or [`agent.remote_file(...)`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html#remote_file-instance_method).
-Those tagged objects carry the metadata the provider adapter needs to turn one
-Ruby prompt into the provider-specific multimodal request schema.
-
-If the model understands that file type, you can attach a local file directly
-with `agent.ask(..., with: path)` instead of uploading it first through a
-provider Files API. Under the hood, llm.rb tags the path as a
-[`agent.local_file(...)`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html#local_file-instance_method)
-object:
+The runtime includes first-class support for both ActiveRecord *and* Sequel, and
+for both Rack-based applications *and* Rails-based applications. On databases
+where it is supported, such as PostgreSQL, the column can be optimized by using
+the `jsonb` type.
 
 ```ruby
-require "llm"
-
-llm = LLM.openai(key: ENV["KEY"])
-agent = LLM::Agent.new(llm)
-puts agent.ask("Summarize this document.", with: "README.md").content
-```
-
-#### Context Compaction
-
-This example uses [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html),
-[`LLM::Compactor`](https://r.uby.dev/api-docs/llm.rb/LLM/Compactor.html), and
-[`LLM::Stream`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html) together so
-long-lived conversations can summarize older history and expose the lifecycle
-through stream hooks. This approach is inspired by General Intelligence
-Systems. The
-compactor can also use its own `model:` if you want summarization to run on a
-different model from the main conversation. `token_threshold:` accepts either a
-fixed token count or a percentage string like `"90%"`, which resolves
-against the active model context window and triggers compaction once total
-token usage goes over that percentage. See the
-[deepdive (web)](https://r.uby.dev/llm/) or
-[deepdive (markdown)](resources/deepdive.md) for more examples.
-
-```ruby
-require "llm"
-
-class Stream < LLM::Stream
-  def on_compaction(ctx, compactor)
-    puts "Compacting #{ctx.messages.size} messages..."
-  end
-
-  def on_compaction_finish(ctx, compactor)
-    puts "Compacted to #{ctx.messages.size} messages."
-  end
-end
-
-llm = LLM.openai(key: ENV["KEY"])
-agent = LLM::Agent.new(
-  llm,
-  stream: Stream.new,
-  compactor: {
-    token_threshold: "90%",
-    retention_window: 8,
-    model: "gpt-5.4-mini"
-  }
-)
-```
-
-#### Reasoning
-
-This example uses [`LLM::Stream`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html)
-with the OpenAI Responses API so reasoning output is streamed separately from
-visible assistant output. See the
-[deepdive (web)](https://r.uby.dev/llm/) or
-[deepdive (markdown)](resources/deepdive.md) for more examples.
-
-To use the Responses API (OpenAI-specific), initialize an agent with
-`mode: :responses` and keep using `talk` for turns.
-
-```ruby
-require "llm"
-
-class Stream < LLM::Stream
-  def on_content(content)
-    $stdout << content
-  end
-
-  def on_reasoning_content(content)
-    $stderr << content
-  end
-end
-
-llm = LLM.openai(key: ENV["KEY"])
-agent = LLM::Agent.new(
-  llm,
-  model: "gpt-5.4-mini",
-  mode: :responses,
-  reasoning: { effort: "medium" },
-  stream: Stream.new
-)
-agent.talk("Solve 17 * 19 and show your work.")
-```
-
-#### Request Cancellation
-
-Need to cancel a stream? llm.rb has you covered through
-[`LLM::Agent#interrupt!`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html#interrupt-21-instance_method).
-<br> See the [deepdive (web)](https://r.uby.dev/llm/)
-or [deepdive (markdown)](resources/deepdive.md) for more examples.
-
-```ruby
-require "llm"
-require "io/console"
-
-llm = LLM.openai(key: ENV["KEY"])
-agent = LLM::Agent.new(llm, stream: $stdout)
-worker = Thread.new do
-  agent.talk("Write a very long essay about network protocols.")
-rescue LLM::Interrupt
-  puts "Request was interrupted!"
-end
-
-STDIN.getch
-agent.interrupt!
-worker.join
-```
-
-#### Sequel (ORM)
-
-The `plugin :llm` integration wraps
-[`LLM::Context`](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html) on a
-`Sequel::Model` and keeps tool execution explicit. Like the ActiveRecord
-wrappers, its built-in persistence contract is the serialized `data` column,
-while `provider:` resolves a real `LLM::Provider` instance and `context:`
-injects defaults such as `model:`. <br> See the
-[deepdive (web)](https://r.uby.dev/llm/) or
-[deepdive (markdown)](resources/deepdive.md) for more examples.
-
-```ruby
-require "llm"
-require "net/http/persistent"
-require "sequel"
-require "sequel/plugins/llm"
-
-class Context < Sequel::Model
-  plugin :llm, provider: :set_provider, context: :set_context
-
-  private
-
-  def set_provider
-    LLM.openai(key: ENV["OPENAI_SECRET"], persistent: true)
-  end
-
-  def set_context
-    { model: "gpt-5.4-mini", mode: :responses, store: false }
-  end
-end
-
-ctx = Context.create
-ctx.talk("Remember that my favorite language is Ruby")
-puts ctx.talk("What is my favorite language?").content
-```
-
-#### ActiveRecord (ORM): acts_as_llm
-
-The `acts_as_llm` method wraps [`LLM::Context`](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html) and
-provides full control over tool execution. Its built-in persistence contract is
-one serialized `data` column. If your app has provider, model, or usage
-columns, provide them to llm.rb through `provider:` and `context:` instead of
-relying on reserved wrapper columns.
-
-See the [deepdive (web)](https://r.uby.dev/llm/)
-or [deepdive (markdown)](resources/deepdive.md) for more examples.
-
-```ruby
-require "llm"
 require "active_record"
+require "llm"
 require "llm/active_record"
 
-class Context < ApplicationRecord
-  acts_as_llm provider: :set_provider, context: :set_context
+class Agent < ApplicationRecord
+  acts_as_agent do |agent|
+    agent.model "deepseek-v4-pro"
+    agent.instructions "solve the user's query"
+    agent.tools [Research, FinalizeResearch, ActOnResearch]
+  end
 
   private
 
+  # By convention, this method defines the provider for a model.
+  # If necessary, it can be renamed with: provider: :your_method.
   def set_provider
-    LLM.openai(key: ENV["OPENAI_SECRET"])
+    LLM.deepseek(key: ENV["KEY"])
   end
 
+  # By convention, this method returns the context options given
+  # to LLM::Context or LLM::Agent.
   def set_context
-    { model: "gpt-5.4-mini", mode: :responses, store: false }
+    {}
   end
 end
 
-ctx = Context.create!
-ctx.talk("Remember that my favorite language is Ruby")
-puts ctx.talk("What is my favorite language?").content
+agent = Agent.create!
+agent.talk "perform research"
 ```
 
-```ruby
-require "llm"
-require "active_record"
-require "llm/active_record"
+## Resources
 
-class Context < ApplicationRecord
-  acts_as_llm provider: :set_provider, context: :set_context
-
-  # Optional application columns can still provide the provider and context.
-  # For example, `provider_name` and `model_name` can be normal columns.
-
-  private
-
-  def set_provider
-    LLM.public_send(provider_name, key: provider_key)
-  end
-
-  def set_context
-    { model: model_name, mode: :responses, store: false }
-  end
-end
-```
-
-#### ActiveRecord (ORM): acts_as_agent
-
-The `acts_as_agent` method wraps [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html) and
-manages tool execution for you. Like `acts_as_llm`, its built-in persistence
-contract is one serialized `data` column. If your app has provider or model
-columns, provide them to llm.rb through your hooks and agent DSL.
-
-See the [deepdive (web)](https://r.uby.dev/llm/)
-or [deepdive (markdown)](resources/deepdive.md) for more examples.
-
-```ruby
-require "llm"
-require "active_record"
-require "llm/active_record"
-
-class Ticket < ApplicationRecord
-  acts_as_agent provider: :set_provider, context: :set_context
-  model "gpt-5.4-mini"
-  instructions "You are a concise support assistant."
-  tools SearchDocs, Escalate
-  concurrency :thread
-
-  private
-
-  def set_provider
-    LLM.openai(key: ENV["OPENAI_SECRET"])
-  end
-
-  def set_context
-    { mode: :responses, store: false }
-  end
-end
-
-ticket = Ticket.create!
-puts ticket.talk("How do I rotate my API key?").content
-```
-
-```ruby
-require "llm"
-require "active_record"
-require "llm/active_record"
-
-class Ticket < ApplicationRecord
-  acts_as_agent provider: :set_provider, context: :set_context
-  model "gpt-5.4-mini"
-  instructions "You are a concise support assistant."
-
-  private
-
-  def set_provider
-    LLM.public_send(provider_name, key: provider_key)
-  end
-
-  def set_context
-    { mode: :responses, store: false }
-  end
-end
-```
-
-#### MCP
-
-This example uses [`LLM::MCP`](https://r.uby.dev/api-docs/llm.rb/LLM/MCP.html)
-over HTTP so remote GitHub MCP tools run through the same
-`LLM::Agent` tool path as local tools. It expects a GitHub token in
-`ENV["GITHUB_PAT"]`. See the
-[deepdive (web)](https://r.uby.dev/llm/) or
-[deepdive (markdown)](resources/deepdive.md) for more examples.
-
-```ruby
-require "llm"
-require "net/http/persistent"
-
-llm = LLM.openai(key: ENV["KEY"], persistent: true)
-mcp = LLM::MCP.http(
-  url: "https://api.githubcopilot.com/mcp/",
-  headers: { "Authorization" => "Bearer " + ENV["GITHUB_PAT"].to_s },
-  persistent: true
-)
-
-agent = LLM::Agent.new(llm, stream: $stdout, tools: mcp.tools)
-agent.talk("Pull information about my GitHub account.")
-```
+If you like what you read so far, check out the [deepdive.md](resources/deepdive.md)
+and [API docs](https://r.uby.dev/api-docs/llm.rb) to learn more. Unfortunately it
+wasn't possible to cover every feature without the README becoming a small book.
+The [r.uby.dev](https://r.uby.dev) homepage also includes more learning material
+and resources.
 
 ## License
 
