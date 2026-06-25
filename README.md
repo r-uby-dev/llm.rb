@@ -12,113 +12,75 @@
 
 > A [r.uby.dev](https://r.uby.dev) project.
 
-Ruby's capable AI runtime.
+Welcome to the canonical llm.rb repository.
 
-It provides one Ruby interface for building with large language models:
-providers, agents, tools, skills, MCP, A2A, RAG, streaming, files, and                 persisted conversation state all share the same runtime.
+llm.rb is not a library, framework or toolkit but an advanced runtime
+for building highly capable AI applications on CRuby. By default
+it has zero runtime dependencies although certain functionality &ndash;
+such as ActiveRecord support &ndash; require optional dependencies
+that are opt-in.
 
-The gem runs on Ruby's standard library by default and loads optional
-integrations only when needed. It supports OpenAI, OpenAI-compatible
-endpoints, Anthropic, Google Gemini, DeepSeek, xAI, Z.ai, AWS Bedrock,
-Ollama, and llama.cpp, with built-in ActiveRecord and Sequel support.
+## Features
 
-## Services
+The runtime supports OpenAI, OpenAI-compatible endpoints, Anthropic, Google
+Gemini, DeepSeek, xAI, Z.ai, AWS Bedrock, Ollama, and llama.cpp.
+It has first-class support for streaming, tool calls,  MCP
+and A2A, embeddings, vector stores and the RAG pattern.
 
-llm.rb is a [r.uby.dev](https://r.uby.dev) project
-that is part of a growing family of AI-related
-projects that also includes publically accessible
-SSH services.
+There are multiple HTTP backends to choose from, tools can be run concurrently
+or in parallel via threads, async tasks, fibers, ractors, and fork, and it is
+also possible to make a tool call while the model is still streaming.
 
-#### matz - the mruby expert
+The runtime builds on top of three core concepts: providers, contexts, and agents,
+so once you learn the fundamentals, everything else falls into place naturally. And once
+you learn llm.rb, you will also be able to use <a href="https://r.uby.dev/mruby-llm">mruby-llm</a> and
+<a href="https://r.uby.dev/wasm-llm">wasm-llm</a> because the API is pretty much identical.
 
-> ssh matz@r.uby.dev
+## Install
 
-See [https://r.uby.dev/matz](https://r.uby.dev/matz) for more information.
-
-#### robert - the freebsd expert
-
-> ssh robert@4.4bsd.dev
-
-See [https://4.4bsd.dev/robert](https://4.4bsd.dev/robert) for more information.
+```bash
+gem install llm.rb
+```
 
 ## Quick start
 
-#### LLM::Context
-
-The
-[LLM::Context](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html)
-object is at the heart of the runtime. Almost all other features build
-on top of it. It is a low-level interface to a model, and requires tool
-execution to be managed manually. The
-[LLM::Agent](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)
-class is almost the same as
-[LLM::Context](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html)
-but it manages tool execution for you - we'll cover agents next:
-
-```ruby
-require "llm"
-
-llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, stream: $stdout)
-ctx.talk "Hello world"
-```
-
 #### LLM::Agent
 
-The
-[LLM::Agent](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)
-object is implemented on top of
-[LLM::Context](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html).
-It provides the same interface, but manages tool execution for you. It
-also has builtin features such as a loop guard that detects repeated
-tool call patterns, and another guard that detects infinite tool call
-loops. Both guards advise the model to change course rather than raise
-an error:
+The [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html) class is the default high-level interface,
+and it is recommended for most use-cases. It manages tool execution
+automatically, guards against infinite loops, manages conversation
+state, and much more.
 
 ```ruby
 require "llm"
 
-llm = LLM.openai(key: ENV["KEY"])
+llm = LLM.deepseek(key: ENV["KEY"])
 agent = LLM::Agent.new(llm, stream: $stdout)
 agent.talk "Hello world"
 ```
 
-#### Agents (Advanced)
+#### LLM::Context
 
-An agent can be configured to require confirmation before a tool is
-executed. When a matching tool is called, llm.rb runs
-`on_tool_confirmation`. That callback must decide whether to cancel the
-tool call or approve it and execute it by calling
-`fn.spawn(strategy).wait`, and it must always return an instance of
-[`LLM::Function::Return`](https://r.uby.dev/api-docs/llm.rb/LLM/Function/Return.html):
+The [`LLM::Context`](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html) class is at the heart of the runtime
+and it is what [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html) uses under the hood.
+It requires that the tool call loop be managed manually -
+sometimes that can be useful, but usually for advanced use-cases.
+If you're new to llm.rb, try [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html) first.
 
 ```ruby
 require "llm"
 
-class Agent < LLM::Agent
-  tools DeleteFile
-  confirm "delete-file"
-
-  def on_tool_confirmation(fn, strategy)
-    path = fn.arguments.path
-    if path.start_with?("/tmp/")
-      fn.spawn(strategy).wait
-    else
-      fn.cancel(reason: "Deletion requires approval")
-    end
-  end
-end
-
-llm = LLM.openai(key: ENV["KEY"])
-Agent.new(llm, stream: $stdout).talk("Delete /tmp/example.txt.")
+llm = LLM.deepseek(key: ENV["KEY"])
+ctx = LLM::Context.new(llm, stream: $stdout)
+ctx.talk "Hello world"
 ```
 
-#### Tools
+#### LLM::Tool
 
-The
-[LLM::Tool](https://r.uby.dev/api-docs/llm.rb/LLM/Tool.html)
-class can be subclassed to implement your own tools that can extend the
-abilities of a model:
+Subclasses of [`LLM::Tool`](https://r.uby.dev/api-docs/llm.rb/LLM/Tool.html) are plain Ruby classes with
+an optional set of typed parameters. <br> The model can choose to
+call them on your behalf, and they're one of the most powerful features
+for extending the feature set or abilities of a model.
 
 ```ruby
 class ReadFile < LLM::Tool
@@ -128,305 +90,116 @@ class ReadFile < LLM::Tool
   required %i[path]
 
   def call(path:)
-    { contents: File.read(path) }
+    {contents: File.read(path)}
   end
 end
-```
-
-#### MCP
-
-The
-[LLM::MCP](https://r.uby.dev/api-docs/llm.rb/LLM/MCP.html)
-object lets llm.rb use tools provided by an MCP server. Those tools are
-exposed through the same runtime as local tools, so you can pass them
-to either
-[LLM::Context](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html)
-or
-[LLM::Agent](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html).
-In this example, the MCP server runs over stdio and
-[LLM::Agent](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)
-manages the tool loop. For **stdio**, `mcp.session` is the preferred
-pattern because it keeps one MCP session alive across discovery and
-tool calls:
-
-```ruby
-require "llm"
-
-llm = LLM.openai(key: ENV["KEY"])
-mcp = LLM::MCP.stdio(argv: ["ruby", "server.rb"])
-
-mcp.session do
-  agent = LLM::Agent.new(llm, stream: $stdout, tools: mcp.tools)
-  agent.talk "Use the available tools to inspect the environment."
-end
-```
-
-MCP can also be used without `session`. Although it works it is generally
-not recommended for the **stdio** transport because it is inefficient
-to start and stop a fresh MCP process for tool discovery and each tool
-call:
-
-```ruby
-require "llm"
-
-llm = LLM.openai(key: ENV["KEY"])
-mcp = LLM::MCP.stdio(argv: ["ruby", "server.rb"])
-
-agent = LLM::Agent.new(llm, tools: mcp.tools)
-agent.talk("Use the available tools to inspect the environment.")
-```
-
-The HTTP transport can be used with or without the `session` method,
-and unlike the stdio transport it can remain efficient without the
-`session` method through a persistent connection pool that is available
-through the
-[LLM::Transport.net_http_persistent](https://r.uby.dev/api-docs/llm.rb/LLM/Transport.html#method-c-net_http_persistent)
-transport:
-
-```ruby
-require "llm"
-
-llm = LLM.openai(key: ENV["KEY"])
-mcp = LLM::MCP.http(
-  url: "https://remote-mcp.example.com",
-  transport: :net_http_persistent
-)
-
-agent = LLM::Agent.new(llm, tools: mcp.tools)
-agent.talk("Use the available tools to inspect the environment.")
-```
-
-#### A2A (Agent 2 Agent)
-
-The
-[LLM::A2A](https://r.uby.dev/api-docs/llm.rb/LLM/A2A.html)
-object lets llm.rb use skills provided by a remote A2A agent. Those
-skills are exposed through the same runtime as local tools, so you can
-pass them to either
-[LLM::Context](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html)
-or
-[LLM::Agent](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html).
-
-Use remote skills as local tools:
-
-```ruby
-require "llm"
-
-a2a = LLM::A2A.rest(
-  url: "https://remote-agent.example.com",
-  headers: { "Authorization" => "Bearer token" }
-)
-llm = LLM.openai(key: ENV["KEY"])
-agent = LLM::Agent.new(llm, tools: a2a.skills)
-agent.talk "Analyze this CSV and summarize the trends."
-```
-
-Use persistent HTTP connections:
-
-```ruby
-require "llm"
-
-a2a = LLM::A2A.rest(
-  url: "https://remote-agent.example.com",
-  transport: :net_http_persistent
-)
-```
-
-For more on direct messaging, task operations, push notification
-configs, and JSON-RPC, see the
-[LLM::A2A API docs](https://r.uby.dev/api-docs/llm.rb/LLM/A2A.html).
-
-#### Transports
-
-Providers use Ruby's standard library Net::HTTP transport by default.
-You can opt into persistent Net::HTTP connections with `persistent: true`,
-or provide a transport shortcut when you want a different backend.
-`transport: :curb` uses libcurl through the optional `curb` gem.
-
-Custom transports can implement the
-[LLM::Transport](https://r.uby.dev/api-docs/llm.rb/LLM/Transport.html)
-interface and receive transport-agnostic
-[LLM::Transport::Request](https://r.uby.dev/api-docs/llm.rb/LLM/Transport/Request.html)
-objects from providers.
-
-```ruby
-require "llm"
-
-llm = LLM.openai(key: ENV["KEY"], persistent: true)
-llm = LLM.openai(key: ENV["KEY"], transport: :net_http_persistent)
-llm = LLM.openai(key: ENV["KEY"], transport: :curb)
-```
-
-#### Skills
-
-Skills are reusable instructions loaded from a `SKILL.md` directory. They let
-you package behavior and tool access together, and they plug into the
-same runtime as tools, agents, MCP, and A2A. When a skill runs, llm.rb
-spawns a subagent with the skill instructions, access to only the tools
-listed in the skill, and recent conversation context:
-
-```yaml
----
-name: release
-description: Prepare a release
-tools: ["search-docs", "git"]
----
-
-## Task
-
-Review the release state, summarize what changed, and prepare the release.
-```
-
-```ruby
-require "llm"
-
-class ReleaseAgent < LLM::Agent
-  model "gpt-5.4-mini"
-  skills "./skills/release"
-end
-
-llm = LLM.openai(key: ENV["KEY"])
-ReleaseAgent.new(llm, stream: $stdout).talk("Prepare the next release.")
-```
-
-A skill can also have its sub-agent inherit the parents tools through the
-`inherit` directive. The `inherit` directive has coverage for the "classic"
-tools (a subclass of [LLM::Tool](https://r.uby.dev/api-docs/llm.rb/LLM/Tool.html)),
-MCP tools, and A2A tools that a parent context or agent has access to:
-
-```yaml
----
-  name: release
-  description: Prepare a release
-  tools: inherit
----
 ```
 
 #### LLM::Stream
 
-The
-[LLM::Stream](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html)
-object lets you observe output and runtime events as they happen. You
-can subclass it to handle streamed content in your own application:
+Streams can be simple IO objects or subclasses of
+[`LLM::Stream`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html) with structured callbacks for content,
+reasoning, tool calls, tool returns, and compaction.
 
 ```ruby
-require "llm"
-
-class Stream < LLM::Stream
+class MyStream < LLM::Stream
   def on_content(content)
-    $stdout << content
+    print content
+  end
+
+  def on_reasoning_content(content)
+    warn content
   end
 end
 
-llm = LLM.openai(key: ENV["KEY"])
-agent = LLM::Agent.new(llm, stream: Stream.new)
-agent.talk "Write a haiku about Ruby."
+llm = LLM.deepseek(key: ENV["KEY"])
+agent = LLM::Agent.new(llm, stream: MyStream.new)
+agent.talk "Explain Ruby fibers."
 ```
 
-#### LLM::Stream (advanced)
+#### LLM::MCP
 
-The
-[LLM::Stream](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html)
-object can also resolve tool calls while output is still streaming. In
-`on_tool_call`, you can spawn the tool, push the work onto the stream
-queue, and later drain it with `wait`:
+The Model Context Protocol (MCP) has first-class support
+in llm.rb. The stdio and http transports work out of the
+box. MCP tools are translated into subclasses of
+[`LLM::Tool`](https://r.uby.dev/api-docs/llm.rb/LLM/Tool.html) that can be used with [`LLM::Context`](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html)
+or [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html).
 
 ```ruby
 require "llm"
 
-class Stream < LLM::Stream
-  def on_content(content)
-    $stdout << content
-  end
+llm   = LLM.deepseek(key: ENV["KEY"])
+mcp   = LLM::MCP.stdio(argv: ["ruby", "server.rb"])
+agent = LLM::Agent.new(llm, stream: $stdout, tools: mcp.tools)
+agent.talk "Run the tool"
+```
 
-  def on_tool_call(tool, error)
-    return queue << error if error
-    queue << ctx.spawn(tool, :thread)
-  end
-end
+#### LLM::A2A
 
-llm = LLM.openai(key: ENV["KEY"])
-ctx = LLM::Context.new(llm, stream: Stream.new, tools: [ReadFile])
-ctx.talk "Read README.md and summarize the quick start."
-ctx.talk(ctx.wait) while ctx.functions?
+The Agent 2 Agent (A2A) protocol has first-class support
+in llm.rb. The http and jsonrpc transports work out of the
+box. A2A skills are translated into subclasses of
+[`LLM::Tool`](https://r.uby.dev/api-docs/llm.rb/LLM/Tool.html) that can be used with [`LLM::Context`](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html)
+or [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html).
+
+```ruby
+require "llm"
+
+llm   = LLM.deepseek(key: ENV["KEY"])
+a2a   = LLM::A2A.rest(url: "https://remote-agent.example.com")
+agent = LLM::Agent.new(llm, stream: $stdout, tools: a2a.tools)
+agent.talk "Run the skill"
+```
+
+#### RAG
+
+Most providers offer an embedding model that can be
+used for semantic search, or similarity search. An
+embedding model can generate embeddings that can then
+be stored in a database that is optimized for storing
+and querying vectors, such as SQLite's [sqlite-vec](https://github.com/asg017/sqlite-vec)
+or PostgreSQL's [pg-vector](https://github.com/pgvector/pgvector).
+
+llm.rb also includes support for OpenAI's vector store API. It
+provides a vector database as a HTTP service but we won't cover
+that here.
+
+```ruby
+require "llm"
+
+llm  = LLM.openai(key: ENV["KEY"])
+body = "llm.rb is Ruby's capable AI runtime."
+embedding = llm.embed([body]).embeddings.first
+
+Document.create!(
+  title: "llm.rb",
+  body:,
+  embedding:,
+)
 ```
 
 #### Concurrency
 
-llm.rb can run tool work concurrently. This is useful when a model calls
-multiple tools and you want to resolve them in parallel instead of one
-at a time. On
-[LLM::Agent](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html),
-you can enable this with `concurrency`. Common options are `:call` for
-sequential execution, `:thread`, or `:task` for concurrent IO-bound work, and
-`:ractor` or `:fork` for more isolated CPU-bound work:
+The runtime supports five different concurrency strategies that have
+different attributes. The choice between all of them often depends
+on the requirements of your application.
+
+IO-bound tools are a good fit for the `:task`, `:thread`,
+and `:fiber` strategies while true parallelism can be achieved
+with the `:fork` and `:ractor` strategies. The
+`:fork` strategy also provides a separate process that offers
+isolation from its parent.
 
 ```ruby
 require "llm"
 
-class Agent < LLM::Agent
-  model "gpt-5.4-mini"
-  tools ReadFile
-  concurrency :thread
-end
-
-llm = LLM.openai(key: ENV["KEY"])
-agent = Agent.new(llm, stream: $stdout)
-agent.talk "Read README.md and CHANGELOG.md and compare them."
+llm   = LLM.deepseek(key: ENV["KEY"])
+tools = [FetchNews, FetchStocks, FetchFeeds]
+agent = LLM::Agent.new(llm, tools:, concurrency: :fork)
+agent.talk "Run the tools in parallel"
 ```
 
-#### Serialization
-
-The [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)
-object can be serialized to JSON, which makes it suitable for storing
-in a file, a database column, or a Redis queue. The built-in
-ActiveRecord and Sequel plugins are built on top of the same underlying
-serialization feature:
-
-```ruby
-require "llm"
-
-llm = LLM.openai(key: ENV["KEY"])
-
-# Serialize an agent
-agent1 = LLM::Agent.new(llm)
-agent1.talk "Remember that my favorite language is Ruby"
-string = agent1.to_json
-
-# Restore an agent (from JSON)
-agent2 = LLM::Agent.new(llm, stream: $stdout)
-agent2.restore(string:)
-agent2.talk "What is my favorite language?"
-```
-
-#### ask
-
-[`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)
-also provides `ask`, a convenience interface that is compatible with
-RubyLLM's `ask` method. It accepts a prompt, an optional `with:`
-attachment path or paths, an optional `stream:` target, and an optional
-block that chunks are yielded to. It returns an
-[`LLM::Response`](https://r.uby.dev/api-docs/llm.rb/LLM/Response.html),
-so use `.content` when you want the text directly:
-
-```ruby
-require "llm"
-
-llm = LLM.openai(key: ENV["KEY"])
-agent = LLM::Agent.new(llm)
-
-puts agent.ask("Hello world").content
-puts agent.ask("Summarize this document.", with: "README.md").content
-agent.ask("Stream this reply.") { $stdout << _1 }
-```
-
-## Installation
-
-```bash
-gem install llm.rb
-```
-
-## Examples
+## Extra
 
 #### REPL
 
