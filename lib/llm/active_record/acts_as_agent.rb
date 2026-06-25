@@ -17,46 +17,6 @@ module LLM::ActiveRecord
   # class and forwarded to an internal agent subclass.
   module ActsAsAgent
     module ClassMethods
-      def model(model = nil, &block)
-        return agent.model if model.nil? && !block
-        agent.model(model, &block)
-      end
-
-      def tools(*tools, &block)
-        return agent.tools if tools.empty? && !block
-        agent.tools(*tools, &block)
-      end
-
-      def skills(*skills, &block)
-        return agent.skills if skills.empty? && !block
-        agent.skills(*skills, &block)
-      end
-
-      def schema(schema = nil, &block)
-        return agent.schema if schema.nil? && !block
-        agent.schema(schema, &block)
-      end
-
-      def instructions(instructions = nil)
-        return agent.instructions if instructions.nil?
-        agent.instructions(instructions)
-      end
-
-      def concurrency(concurrency = nil)
-        return agent.concurrency if concurrency.nil?
-        agent.concurrency(concurrency)
-      end
-
-      def confirm(*tool_names, &block)
-        return agent.confirm if tool_names.empty? && !block
-        agent.confirm(*tool_names, &block)
-      end
-
-      def tracer(tracer = nil, &block)
-        return agent.tracer if tracer.nil? && !block
-        agent.tracer(tracer, &block)
-      end
-
       def agent
         @agent ||= Class.new(LLM::Agent)
       end

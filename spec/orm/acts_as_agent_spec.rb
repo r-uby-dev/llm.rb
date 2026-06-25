@@ -23,11 +23,12 @@ RSpec.describe "acts_as_agent" do
 
   let(:agent) do
     Class.new(model) do
-      acts_as_agent provider: :set_provider, context: :set_context, tracer: :set_tracer
-      model "gpt-5.4-mini"
-      instructions "You are concise."
-      concurrency :thread
-      confirm "delete-file"
+      acts_as_agent(tracer: :set_tracer) do |agent|
+        agent.model "gpt-5.4-mini"
+        agent.instructions "You are concise."
+        agent.concurrency :thread
+        agent.confirm "delete-file"
+      end
 
       private
 
@@ -57,8 +58,9 @@ RSpec.describe "acts_as_agent" do
     let(:agent) do
       tool = self.tool
       Class.new(model) do
-        acts_as_agent provider: :set_provider
-        tools { [tool] }
+        acts_as_agent do |agent|
+          agent.tools { [tool] }
+        end
 
         private
 
@@ -76,8 +78,9 @@ RSpec.describe "acts_as_agent" do
   context "when model is declared with a block" do
     let(:agent) do
       Class.new(model) do
-        acts_as_agent provider: :set_provider
-        model { "gpt-4.1" }
+        acts_as_agent do |agent|
+          agent.model { "gpt-4.1" }
+        end
 
         private
 
@@ -96,8 +99,9 @@ RSpec.describe "acts_as_agent" do
     let(:agent) do
       skill_path = self.skill_path
       Class.new(model) do
-        acts_as_agent provider: :set_provider
-        skills { [skill_path] }
+        acts_as_agent do |agent|
+          agent.skills { [skill_path] }
+        end
 
         private
 
@@ -116,8 +120,9 @@ RSpec.describe "acts_as_agent" do
     let(:agent) do
       schema = self.schema
       Class.new(model) do
-        acts_as_agent provider: :set_provider
-        schema { schema }
+        acts_as_agent do |agent|
+          agent.schema { schema }
+        end
 
         private
 
@@ -138,8 +143,9 @@ RSpec.describe "acts_as_agent" do
           vcr: {cassette_name: "openai/chat/completion_contract"} do
     let(:agent) do
       Class.new(model) do
-        acts_as_agent provider: :set_provider, tracer: :set_tracer
-        model "gpt-4.1"
+        acts_as_agent(tracer: :set_tracer) do |agent|
+          agent.model "gpt-4.1"
+        end
 
         private
 
