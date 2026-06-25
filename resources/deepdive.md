@@ -170,3 +170,62 @@ llm = LLM.deepseek(key: "...", transport: :curb)
 mcp = LLM::MCP.http(url: "...", transport: :curb)
 a2a = LLM::A2A.rest(url: "...", transport: :curb)
 ```
+
+## Stream
+
+#### IO-like object
+
+Any object that implements the `#<<` method can receive
+chunks from a stream. That includes objects like `$stdout`.
+This form of streaming is simple and limited. It is the
+equivalent of [LLM::Stream#on_content], and doesn't include
+any of the other
+[`LLM::Stream`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html)
+hooks.
+
+```ruby
+require "llm"
+
+llm = LLM.deepseek(key: ENV["KEY"])
+agent = LLM::Agent.new(llm, stream: $stdout)
+agent.talk "hello world"
+```
+
+#### [`LLM::Stream`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html)
+
+The [`LLM::Stream`](https://r.uby.dev/api-docs/llm.rb/LLM/Stream.html)
+class provides many hooks that a subclass
+can implement. They range from being notified when a tool call
+starts to when a tool call finishes, or when a conversation is
+due to be compacted because the context window exceeded a defined
+limit. All these callbacks support a responsive user interface
+where the user is always aware of what is happening behind the
+scenes.
+
+```ruby
+class Stream < LLM::Stream
+  def on_content(content)
+    puts content
+  end
+
+  def on_reasoning_content(content)
+    puts content
+  end
+
+  def on_tool_call(tool, error)
+    # this callback can be used to either log a tool call,
+    # or execute a tool call during a stream.
+  end
+
+  def on_tool_return(tool, result)
+  end
+
+  def on_compaction(ctx)
+    # this callback is called *before* a compact happens
+  end
+
+  def on_compaction_finish(ctx, compactor)
+    # this callback is called *after* a compact happens
+  end
+end
+```
