@@ -37,6 +37,8 @@ didn't make it into the homepage documentation.
 - [ORM](#orm)
   - [ActiveRecord](#activerecord)
   - [Sequel](#sequel)
+- [Schema](#schema)
+  - [Estimation](#estimation)
 - [Tracer](#tracer)
   - [Provider-wide tracer](#provider-wide-tracer)
   - [Agent-local tracer](#agent-local-tracer)
@@ -361,6 +363,55 @@ end
 
 agent = Agent.create
 agent.talk "perform research"
+```
+
+[Back to top](#table-of-contents)
+
+## Schema
+
+The [`LLM::Schema`](https://r.uby.dev/api-docs/llm.rb/LLM/Schema.html)
+class can be subclassed to describe
+the shape of a JSON object or objects that you expect
+the model to respond with.
+
+It can be useful for a wide range of use cases but the
+most popular might be classification, data extraction,
+and transferring structured data between different software
+rather than blobs of text that a machine cannot easily parse
+in a structured way.
+
+#### Estimation
+
+The following example asks the model to estimate the age
+of a person in a photo. The model provides a structured response
+that's represented by an instance of
+[`LLM::Object`](https://r.uby.dev/api-docs/llm.rb/LLM/Object.html).
+
+The object returned by
+[`LLM::Response#content!`](https://r.uby.dev/api-docs/llm.rb/LLM/Contract/Completion.html#content!-instance_method)
+has methods that can access the age, confidence, and comments
+properties.
+This approach can also work for extracting data or an analysis
+from a PDF, and other file types.
+
+```ruby
+require "llm"
+require "pp"
+
+class Estimation < LLM::Schema
+  property :age, String, "The estimated age of the person"
+  property :confidence, Number, "Your confidence in the estimate"
+  property :comments, String, "Any additional comments or context"
+end
+
+llm = LLM.openai(key: ENV["KEY"])
+agent = LLM::Agent.new(llm, schema: Estimation)
+res = agent.ask "Given this photo, provide an age estimate", with: "photo.jpg"
+
+##
+# Coerces the model's response from a JSON string
+# to an instance of LLM::Object.
+pp res.content!
 ```
 
 [Back to top](#table-of-contents)
