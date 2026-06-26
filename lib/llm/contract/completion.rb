@@ -98,10 +98,10 @@ module LLM::Contract
     end
 
     ##
-    # @return [Hash]
+    # @return [LLM::Object]
     #  Returns the LLM response after parsing it as JSON
     def content!
-      LLM.json.load(content)
+      LLM::Object.from LLM.json.load(content)
     end
 
     ##
