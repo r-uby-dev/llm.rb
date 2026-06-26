@@ -2,10 +2,6 @@
 
 module LLM::OpenAI::ResponseAdapter
   module Image
-    def urls
-      data.filter_map { _1["url"] }
-    end
-
     def images
       data.filter_map do
         next unless _1["b64_json"]
