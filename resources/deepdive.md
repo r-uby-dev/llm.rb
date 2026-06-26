@@ -222,7 +222,7 @@ class Stream < LLM::Stream
   def on_tool_return(tool, result)
   end
 
-  def on_compaction(ctx)
+  def on_compaction(ctx, compactor)
     # this callback is called *before* a compact happens
   end
 
@@ -311,6 +311,7 @@ same for ActiveRecord.
 ```ruby
 require "sequel"
 require "llm"
+require "llm/sequel/plugin"
 
 class Agent < Sequel::Model
   plugin(:agent, format: :jsonb) do |agent|
@@ -323,10 +324,63 @@ class Agent < Sequel::Model
   private
 
   def set_provider
-    LLM.deepseek(key: ENV["DEEPSEEK_SECRET"])
+    LLM.deepseek(key: ENV["KEY"])
   end
 end
 
 agent = Agent.create
 agent.talk "perform research"
+```
+
+## Tracer
+
+The runtime can be observed by subclasses of
+[`LLM::Tracer`](https://r.uby.dev/api-docs/llm.rb/LLM/Tracer.html). <br>
+The default tracers include a tracer that can write to standard
+output
+([`LLM::Tracer::Logger`](https://r.uby.dev/api-docs/llm.rb/LLM/Tracer/Logger.html)),
+and a generic OpenTelemetry tracer that can export spans via OTLP
+([`LLM::Tracer::Telemetry`](https://r.uby.dev/api-docs/llm.rb/LLM/Tracer/Telemetry.html)).
+
+llm.rb has numerous hooks implemented throughout the runtime that
+[`LLM::Tracer`](https://r.uby.dev/api-docs/llm.rb/LLM/Tracer.html)
+subclasses can hook into, and the tracer is
+purposefully designed to be extensible. The scope of a trace
+can vary from an individual agent (an instance of
+[`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)),
+or for every request a provider makes (an indirect instance of
+[`LLM::Provider`](https://r.uby.dev/api-docs/llm.rb/LLM/Provider.html)).
+
+The following two examples demonstrate provider-wide tracers that
+cover every request made for a single provider.
+
+```ruby
+##
+# Provider-wide tracer
+# Writes to $stdout
+llm = LLM.deepseek(key: ENV["KEY"])
+llm.tracer = LLM::Tracer::Logger.new(llm, io: $stdout)
+
+##
+# Provider-wide tracer
+# Writes to deepseek.log
+llm = LLM.deepseek(key: ENV["KEY"])
+llm.tracer = LLM::Tracer::Logger.new(llm, path: "deepseek.log")
+```
+
+The next two examples demonstrate a tracer that is local
+to an agent:
+
+```ruby
+##
+# Agent-local
+# Writes to $stdout
+llm = LLM.deepseek(key: ENV["KEY"])
+agent = LLM::Agent.new(llm, tracer: LLM::Tracer::Logger.new(llm, io: $stdout))
+
+##
+# Agent-local
+# Writes to deepseek-agent.log
+llm = LLM.deepseek(key: ENV["KEY"])
+agent = LLM::Agent.new(llm, tracer: LLM::Tracer::Logger.new(llm, path: "deepseek-agent.log"))
 ```

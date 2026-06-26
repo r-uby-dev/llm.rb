@@ -64,7 +64,7 @@ major release: `v12.0.0`.
 * **Sequel: yield `LLM::Agent` to `plugin(:agent)`** <br>
   Ditto as above but for Sequel.
 
-* **Remove the langsmith tracer**
+* **Remove the langsmith tracer** <br>
   This code was contributed by a third party but contains
   many anti-patterns that are against llm.rb conventions
   and best practices. It was merged without oversight or
