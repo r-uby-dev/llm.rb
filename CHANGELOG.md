@@ -6,47 +6,55 @@ Changes since `v11.3.1`
 
 ### Breaking
 
-* **Default OpenAI contexts to the Responses API** <br>
-  Route `LLM::Context#talk` through the Responses API by default instead
-  of Chat Completions. Chat Completions remain available through the
-  provider's `complete` method or by passing `mode: :completions` on the
-  context, but the default `talk` path now uses the newer Responses
-  endpoint.
+* **OpenAI: default to the Responses API** <br>
+  The responses API has both models and features that are unavailable
+  on the chat completions API, and the responses API appears to be
+  the API of the future for OpenAI.
+
+  Worth noting: the llm.rb implementation does **not** store state
+  server-side by default. This can be changed with the `store: true`
+  option. The legacy chat completions API can be accessed with the
+  `mode: :completions` option.
+
+  llm.rb has had support for the responses API for quite
+  a while but it was not the default, and a number of bugs
+  were found and fixed during the process of making it the
+  default.
+
+* **OpenAI: use gpt-image for image generation** <br>
+  The `dalle` models are in the process of being deprecated, and support
+  has been dropped from llm.rb. The `gpt-image` models are the next-generation
+  image-generation models from OpenAI.
+
+* **xAI: provide images as base64-encoded data** <br>
+  Both xAI, and OpenAI had the option to generate images via a URL
+  you can fetch, or as a base64-encoded string embedded directly
+  in the response.
+
+  OpenAI is moving away from the URL transport since deprecating dalle,
+  and with that in mind, llm.rb has dropped support for the URL transport
+  across all providers that supported it.
+
+  Google, xAI, and OpenAI now consistently provide generated and modified
+  images as a base64-encoded string.
+
+* **ActiveRecord: yield `LLM::Agent` to `acts_as_agent`** <br>
+  With this change we yield an instance of `LLM::Agent` to the `acts_as_agent`
+  method, and drop the methods (such as `model`, `instructions`, etc) that
+  were previously defined directly on the model. This keeps the number of
+  methods that llm.rb adds to an ActiveRecord model at a minimum and retains
+  the same capabilities as before.
+
+* **Sequel: yield `LLM::Agent` to `plugin(:agent)`** <br>
+  Ditto as above but for Sequel.
 
 ### Add
 
 * **Add `LLM::Schema.defaults`** <br>
-  Add class-level `defaults` to `LLM::Schema` so schema subclasses can
-  define default values for properties.
-
-* **Default OpenAI to `gpt-5.4-mini`** <br>
-  Change `LLM::OpenAI#default_model` to `gpt-5.4-mini` for the current
-  preferred chat model.
-
-* **Default Google to `gemini-3.1-flash-lite`** <br>
-  Change `LLM::Google#default_model` to `gemini-3.1-flash-lite` for the
-  current preferred chat model, and default embeddings to
-  `gemini-embedding-2`.
-
-* **Support OpenAI gpt-image models** <br>
-  Add support for OpenAI's `gpt-image` models so image generation
-  requests can use the gpt-image endpoint.
-
-* **Return base64-encoded images from xAI** <br>
-  Make the xAI provider return base64-encoded image data by default,
-  matching the existing OpenAI behavior.
-
-* **Adopt `set_tracer` convention in ORM wrappers** <br>
-  Let the ActiveRecord and Sequel wrappers call `set_tracer` by
-  convention, matching the `set_provider` and `set_context` pattern.
-
-* **Reduce ActiveRecord wrapper model pollution** <br>
-  Move helper methods into shared utilities so wrapped models include
-  fewer internal helper methods.
-
-* **Reduce Sequel wrapper model pollution** <br>
-  Apply the same model-surface reduction to the Sequel plugin, matching
-  the ActiveRecord wrapper changes.
+  This method lets you map multiple property names to
+  different default values. It is similar to `LLM::Schema.required`
+  in the sense that it is called after the properties of
+  a schema have been defined.
 
 ### Fix
 
@@ -59,23 +67,18 @@ Changes since `v11.3.1`
   Prevent duplicate or conflicting `generationConfig` keys in the
   Google request adapter.
 
-* **Fix xAI registry spec for grok models** <br>
-  Correct the xAI model registry entry so grok model metadata resolves
-  properly.
-
-* **Refresh model metadata** <br>
-  Update `data/models.dev` files with current provider model listings,
-  pricing, and capabilities.
-
 ### Change
 
-* **Optimize gemspec description for rubygems.org** <br>
-  Reformat the gemspec description for better layout on the rubygems.org
-  gem page.
+* **Change OpenAI defaults** <br>
+  The default chat model is now `gpt-5.4-mini`.
 
-* **Expand deepdive documentation** <br>
-  Add dedicated deepdive sections for ActiveRecord and Sequel ORM
-  integration, stream configuration, and HTTP transport options.
+* **Change google defaults** <br>
+  The default chat model is now `gemini-3.1-flash-lite` <br>
+  The default embeddings model is now `gemini-embedding-2`
+
+* **Refresh model metadata** <br>
+  Update `data/*.json` files with current provider model listings,
+  pricing, and capabilities.
 
 ## v11.3.1
 
