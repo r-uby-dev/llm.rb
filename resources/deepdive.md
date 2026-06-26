@@ -19,6 +19,28 @@ the [homepage documentation](https://r.uby.dev/llm). It assumes you
 are familiar with the basics already, and focuses on features that
 didn't make it into the homepage documentation.
 
+## Table of contents
+
+- [MCP](#mcp)
+  - [stdio](#stdio)
+  - [http](#http)
+- [A2A](#a2a)
+  - [rest](#rest)
+  - [jsonrpc](#jsonrpc)
+- [Transports](#transports)
+  - [net/http](#nethttp)
+  - [net/http/persistent](#nethttppersistent)
+  - [curb](#curb)
+- [Stream](#stream)
+  - [IO-like object](#io-like-object)
+  - [LLM::Stream](#llmstream)
+- [ORM](#orm)
+  - [ActiveRecord](#activerecord)
+  - [Sequel](#sequel)
+- [Tracer](#tracer)
+  - [Provider-wide tracer](#provider-wide-tracer)
+  - [Agent-local tracer](#agent-local-tracer)
+
 ## MCP
 
 #### stdio
@@ -74,6 +96,9 @@ mcp   = LLM::MCP.http(
 agent = LLM::Agent.new(llm)
 agent.talk "What's happening on GitHub?", tools: mcp.tools
 ```
+
+[Back to top](#table-of-contents)
+
 ## A2A
 
 #### rest
@@ -116,6 +141,8 @@ a2a   = LLM::A2A.jsonrpc(url: "https://agent.example.com")
 agent = LLM::Agent.new(llm, tools: a2a.skills)
 agent.talk "What's happening, fellow agent?"
 ```
+
+[Back to top](#table-of-contents)
 
 ## Transports
 
@@ -170,6 +197,8 @@ llm = LLM.deepseek(key: "...", transport: :curb)
 mcp = LLM::MCP.http(url: "...", transport: :curb)
 a2a = LLM::A2A.rest(url: "...", transport: :curb)
 ```
+
+[Back to top](#table-of-contents)
 
 ## Stream
 
@@ -231,6 +260,8 @@ class Stream < LLM::Stream
   end
 end
 ```
+
+[Back to top](#table-of-contents)
 
 ## ORM
 
@@ -332,6 +363,8 @@ agent = Agent.create
 agent.talk "perform research"
 ```
 
+[Back to top](#table-of-contents)
+
 ## Tracer
 
 The runtime can be observed by subclasses of
@@ -351,6 +384,8 @@ can vary from an individual agent (an instance of
 or for every request a provider makes (an indirect instance of
 [`LLM::Provider`](https://r.uby.dev/api-docs/llm.rb/LLM/Provider.html)).
 
+#### Provider-wide tracer
+
 The following two examples demonstrate provider-wide tracers that
 cover every request made for a single provider.
 
@@ -368,8 +403,10 @@ llm = LLM.deepseek(key: ENV["KEY"])
 llm.tracer = LLM::Tracer::Logger.new(llm, path: "deepseek.log")
 ```
 
+#### Agent-local tracer
+
 The next two examples demonstrate a tracer that is local
-to an agent:
+to an agent.
 
 ```ruby
 ##
@@ -384,3 +421,5 @@ agent = LLM::Agent.new(llm, tracer: LLM::Tracer::Logger.new(llm, io: $stdout))
 llm = LLM.deepseek(key: ENV["KEY"])
 agent = LLM::Agent.new(llm, tracer: LLM::Tracer::Logger.new(llm, path: "deepseek-agent.log"))
 ```
+
+[Back to top](#table-of-contents)
