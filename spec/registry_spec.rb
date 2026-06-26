@@ -62,7 +62,7 @@ RSpec.describe LLM::Registry do
   context "when given xai" do
     let(:provider) { :xai }
 
-    include_examples "model exists", "grok-2"
+    include_examples "model exists", "grok-4.3"
     include_examples "model exists", "grok-4.20-0309-non-reasoning"
   end
 
