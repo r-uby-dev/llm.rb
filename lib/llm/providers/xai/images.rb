@@ -26,7 +26,7 @@ class LLM::XAI
     # @param [Hash] params Other parameters (see xAI docs)
     # @raise (see LLM::Provider#request)
     # @return [LLM::Response]
-    def create(prompt:, model: "grok-imagine-image", **params)
+    def create(prompt:, model: "grok-imagine-image-quality", **params)
       req = LLM::Transport::Request.post(path("/images/generations"), headers)
       req.body = LLM.json.dump({prompt:, n: 1, model:, response_format: "b64_json"}.merge!(params))
       res, span, tracer = execute(request: req, operation: "request")
@@ -37,7 +37,7 @@ class LLM::XAI
 
     ##
     # @raise [NotImplementedError]
-    def edit(model: "grok-imagine-image", **)
+    def edit(model: "grok-imagine-image-quality", **)
       raise NotImplementedError
     end
   end

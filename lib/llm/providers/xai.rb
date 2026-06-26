@@ -70,10 +70,10 @@ module LLM
 
     ##
     # Returns the default model for chat completions
-    # #see https://docs.x.ai/docs/models grok-4-0709
+    # #see https://docs.x.ai/docs/models grok-4.3
     # @return [String]
     def default_model
-      "grok-4-0709"
+      "grok-4.3"
     end
   end
 end

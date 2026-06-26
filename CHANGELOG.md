@@ -86,11 +86,16 @@ major release: `v12.0.0`.
 ### Change
 
 * **Change OpenAI defaults** <br>
-  The default chat model is now `gpt-5.4-mini`.
+  The default chat model is now `gpt-5.4-mini`. <br>
+  The default image model is now `gpt-image`.
 
 * **Change google defaults** <br>
   The default chat model is now `gemini-3.1-flash-lite` <br>
   The default embeddings model is now `gemini-embedding-2`
+
+* **Change xAI defaults** <br>
+  The default chat model is now `grok-4.3`. <br>
+  The default image model is now `grok-imagine-image-quality`.
 
 * **Refresh model metadata** <br>
   Update `data/*.json` files with current provider model listings,
