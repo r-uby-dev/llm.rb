@@ -2,28 +2,30 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=TOKEN
     body:
       encoding: UTF-8
-      string: '{"contents":[{"role":"user","parts":[{"text":"Does the earth orbit
-        the sun?"}]}],"generationConfig":{"response_mime_type":"application/json","response_schema":{"type":"object","properties":{"probability":{"description":"The
+      string: '{"contents":[{"role":"user","parts":[{"text":"Return probability 1
+        for true and 0 for false. Does the earth orbit the sun?"}]}],"generationConfig":{"response_mime_type":"application/json","response_schema":{"type":"object","properties":{"probability":{"description":"The
         answer''s probability","type":"integer"}},"required":["probability"]}}}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
+      X-Gemini-Service-Tier:
+      - standard
       Content-Type:
       - application/json; charset=UTF-8
       Vary:
@@ -31,7 +33,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 18 Mar 2026 04:29:02 GMT
+      - Fri, 26 Jun 2026 11:28:53 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -41,7 +43,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=1125
+      - gfet4t7; dur=741
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -55,7 +57,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "{\"probability\":100}"
+                    "text": "{\n  \"probability\": 1\n}",
+                    "thoughtSignature": "EjQKMgEMOdbH+eg4y5pBiHY8cw9R4bOsvln8gqzkqCzBR8DkLGTHdw50yS0yUXxLUh/BFpbg"
                   }
                 ],
                 "role": "model"
@@ -65,19 +68,19 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 8,
-            "candidatesTokenCount": 7,
-            "totalTokenCount": 103,
+            "promptTokenCount": 20,
+            "candidatesTokenCount": 10,
+            "totalTokenCount": 30,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 8
+                "tokenCount": 20
               }
             ],
-            "thoughtsTokenCount": 88
+            "serviceTier": "standard"
           },
-          "modelVersion": "gemini-2.5-flash",
-          "responseId": "DSq6aaCTJu2CqtsPlJqRKQ"
+          "modelVersion": "gemini-3.1-flash-lite",
+          "responseId": "dGI-apK9KfezmtkP9pPHiA8"
         }
-  recorded_at: Wed, 18 Mar 2026 04:28:48 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 11:28:45 GMT
+recorded_with: VCR 6.4.0

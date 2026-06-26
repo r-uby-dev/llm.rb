@@ -2,29 +2,30 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=TOKEN
     body:
       encoding: UTF-8
-      string: '{"contents":[{"role":"user","parts":[{"text":"Tell me the answer to
-        5 + 5"}]},{"role":"user","parts":[{"text":"Tell me the answer to 5 + 7"}]},{"role":"user","parts":[{"text":"Answer
-        all of my questions"}]}],"generationConfig":{"response_mime_type":"application/json","response_schema":{"type":"object","properties":{"answers":{"description":"The
+      string: '{"contents":[{"role":"user","parts":[{"text":"Return the numbers 10
+        and 12"}]},{"role":"user","parts":[{"text":"Keep them in the same order"}]}],"generationConfig":{"response_mime_type":"application/json","response_schema":{"type":"object","properties":{"answers":{"description":"The
         answer to two questions","type":"array","items":{"type":"integer"}}},"required":["answers"]}}}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
+      X-Gemini-Service-Tier:
+      - standard
       Content-Type:
       - application/json; charset=UTF-8
       Vary:
@@ -32,7 +33,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 18 Mar 2026 04:29:05 GMT
+      - Fri, 26 Jun 2026 11:28:54 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -42,7 +43,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=1118
+      - gfet4t7; dur=583
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -56,7 +57,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "{\"answers\": [10, 12]}"
+                    "text": "{\n  \"answers\": [10, 12]\n}",
+                    "thoughtSignature": "EjQKMgEMOdbHbh9CWVCFpxQ2Z+RFTB7324N4IVP7jaQc58Kbh8ogSCAMRQfDN/ovKAKmDMcJ"
                   }
                 ],
                 "role": "model"
@@ -66,19 +68,19 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 28,
-            "candidatesTokenCount": 11,
-            "totalTokenCount": 125,
+            "promptTokenCount": 18,
+            "candidatesTokenCount": 16,
+            "totalTokenCount": 34,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 28
+                "tokenCount": 18
               }
             ],
-            "thoughtsTokenCount": 86
+            "serviceTier": "standard"
           },
-          "modelVersion": "gemini-2.5-flash",
-          "responseId": "ECq6afOiKaGJz7IP4e_k6Q8"
+          "modelVersion": "gemini-3.1-flash-lite",
+          "responseId": "dmI-av6tD-mHz7IPxP2hkAY"
         }
-  recorded_at: Wed, 18 Mar 2026 04:28:51 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 11:28:46 GMT
+recorded_with: VCR 6.4.0

@@ -2,24 +2,24 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse&key=TOKEN
     body:
       encoding: UTF-8
-      string: '{"contents":[{"role":"user","parts":[{"text":"Hey, run the ''date''
-        command"}]},{"role":"user","parts":[{"text":"You are a bot that can run UNIX
-        system commands"}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
+      string: '{"contents":[{"role":"user","parts":[{"text":"You are a bot that can
+        run UNIX system commands"}]},{"role":"user","parts":[{"text":"Hey, run the
+        ''date'' command"}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
         system commands","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}]}]}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
@@ -36,7 +36,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Wed, 18 Mar 2026 04:32:24 GMT
+      - Fri, 26 Jun 2026 11:33:31 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -46,18 +46,22 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=981
+      - gfet4t7; dur=467
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
     body:
       encoding: UTF-8
       string: "data: {\"candidates\": [{\"content\": {\"parts\": [{\"functionCall\":
-        {\"name\": \"system\",\"args\": {\"command\": \"date\"}},\"thoughtSignature\":
-        \"CiQBvj72+1IX6OWrq0+BopzJx8ugQLYQRbm6OpizAuuHSbRmGikKYwG+Pvb7xonnAjZ3/voNLFTppm+lKZqsKC7OyCWpXTCMGFrzzuHP3+x/GSINzbL29BVZ6jb16gaqgtleUtH4ohkpaaK+e60/+7yIn9PkRKltqzLfgnkRUQyHcuPJUl6l/vpF1gqNAQG+Pvb7bDd1o+b+QSZ64LKH2fYpLl5KHxyq2sRsSAcXpg4KpQZTC7edOtRHNZpURW+4/VuqsBFZ+a31LqKFbTzvqIsduirtUMKtrFRFy3JYQYRzAz+wVrb3Mr8LzmOSa0DgRMECOAe/wNzfjTct/Ppi6Y6neqJ03iT5kMkWUXf/p1XAqcDTixSEoREM2w==\"}],\"role\":
-        \"model\"},\"finishReason\": \"STOP\",\"index\": 0,\"finishMessage\": \"Model
-        generated function call(s).\"}],\"usageMetadata\": {\"promptTokenCount\":
-        53,\"candidatesTokenCount\": 13,\"totalTokenCount\": 109,\"promptTokensDetails\":
-        [{\"modality\": \"TEXT\",\"tokenCount\": 53}],\"thoughtsTokenCount\": 43},\"modelVersion\":
-        \"gemini-2.5-flash\",\"responseId\": \"1yq6abPVLo-Gz7IPk5HK2Q0\"}\r\n\r\n"
-  recorded_at: Wed, 18 Mar 2026 04:32:10 GMT
-recorded_with: VCR 6.3.1
+        {\"name\": \"system\",\"args\": {\"command\": \"date\"},\"id\": \"jxKMFKJD\"},\"thoughtSignature\":
+        \"EjQKMgEMOdbHx0mpFrcycypm7tOqCbHBQVbnMLZJOygegICh7P3MX5pIV6K50Iaf0U6J5vsZ\"}],\"role\":
+        \"model\"},\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\": 58,\"candidatesTokenCount\":
+        14,\"totalTokenCount\": 72,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        58}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"responseId\":
+        \"i2M-arzlKaWtz7IP-_n0-Ac\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"parts\": [{\"text\": \"\"}],\"role\": \"model\"},\"finishReason\": \"STOP\",\"index\":
+        0}],\"usageMetadata\": {\"promptTokenCount\": 58,\"candidatesTokenCount\":
+        14,\"totalTokenCount\": 72,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        58}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"responseId\":
+        \"i2M-arzlKaWtz7IP-_n0-Ac\"}\r\n\r\n"
+  recorded_at: Fri, 26 Jun 2026 11:33:24 GMT
+recorded_with: VCR 6.4.0

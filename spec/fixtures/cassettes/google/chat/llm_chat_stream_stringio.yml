@@ -2,25 +2,25 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse&key=TOKEN
     body:
       encoding: UTF-8
-      string: '{"contents":[{"role":"user","parts":[{"text":"What is 3+2 ?"}]},{"role":"user","parts":[{"text":"What
-        is 5+5 ?"}]},{"role":"user","parts":[{"text":"What is 5+7 ?"}]},{"role":"user","parts":[{"text":"Keep
-        your answers short and concise, and provide three answers to the three questions.
-        There should be one answer per line. An answer should be a number, for example:
-        5. Nothing else"}]}]}'
+      string: '{"contents":[{"role":"user","parts":[{"text":"Keep your answers short
+        and concise, and provide three answers to the three questions. There should
+        be one answer per line. An answer should be a number, for example: 5. Nothing
+        else"}]},{"role":"user","parts":[{"text":"What is 3+2 ?"}]},{"role":"user","parts":[{"text":"What
+        is 5+5 ?"}]},{"role":"user","parts":[{"text":"What is 5+7 ?"}]}]}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
@@ -37,7 +37,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Wed, 18 Mar 2026 04:28:48 GMT
+      - Fri, 26 Jun 2026 11:33:30 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -47,15 +47,20 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=1732
+      - gfet4t7; dur=631
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
     body:
       encoding: UTF-8
       string: "data: {\"candidates\": [{\"content\": {\"parts\": [{\"text\": \"5\\n10\\n12\"}],\"role\":
+        \"model\"},\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\": 64,\"candidatesTokenCount\":
+        7,\"totalTokenCount\": 71,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        64}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"responseId\":
+        \"iWM-apmsJfKhz7IPrK6PgAY\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"EjQKMgEMOdbHIykcAsWwifsHIEfBeTUw4k9Yp1wecOPpua2BSQC3X15VNYl7AS9tuNbRWLwO\"}],\"role\":
         \"model\"},\"finishReason\": \"STOP\",\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\":
-        64,\"candidatesTokenCount\": 7,\"totalTokenCount\": 149,\"promptTokensDetails\":
-        [{\"modality\": \"TEXT\",\"tokenCount\": 64}],\"thoughtsTokenCount\": 78},\"modelVersion\":
-        \"gemini-2.5-flash\",\"responseId\": \"_ym6ad_eI_yhz7IPu63l4Qs\"}\r\n\r\n"
-  recorded_at: Wed, 18 Mar 2026 04:28:34 GMT
-recorded_with: VCR 6.3.1
+        64,\"candidatesTokenCount\": 7,\"totalTokenCount\": 71,\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 64}],\"serviceTier\": \"standard\"},\"modelVersion\":
+        \"gemini-3.1-flash-lite\",\"responseId\": \"iWM-apmsJfKhz7IPrK6PgAY\"}\r\n\r\n"
+  recorded_at: Fri, 26 Jun 2026 11:33:22 GMT
+recorded_with: VCR 6.4.0

@@ -2,28 +2,30 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=TOKEN
     body:
       encoding: UTF-8
-      string: '{"contents":[{"role":"user","parts":[{"text":"What is the date?"}]},{"role":"user","parts":[{"text":"You
-        are a bot that can run UNIX commands"}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
+      string: '{"contents":[{"role":"user","parts":[{"text":"You are a bot that can
+        run UNIX commands"}]},{"role":"user","parts":[{"text":"What is the date?"}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
         system commands","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}]}]}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
+      X-Gemini-Service-Tier:
+      - standard
       Content-Type:
       - application/json; charset=UTF-8
       Vary:
@@ -31,7 +33,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 18 Mar 2026 04:28:51 GMT
+      - Fri, 26 Jun 2026 11:28:49 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -41,7 +43,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=1449
+      - gfet4t7; dur=612
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -59,9 +61,10 @@ http_interactions:
                       "name": "system",
                       "args": {
                         "command": "date"
-                      }
+                      },
+                      "id": "jdGsylwM"
                     },
-                    "thoughtSignature": "CvsBAb4+9vtFeV4HUZnGVc9yxTXuaj2S8hl8OifbyeT12NF/gCPqj7M/KeRstlBLIQVwUj3nwkl3rWCw+w4Hdr02MVOJhsfOaS/ONi1ShinEAzBuZtDQiQr1bmzLqP4SGrwNXGbsr2uIXEPUTdyShJruCTUY0RnzZZcZGtGv+tgOcieLiLV6+wC8ypHZ8fkVh0qrZIJWUHEj7+6JfP8lC4jPIaO29RqMsTXOJE2HQ0Osfbcl1lshWkLKYFPFaSo0XiEGK1hTjol2gAhPvARoh6yKiTyZ/z3ccZnvHoBuVpEKRWsu3W06/MurTgDSvsze8EPt20AlxhKHTT2tHAA="
+                    "thoughtSignature": "EjQKMgEMOdbHtVw9lMgh80YiyNjB9sVxT5H2GADveaXmjl2GYjzjnlpFvnhONaipSQPM32cq"
                   }
                 ],
                 "role": "model"
@@ -72,45 +75,48 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 49,
-            "candidatesTokenCount": 13,
-            "totalTokenCount": 115,
+            "promptTokenCount": 54,
+            "candidatesTokenCount": 14,
+            "totalTokenCount": 68,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 49
+                "tokenCount": 54
               }
             ],
-            "thoughtsTokenCount": 53
+            "serviceTier": "standard"
           },
-          "modelVersion": "gemini-2.5-flash",
-          "responseId": "Ayq6afeHC-umqtsP8NGCEA"
+          "modelVersion": "gemini-3.1-flash-lite",
+          "responseId": "cGI-apa3OOKfz7IP5vOC8QQ"
         }
-  recorded_at: Wed, 18 Mar 2026 04:28:37 GMT
+  recorded_at: Fri, 26 Jun 2026 11:28:41 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=TOKEN
     body:
       encoding: UTF-8
       string: '{"contents":[{"role":"user","parts":[{"text":"You are a bot that can
-        run UNIX commands"}]},{"role":"user","parts":[{"text":"What is the date?"}]},{"role":"model","parts":[{"functionCall":{"name":"system","args":{"command":"date"}}}]},{"role":"user","parts":[{"functionResponse":{"name":"system","response":{"success":"2025-08-24"}}}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
+        run UNIX commands"}]},{"role":"user","parts":[{"text":"What is the date?"}]},{"role":"model","parts":[{"functionCall":{"name":"system","args":{"command":"date"},"id":"jdGsylwM"},"thoughtSignature":"EjQKMgEMOdbHtVw9lMgh80YiyNjB9sVxT5H2GADveaXmjl2GYjzjnlpFvnhONaipSQPM32cq"}]},{"role":"tool","parts":[{"functionResponse":{"name":"system","response":{"cancelled":true,"reason":"function
+        call cancelled"}}}]},{"role":"user","parts":[{"functionResponse":{"name":"system","response":{"success":"2025-08-24"}}}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
         system commands","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}]}]}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
+      X-Gemini-Service-Tier:
+      - standard
       Content-Type:
       - application/json; charset=UTF-8
       Vary:
@@ -118,7 +124,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 18 Mar 2026 04:28:53 GMT
+      - Fri, 26 Jun 2026 11:28:49 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -128,7 +134,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=1280
+      - gfet4t7; dur=445
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -142,7 +148,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "The date is August 24, 2025."
+                    "text": "The current date is 2025-08-24.",
+                    "thoughtSignature": "EjQKMgEMOdbH4urnToSUpncssZKuF9Bl0i5+fsLvSYUffHksimrgK8l1c5noxkOzFsME2EVr"
                   }
                 ],
                 "role": "model"
@@ -152,18 +159,19 @@ http_interactions:
             }
           ],
           "usageMetadata": {
-            "promptTokenCount": 84,
-            "candidatesTokenCount": 14,
-            "totalTokenCount": 98,
+            "promptTokenCount": 108,
+            "candidatesTokenCount": 16,
+            "totalTokenCount": 124,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
-                "tokenCount": 84
+                "tokenCount": 108
               }
-            ]
+            ],
+            "serviceTier": "standard"
           },
-          "modelVersion": "gemini-2.5-flash",
-          "responseId": "BCq6aZzkK-boz7IPuK3g8A4"
+          "modelVersion": "gemini-3.1-flash-lite",
+          "responseId": "cWI-aq3ZJtnrz7IPo727iQU"
         }
-  recorded_at: Wed, 18 Mar 2026 04:28:39 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 11:28:41 GMT
+recorded_with: VCR 6.4.0

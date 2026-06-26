@@ -2,28 +2,30 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=TOKEN
     body:
       encoding: UTF-8
-      string: '{"contents":[{"role":"user","parts":[{"text":"What fruit is your favorite?"}]},{"role":"user","parts":[{"text":"Your
-        favorite fruit is pineapple"}]}],"generationConfig":{"response_mime_type":"application/json","response_schema":{"type":"object","properties":{"fruit":{"description":"The
+      string: '{"contents":[{"role":"user","parts":[{"text":"Your favorite fruit is
+        pineapple"}]},{"role":"user","parts":[{"text":"What fruit is your favorite?"}]}],"generationConfig":{"response_mime_type":"application/json","response_schema":{"type":"object","properties":{"fruit":{"description":"The
         favorite fruit","enum":["apple","pineapple","orange"],"type":"string"}},"required":["fruit"]}}}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
+      X-Gemini-Service-Tier:
+      - standard
       Content-Type:
       - application/json; charset=UTF-8
       Vary:
@@ -31,7 +33,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 18 Mar 2026 04:29:04 GMT
+      - Fri, 26 Jun 2026 11:28:53 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -41,7 +43,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=1733
+      - gfet4t7; dur=622
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -55,7 +57,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "{\"fruit\": \"pineapple\"}"
+                    "text": "{\n  \"fruit\": \"pineapple\"\n}",
+                    "thoughtSignature": "EjQKMgEMOdbHV3PDFtVjjG+C1oWFQJsg1iiOPyipNFeM6DLcGK+YukXUJhG47FAv3ZlZLnAk"
                   }
                 ],
                 "role": "model"
@@ -66,18 +69,18 @@ http_interactions:
           ],
           "usageMetadata": {
             "promptTokenCount": 13,
-            "candidatesTokenCount": 6,
-            "totalTokenCount": 65,
+            "candidatesTokenCount": 11,
+            "totalTokenCount": 24,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
                 "tokenCount": 13
               }
             ],
-            "thoughtsTokenCount": 46
+            "serviceTier": "standard"
           },
-          "modelVersion": "gemini-2.5-flash",
-          "responseId": "Dyq6ab7aIM-nqtsP0eXJCQ"
+          "modelVersion": "gemini-3.1-flash-lite",
+          "responseId": "dWI-aq3NH4zVz7IPktHO4AQ"
         }
-  recorded_at: Wed, 18 Mar 2026 04:28:50 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 11:28:46 GMT
+recorded_with: VCR 6.4.0

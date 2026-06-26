@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Accept-Encoding:
@@ -27,7 +27,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 18 Mar 2026 04:33:06 GMT
+      - Fri, 26 Jun 2026 11:29:42 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -37,7 +37,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=169
+      - gfet4t7; dur=164
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -191,88 +191,38 @@ http_interactions:
               "maxTemperature": 2
             },
             {
-              "name": "models/gemma-3-1b-it",
+              "name": "models/gemma-4-26b-a4b-it",
               "version": "001",
-              "displayName": "Gemma 3 1B",
-              "inputTokenLimit": 32768,
-              "outputTokenLimit": 8192,
+              "displayName": "Gemma 4 26B A4B IT",
+              "description": "Gemma 4 26B A4B IT",
+              "inputTokenLimit": 262144,
+              "outputTokenLimit": 32768,
               "supportedGenerationMethods": [
                 "generateContent",
                 "countTokens"
               ],
               "temperature": 1,
               "topP": 0.95,
-              "topK": 64
+              "topK": 64,
+              "maxTemperature": 2,
+              "thinking": true
             },
             {
-              "name": "models/gemma-3-4b-it",
+              "name": "models/gemma-4-31b-it",
               "version": "001",
-              "displayName": "Gemma 3 4B",
-              "inputTokenLimit": 32768,
-              "outputTokenLimit": 8192,
+              "displayName": "Gemma 4 31B IT",
+              "description": "Gemma 4 31B IT",
+              "inputTokenLimit": 262144,
+              "outputTokenLimit": 32768,
               "supportedGenerationMethods": [
                 "generateContent",
                 "countTokens"
               ],
               "temperature": 1,
               "topP": 0.95,
-              "topK": 64
-            },
-            {
-              "name": "models/gemma-3-12b-it",
-              "version": "001",
-              "displayName": "Gemma 3 12B",
-              "inputTokenLimit": 32768,
-              "outputTokenLimit": 8192,
-              "supportedGenerationMethods": [
-                "generateContent",
-                "countTokens"
-              ],
-              "temperature": 1,
-              "topP": 0.95,
-              "topK": 64
-            },
-            {
-              "name": "models/gemma-3-27b-it",
-              "version": "001",
-              "displayName": "Gemma 3 27B",
-              "inputTokenLimit": 131072,
-              "outputTokenLimit": 8192,
-              "supportedGenerationMethods": [
-                "generateContent",
-                "countTokens"
-              ],
-              "temperature": 1,
-              "topP": 0.95,
-              "topK": 64
-            },
-            {
-              "name": "models/gemma-3n-e4b-it",
-              "version": "001",
-              "displayName": "Gemma 3n E4B",
-              "inputTokenLimit": 8192,
-              "outputTokenLimit": 2048,
-              "supportedGenerationMethods": [
-                "generateContent",
-                "countTokens"
-              ],
-              "temperature": 1,
-              "topP": 0.95,
-              "topK": 64
-            },
-            {
-              "name": "models/gemma-3n-e2b-it",
-              "version": "001",
-              "displayName": "Gemma 3n E2B",
-              "inputTokenLimit": 8192,
-              "outputTokenLimit": 2048,
-              "supportedGenerationMethods": [
-                "generateContent",
-                "countTokens"
-              ],
-              "temperature": 1,
-              "topP": 0.95,
-              "topK": 64
+              "topK": 64,
+              "maxTemperature": 2,
+              "thinking": true
             },
             {
               "name": "models/gemini-flash-latest",
@@ -366,25 +316,6 @@ http_interactions:
               "topP": 0.95,
               "topK": 64,
               "maxTemperature": 1
-            },
-            {
-              "name": "models/gemini-2.5-flash-lite-preview-09-2025",
-              "version": "2.5-preview-09-25",
-              "displayName": "Gemini 2.5 Flash-Lite Preview Sep 2025",
-              "description": "Preview release (Septempber 25th, 2025) of Gemini 2.5 Flash-Lite",
-              "inputTokenLimit": 1048576,
-              "outputTokenLimit": 65536,
-              "supportedGenerationMethods": [
-                "generateContent",
-                "countTokens",
-                "createCachedContent",
-                "batchGenerateContent"
-              ],
-              "temperature": 1,
-              "topP": 0.95,
-              "topK": 64,
-              "maxTemperature": 2,
-              "thinking": true
             },
             {
               "name": "models/gemini-3-pro-preview",
@@ -482,10 +413,47 @@ http_interactions:
               "thinking": true
             },
             {
+              "name": "models/gemini-3.1-flash-lite",
+              "version": "3.1-flash-lite-05-2026",
+              "displayName": "Gemini 3.1 Flash Lite",
+              "description": "Gemini 3.1 Flash Lite",
+              "inputTokenLimit": 1048576,
+              "outputTokenLimit": 65536,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens",
+                "createCachedContent",
+                "batchGenerateContent"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 2,
+              "thinking": true
+            },
+            {
               "name": "models/gemini-3-pro-image-preview",
               "version": "3.0",
               "displayName": "Nano Banana Pro",
               "description": "Gemini 3 Pro Image Preview",
+              "inputTokenLimit": 131072,
+              "outputTokenLimit": 32768,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens",
+                "batchGenerateContent"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 1,
+              "thinking": true
+            },
+            {
+              "name": "models/gemini-3-pro-image",
+              "version": "3.0",
+              "displayName": "Nano Banana Pro",
+              "description": "Gemini 3 Pro Image",
               "inputTokenLimit": 131072,
               "outputTokenLimit": 32768,
               "supportedGenerationMethods": [
@@ -536,6 +504,93 @@ http_interactions:
               "thinking": true
             },
             {
+              "name": "models/gemini-3.1-flash-image",
+              "version": "3.0",
+              "displayName": "Nano Banana 2",
+              "description": "Gemini 3.1 Flash Image.",
+              "inputTokenLimit": 65536,
+              "outputTokenLimit": 65536,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens",
+                "batchGenerateContent"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 1,
+              "thinking": true
+            },
+            {
+              "name": "models/gemini-3.5-flash",
+              "version": "3.5-flash-05-2026",
+              "displayName": "Gemini 3.5 Flash",
+              "description": "Gemini 3.5 Flash",
+              "inputTokenLimit": 1048576,
+              "outputTokenLimit": 65536,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens",
+                "createCachedContent",
+                "batchGenerateContent"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 2,
+              "thinking": true
+            },
+            {
+              "name": "models/lyria-3-clip-preview",
+              "version": "lyria-3-clip-preview",
+              "displayName": "Lyria 3 Clip Preview",
+              "description": "Lyria 3 30s model Preview",
+              "inputTokenLimit": 1048576,
+              "outputTokenLimit": 65536,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 2
+            },
+            {
+              "name": "models/lyria-3-pro-preview",
+              "version": "lyria-3-pro-preview",
+              "displayName": "Lyria 3 Pro Preview",
+              "description": "Lyria 3 Pro Preview",
+              "inputTokenLimit": 1048576,
+              "outputTokenLimit": 65536,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 2
+            },
+            {
+              "name": "models/gemini-3.1-flash-tts-preview",
+              "version": "3.1-flash-tts-preview",
+              "displayName": "Gemini 3.1 Flash TTS Preview",
+              "description": "Gemini 3.1 Flash TTS Preview",
+              "inputTokenLimit": 8192,
+              "outputTokenLimit": 16384,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens",
+                "batchGenerateContent"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 2,
+              "thinking": true
+            },
+            {
               "name": "models/gemini-robotics-er-1.5-preview",
               "version": "1.5-preview",
               "displayName": "Gemini Robotics-ER 1.5 Preview",
@@ -553,10 +608,75 @@ http_interactions:
               "thinking": true
             },
             {
+              "name": "models/gemini-robotics-er-1.6-preview",
+              "version": "1.6-preview",
+              "displayName": "Gemini Robotics-ER 1.6 Preview",
+              "description": "Gemini Robotics-ER 1.6 Preview",
+              "inputTokenLimit": 131072,
+              "outputTokenLimit": 65536,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens",
+                "createCachedContent",
+                "batchGenerateContent"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 2,
+              "thinking": true
+            },
+            {
               "name": "models/gemini-2.5-computer-use-preview-10-2025",
               "version": "Gemini 2.5 Computer Use Preview 10-2025",
               "displayName": "Gemini 2.5 Computer Use Preview 10-2025",
               "description": "Gemini 2.5 Computer Use Preview 10-2025",
+              "inputTokenLimit": 131072,
+              "outputTokenLimit": 65536,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 2,
+              "thinking": true
+            },
+            {
+              "name": "models/antigravity-preview-05-2026",
+              "version": "0.1",
+              "displayName": "Antigravity Agent Preview",
+              "description": "Preview release of Antigravity Agent (05-2026)",
+              "inputTokenLimit": 131072,
+              "outputTokenLimit": 65536,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens"
+              ]
+            },
+            {
+              "name": "models/deep-research-max-preview-04-2026",
+              "version": "deepthink-exp-05-20",
+              "displayName": "Deep Research Max Preview (Apr-21-2026)",
+              "description": "Preview release (April 21st, 2026) of Deep Research Max",
+              "inputTokenLimit": 131072,
+              "outputTokenLimit": 65536,
+              "supportedGenerationMethods": [
+                "generateContent",
+                "countTokens"
+              ],
+              "temperature": 1,
+              "topP": 0.95,
+              "topK": 64,
+              "maxTemperature": 2,
+              "thinking": true
+            },
+            {
+              "name": "models/deep-research-preview-04-2026",
+              "version": "deepthink-exp-05-20",
+              "displayName": "Deep Research Preview (Apr-21-2026)",
+              "description": "Preview release (April 21th, 2026) of Deep Research",
               "inputTokenLimit": 131072,
               "outputTokenLimit": 65536,
               "supportedGenerationMethods": [
@@ -604,6 +724,20 @@ http_interactions:
               "name": "models/gemini-embedding-2-preview",
               "version": "2",
               "displayName": "Gemini Embedding 2 Preview",
+              "description": "Obtain a distributed representation of multimodal content.",
+              "inputTokenLimit": 8192,
+              "outputTokenLimit": 1,
+              "supportedGenerationMethods": [
+                "embedContent",
+                "countTextTokens",
+                "countTokens",
+                "asyncBatchEmbedContent"
+              ]
+            },
+            {
+              "name": "models/gemini-embedding-2",
+              "version": "2",
+              "displayName": "Gemini Embedding 2",
               "description": "Obtain a distributed representation of multimodal content.",
               "inputTokenLimit": 8192,
               "outputTokenLimit": 1,
@@ -717,57 +851,18 @@ http_interactions:
               ]
             },
             {
-              "name": "models/gemini-2.5-flash-native-audio-latest",
-              "version": "Gemini 2.5 Flash Native Audio Latest",
-              "displayName": "Gemini 2.5 Flash Native Audio Latest",
-              "description": "Latest release of Gemini 2.5 Flash Native Audio",
-              "inputTokenLimit": 131072,
+              "name": "models/veo-3.1-lite-generate-preview",
+              "version": "3.1",
+              "displayName": "Veo 3.1 lite",
+              "description": "Veo 3.1 lite",
+              "inputTokenLimit": 480,
               "outputTokenLimit": 8192,
               "supportedGenerationMethods": [
-                "countTokens",
-                "bidiGenerateContent"
-              ],
-              "temperature": 1,
-              "topP": 0.95,
-              "topK": 64,
-              "maxTemperature": 2,
-              "thinking": true
-            },
-            {
-              "name": "models/gemini-2.5-flash-native-audio-preview-09-2025",
-              "version": "gemini-2.5-flash-preview-native-audio-dialog-2025-05-19",
-              "displayName": "Gemini 2.5 Flash Native Audio Preview 09-2025",
-              "description": "Gemini 2.5 Flash Native Audio Preview 09-2025",
-              "inputTokenLimit": 131072,
-              "outputTokenLimit": 8192,
-              "supportedGenerationMethods": [
-                "countTokens",
-                "bidiGenerateContent"
-              ],
-              "temperature": 1,
-              "topP": 0.95,
-              "topK": 64,
-              "maxTemperature": 2,
-              "thinking": true
-            },
-            {
-              "name": "models/gemini-2.5-flash-native-audio-preview-12-2025",
-              "version": "12-2025",
-              "displayName": "Gemini 2.5 Flash Native Audio Preview 12-2025",
-              "description": "Gemini 2.5 Flash Native Audio Preview 12-2025",
-              "inputTokenLimit": 131072,
-              "outputTokenLimit": 8192,
-              "supportedGenerationMethods": [
-                "countTokens",
-                "bidiGenerateContent"
-              ],
-              "temperature": 1,
-              "topP": 0.95,
-              "topK": 64,
-              "maxTemperature": 2,
-              "thinking": true
+                "predictLongRunning"
+              ]
             }
-          ]
+          ],
+          "nextPageToken": "CiRtb2RlbHMvdmVvLTMuMS1saXRlLWdlbmVyYXRlLXByZXZpZXc="
         }
-  recorded_at: Wed, 18 Mar 2026 04:32:52 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 11:29:34 GMT
+recorded_with: VCR 6.4.0

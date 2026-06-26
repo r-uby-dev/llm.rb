@@ -2,24 +2,24 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse&key=TOKEN
     body:
       encoding: UTF-8
-      string: '{"contents":[{"role":"user","parts":[{"text":"Hey, run the ''date''
-        command"}]},{"role":"user","parts":[{"text":"You are a bot that can run UNIX
-        system commands"}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
+      string: '{"contents":[{"role":"user","parts":[{"text":"You are a bot that can
+        run UNIX system commands"}]},{"role":"user","parts":[{"text":"Hey, run the
+        ''date'' command"}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
         system commands","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}]}]}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
@@ -36,7 +36,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Wed, 18 Mar 2026 04:28:49 GMT
+      - Fri, 26 Jun 2026 11:33:30 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -46,40 +46,44 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=913
+      - gfet4t7; dur=438
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
     body:
       encoding: UTF-8
       string: "data: {\"candidates\": [{\"content\": {\"parts\": [{\"functionCall\":
-        {\"name\": \"system\",\"args\": {\"command\": \"date\"}},\"thoughtSignature\":
-        \"CiQBvj72+7B3Fz8/fRwWRhhTRFUgc/Qu/IbAdeOFcolNxjtgYZgKaAG+Pvb7Jr+qi/vBWeJBPFkVAGlQ1x9Y9fye5OFub/oZZ6VDvYhOCt5Y5+jUQKJ0zSqAAExE8gFUUJB67L6/LqllNgjO/7inWVAzk9amPjOod0huBNRmmZdE5ew3XaUWg5GgA9gyveXXCqIBAb4+9vuBlAxTySmXCM9sBDXekbM6LDQhnUkBa10AXDNiBqi6hqeSw4gL/hr6VlptbiYEV1J5+etSklc3uPXpDWvmVGBtQNTqhGTMpxvY9uRJebpY0WNcft9fXR+W4jEyFJG94u+GLphf2kCyjVviUHlzF2klN7uaWUxlj4SJIuXsuAOMi0zT/Ehtc30Ebl48fy+m6sUqOSls94xEGo4pfzNI\"}],\"role\":
-        \"model\"},\"finishReason\": \"STOP\",\"index\": 0,\"finishMessage\": \"Model
-        generated function call(s).\"}],\"usageMetadata\": {\"promptTokenCount\":
-        53,\"candidatesTokenCount\": 13,\"totalTokenCount\": 117,\"promptTokensDetails\":
-        [{\"modality\": \"TEXT\",\"tokenCount\": 53}],\"thoughtsTokenCount\": 51},\"modelVersion\":
-        \"gemini-2.5-flash\",\"responseId\": \"ACq6acLiLqnhz7IP4f3IkAo\"}\r\n\r\n"
-  recorded_at: Wed, 18 Mar 2026 04:28:35 GMT
+        {\"name\": \"system\",\"args\": {\"command\": \"date\"},\"id\": \"QLrEMqpM\"},\"thoughtSignature\":
+        \"EjQKMgEMOdbHixCDD90CUGwEny13OR6RprLUe8AZKLsb8pRXZQAUrT5ILzpJ7MavUcDEtsAl\"}],\"role\":
+        \"model\"},\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\": 58,\"candidatesTokenCount\":
+        14,\"totalTokenCount\": 72,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        58}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"responseId\":
+        \"imM-aqbdFtjqz7IP0pCl0Qk\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"parts\": [{\"text\": \"\"}],\"role\": \"model\"},\"finishReason\": \"STOP\",\"index\":
+        0}],\"usageMetadata\": {\"promptTokenCount\": 58,\"candidatesTokenCount\":
+        14,\"totalTokenCount\": 72,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        58}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"responseId\":
+        \"imM-aqbdFtjqz7IP0pCl0Qk\"}\r\n\r\n"
+  recorded_at: Fri, 26 Jun 2026 11:33:22 GMT
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:streamGenerateContent?alt=sse&key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:streamGenerateContent?alt=sse&key=TOKEN
     body:
       encoding: UTF-8
       string: '{"contents":[{"role":"user","parts":[{"text":"You are a bot that can
         run UNIX system commands"}]},{"role":"user","parts":[{"text":"Hey, run the
-        ''date'' command"}]},{"role":"model","parts":[{"functionCall":{"name":"system","args":{"command":"date"}}}]},{"role":"user","parts":[{"functionResponse":{"name":"system","response":{"success":true}}}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
+        ''date'' command"}]},{"role":"model","parts":[{"functionCall":{"name":"system","args":{"command":"date"},"id":"QLrEMqpM"},"thoughtSignature":"EjQKMgEMOdbHixCDD90CUGwEny13OR6RprLUe8AZKLsb8pRXZQAUrT5ILzpJ7MavUcDEtsAl"}]},{"role":"user","parts":[{"functionResponse":{"name":"system","response":{"success":true}}}]}],"tools":[{"functionDeclarations":[{"name":"system","description":"Runs
         system commands","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}]}]}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
@@ -96,7 +100,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Wed, 18 Mar 2026 04:28:50 GMT
+      - Fri, 26 Jun 2026 11:33:31 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -106,24 +110,30 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=483
+      - gfet4t7; dur=551
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
     body:
       encoding: UTF-8
-      string: "data: {\"candidates\": [{\"content\": {\"parts\": [{\"text\": \"The\"}],\"role\":
-        \"model\"},\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\": 78,\"candidatesTokenCount\":
-        1,\"totalTokenCount\": 79,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
-        78}]},\"modelVersion\": \"gemini-2.5-flash\",\"responseId\": \"ASq6aaLPL9-4qtsP3JjSoA4\"}\r\n\r\ndata:
-        {\"candidates\": [{\"content\": {\"parts\": [{\"text\": \" current date and
-        time is: Mon Apr 29 15:47:\"}],\"role\": \"model\"},\"index\": 0}],\"usageMetadata\":
-        {\"promptTokenCount\": 78,\"candidatesTokenCount\": 19,\"totalTokenCount\":
-        97,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\": 78}]},\"modelVersion\":
-        \"gemini-2.5-flash\",\"responseId\": \"ASq6aaLPL9-4qtsP3JjSoA4\"}\r\n\r\ndata:
-        {\"candidates\": [{\"content\": {\"parts\": [{\"text\": \"04 UTC 2024\"}],\"role\":
+      string: "data: {\"candidates\": [{\"content\": {\"parts\": [{\"text\": \"Tue\"}],\"role\":
+        \"model\"},\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\": 82,\"candidatesTokenCount\":
+        1,\"totalTokenCount\": 83,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        82}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"responseId\":
+        \"imM-ateIOJCHz7IP0uWlkAk\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"parts\": [{\"text\": \" Feb 11 11:21:55 UTC 202\"}],\"role\": \"model\"},\"index\":
+        0}],\"usageMetadata\": {\"promptTokenCount\": 82,\"candidatesTokenCount\":
+        19,\"totalTokenCount\": 101,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\":
+        82}],\"serviceTier\": \"standard\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"responseId\":
+        \"imM-ateIOJCHz7IP0uWlkAk\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"parts\": [{\"text\": \"5\"}],\"role\": \"model\"},\"index\": 0}],\"usageMetadata\":
+        {\"promptTokenCount\": 82,\"candidatesTokenCount\": 20,\"totalTokenCount\":
+        102,\"promptTokensDetails\": [{\"modality\": \"TEXT\",\"tokenCount\": 82}],\"serviceTier\":
+        \"standard\"},\"modelVersion\": \"gemini-3.1-flash-lite\",\"responseId\":
+        \"imM-ateIOJCHz7IP0uWlkAk\"}\r\n\r\ndata: {\"candidates\": [{\"content\":
+        {\"parts\": [{\"text\": \"\",\"thoughtSignature\": \"EjQKMgEMOdbHRS2M96zjOdGWvXTUrwX3tcJWrO2QGni7/zfaz+wRvXDEf2VE6HZYTDc5l2iC\"}],\"role\":
         \"model\"},\"finishReason\": \"STOP\",\"index\": 0}],\"usageMetadata\": {\"promptTokenCount\":
-        78,\"candidatesTokenCount\": 27,\"totalTokenCount\": 105,\"promptTokensDetails\":
-        [{\"modality\": \"TEXT\",\"tokenCount\": 78}]},\"modelVersion\": \"gemini-2.5-flash\",\"responseId\":
-        \"ASq6aaLPL9-4qtsP3JjSoA4\"}\r\n\r\n"
-  recorded_at: Wed, 18 Mar 2026 04:28:36 GMT
-recorded_with: VCR 6.3.1
+        82,\"candidatesTokenCount\": 20,\"totalTokenCount\": 102,\"promptTokensDetails\":
+        [{\"modality\": \"TEXT\",\"tokenCount\": 82}],\"serviceTier\": \"standard\"},\"modelVersion\":
+        \"gemini-3.1-flash-lite\",\"responseId\": \"imM-ateIOJCHz7IP0uWlkAk\"}\r\n\r\n"
+  recorded_at: Fri, 26 Jun 2026 11:33:23 GMT
+recorded_with: VCR 6.4.0

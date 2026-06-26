@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=TOKEN
+    uri: https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=TOKEN
     body:
       encoding: UTF-8
       string: '{"contents":[{"role":"user","parts":[{"text":"Could the image be a
@@ -10,20 +10,22 @@ http_interactions:
         with yes or no"},{"text":"Nothing else"},{"text":"spec/fixtures/images/bluebook.png"}]}]}'
     headers:
       User-Agent:
-      - llm.rb v4.8.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
+      X-Gemini-Service-Tier:
+      - standard
       Content-Type:
       - application/json; charset=UTF-8
       Vary:
@@ -31,7 +33,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 18 Mar 2026 04:29:01 GMT
+      - Fri, 26 Jun 2026 11:28:52 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -41,7 +43,7 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Server-Timing:
-      - gfet4t7; dur=2812
+      - gfet4t7; dur=534
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
       Transfer-Encoding:
@@ -55,7 +57,8 @@ http_interactions:
               "content": {
                 "parts": [
                   {
-                    "text": "yes"
+                    "text": "Yes",
+                    "thoughtSignature": "EjQKMgEMOdbHceNd41I123sTvE5OW0vpwq4I2xZWah4D/vyiKui+xGETHmG5maEP452JI7Rr"
                   }
                 ],
                 "role": "model"
@@ -67,17 +70,17 @@ http_interactions:
           "usageMetadata": {
             "promptTokenCount": 35,
             "candidatesTokenCount": 1,
-            "totalTokenCount": 525,
+            "totalTokenCount": 36,
             "promptTokensDetails": [
               {
                 "modality": "TEXT",
                 "tokenCount": 35
               }
             ],
-            "thoughtsTokenCount": 489
+            "serviceTier": "standard"
           },
-          "modelVersion": "gemini-2.5-flash",
-          "responseId": "Ciq6abjrKrTgz7IPk6K3sA8"
+          "modelVersion": "gemini-3.1-flash-lite",
+          "responseId": "dGI-asviAbKjqtsPh8v1kQQ"
         }
-  recorded_at: Wed, 18 Mar 2026 04:28:47 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 11:28:44 GMT
+recorded_with: VCR 6.4.0
