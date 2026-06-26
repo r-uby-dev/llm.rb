@@ -7,371 +7,33 @@
   "name": "xAI",
   "doc": "https://docs.x.ai/docs/models",
   "models": {
-    "grok-4.20-0309-non-reasoning": {
-      "id": "grok-4.20-0309-non-reasoning",
-      "name": "Grok 4.20 (Non-Reasoning)",
-      "family": "grok",
-      "attachment": true,
-      "reasoning": false,
-      "tool_call": true,
-      "temperature": true,
-      "release_date": "2026-03-09",
-      "last_updated": "2026-03-09",
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 2000000,
-        "output": 30000
-      },
-      "cost": {
-        "input": 2,
-        "output": 6,
-        "cache_read": 0.2,
-        "tiers": [
-          {
-            "input": 4,
-            "output": 12,
-            "cache_read": 0.4,
-            "tier": {
-              "type": "context",
-              "size": 200000
-            }
-          }
-        ],
-        "context_over_200k": {
-          "input": 4,
-          "output": 12,
-          "cache_read": 0.4
-        }
-      }
-    },
-    "grok-4.20-0309-reasoning": {
-      "id": "grok-4.20-0309-reasoning",
-      "name": "Grok 4.20 (Reasoning)",
+    "grok-4.20-multi-agent-0309": {
+      "id": "grok-4.20-multi-agent-0309",
+      "name": "Grok 4.20 Multi-Agent",
       "family": "grok",
       "attachment": true,
       "reasoning": true,
-      "tool_call": true,
+      "reasoning_options": [
+        {
+          "type": "effort",
+          "values": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ]
+        }
+      ],
+      "tool_call": false,
+      "structured_output": true,
       "temperature": true,
       "release_date": "2026-03-09",
       "last_updated": "2026-03-09",
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 2000000,
-        "output": 30000
-      },
-      "cost": {
-        "input": 2,
-        "output": 6,
-        "cache_read": 0.2,
-        "tiers": [
-          {
-            "input": 4,
-            "output": 12,
-            "cache_read": 0.4,
-            "tier": {
-              "type": "context",
-              "size": 200000
-            }
-          }
-        ],
-        "context_over_200k": {
-          "input": 4,
-          "output": 12,
-          "cache_read": 0.4
-        }
-      }
-    },
-    "grok-vision-beta": {
-      "id": "grok-vision-beta",
-      "name": "Grok Vision Beta",
-      "family": "grok-vision",
-      "attachment": true,
-      "reasoning": false,
-      "tool_call": true,
-      "temperature": true,
-      "knowledge": "2024-08",
-      "release_date": "2024-11-01",
-      "last_updated": "2024-11-01",
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 8192,
-        "output": 4096
-      },
-      "cost": {
-        "input": 5,
-        "output": 15,
-        "cache_read": 5
-      }
-    },
-    "grok-2-vision-1212": {
-      "id": "grok-2-vision-1212",
-      "name": "Grok 2 Vision (1212)",
-      "family": "grok",
-      "attachment": true,
-      "reasoning": false,
-      "tool_call": true,
-      "temperature": true,
-      "knowledge": "2024-08",
-      "release_date": "2024-08-20",
-      "last_updated": "2024-12-12",
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 8192,
-        "output": 4096
-      },
-      "cost": {
-        "input": 2,
-        "output": 10,
-        "cache_read": 2
-      }
-    },
-    "grok-imagine-image-quality": {
-      "id": "grok-imagine-image-quality",
-      "name": "Grok Imagine Image Quality",
-      "family": "grok",
-      "attachment": true,
-      "reasoning": false,
-      "tool_call": false,
-      "temperature": false,
-      "release_date": "2026-04",
-      "last_updated": "2026-05-16",
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "image"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 1024,
-        "output": 0
-      }
-    },
-    "grok-2-1212": {
-      "id": "grok-2-1212",
-      "name": "Grok 2 (1212)",
-      "family": "grok",
-      "attachment": false,
-      "reasoning": false,
-      "tool_call": true,
-      "temperature": true,
-      "knowledge": "2024-08",
-      "release_date": "2024-12-12",
-      "last_updated": "2024-12-12",
-      "modalities": {
-        "input": [
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 131072,
-        "output": 8192
-      },
-      "cost": {
-        "input": 2,
-        "output": 10,
-        "cache_read": 2
-      }
-    },
-    "grok-beta": {
-      "id": "grok-beta",
-      "name": "Grok Beta",
-      "family": "grok-beta",
-      "attachment": false,
-      "reasoning": false,
-      "tool_call": true,
-      "temperature": true,
-      "knowledge": "2024-08",
-      "release_date": "2024-11-01",
-      "last_updated": "2024-11-01",
-      "modalities": {
-        "input": [
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 131072,
-        "output": 4096
-      },
-      "cost": {
-        "input": 5,
-        "output": 15,
-        "cache_read": 5
-      }
-    },
-    "grok-imagine-video": {
-      "id": "grok-imagine-video",
-      "name": "Grok Imagine Video",
-      "family": "grok",
-      "attachment": true,
-      "reasoning": false,
-      "tool_call": false,
-      "temperature": false,
-      "release_date": "2026-03",
-      "last_updated": "2026-05-16",
       "modalities": {
         "input": [
           "text",
           "image",
-          "video"
-        ],
-        "output": [
-          "video"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 1024,
-        "output": 0
-      }
-    },
-    "grok-2": {
-      "id": "grok-2",
-      "name": "Grok 2",
-      "family": "grok",
-      "attachment": false,
-      "reasoning": false,
-      "tool_call": true,
-      "temperature": true,
-      "knowledge": "2024-08",
-      "release_date": "2024-08-20",
-      "last_updated": "2024-08-20",
-      "modalities": {
-        "input": [
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 131072,
-        "output": 8192
-      },
-      "cost": {
-        "input": 2,
-        "output": 10,
-        "cache_read": 2
-      }
-    },
-    "grok-2-vision-latest": {
-      "id": "grok-2-vision-latest",
-      "name": "Grok 2 Vision Latest",
-      "family": "grok",
-      "attachment": true,
-      "reasoning": false,
-      "tool_call": true,
-      "temperature": true,
-      "knowledge": "2024-08",
-      "release_date": "2024-08-20",
-      "last_updated": "2024-12-12",
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 8192,
-        "output": 4096
-      },
-      "cost": {
-        "input": 2,
-        "output": 10,
-        "cache_read": 2
-      }
-    },
-    "grok-imagine-image": {
-      "id": "grok-imagine-image",
-      "name": "Grok Imagine Image",
-      "family": "grok",
-      "attachment": true,
-      "reasoning": false,
-      "tool_call": false,
-      "temperature": false,
-      "release_date": "2026-03",
-      "last_updated": "2026-05-16",
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "image"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 1024,
-        "output": 0
-      }
-    },
-    "grok-4.3": {
-      "id": "grok-4.3",
-      "name": "Grok 4.3",
-      "family": "grok",
-      "attachment": true,
-      "reasoning": true,
-      "tool_call": true,
-      "temperature": true,
-      "release_date": "2026-05-01",
-      "last_updated": "2026-05-01",
-      "modalities": {
-        "input": [
-          "text",
-          "image"
+          "pdf"
         ],
         "output": [
           "text"
@@ -404,81 +66,22 @@
         }
       }
     },
-    "grok-2-vision": {
-      "id": "grok-2-vision",
-      "name": "Grok 2 Vision",
+    "grok-4.20-0309-non-reasoning": {
+      "id": "grok-4.20-0309-non-reasoning",
+      "name": "Grok 4.20 (Non-Reasoning)",
       "family": "grok",
       "attachment": true,
       "reasoning": false,
       "tool_call": true,
-      "temperature": true,
-      "knowledge": "2024-08",
-      "release_date": "2024-08-20",
-      "last_updated": "2024-08-20",
-      "modalities": {
-        "input": [
-          "text",
-          "image"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 8192,
-        "output": 4096
-      },
-      "cost": {
-        "input": 2,
-        "output": 10,
-        "cache_read": 2
-      }
-    },
-    "grok-2-latest": {
-      "id": "grok-2-latest",
-      "name": "Grok 2 Latest",
-      "family": "grok",
-      "attachment": false,
-      "reasoning": false,
-      "tool_call": true,
-      "temperature": true,
-      "knowledge": "2024-08",
-      "release_date": "2024-08-20",
-      "last_updated": "2024-12-12",
-      "modalities": {
-        "input": [
-          "text"
-        ],
-        "output": [
-          "text"
-        ]
-      },
-      "open_weights": false,
-      "limit": {
-        "context": 131072,
-        "output": 8192
-      },
-      "cost": {
-        "input": 2,
-        "output": 10,
-        "cache_read": 2
-      }
-    },
-    "grok-4.20-multi-agent-0309": {
-      "id": "grok-4.20-multi-agent-0309",
-      "name": "Grok 4.20 Multi-Agent",
-      "family": "grok",
-      "attachment": true,
-      "reasoning": true,
-      "tool_call": false,
+      "structured_output": true,
       "temperature": true,
       "release_date": "2026-03-09",
       "last_updated": "2026-03-09",
       "modalities": {
         "input": [
           "text",
-          "image"
+          "image",
+          "pdf"
         ],
         "output": [
           "text"
@@ -486,17 +89,17 @@
       },
       "open_weights": false,
       "limit": {
-        "context": 2000000,
+        "context": 1000000,
         "output": 30000
       },
       "cost": {
-        "input": 2,
-        "output": 6,
+        "input": 1.25,
+        "output": 2.5,
         "cache_read": 0.2,
         "tiers": [
           {
-            "input": 4,
-            "output": 12,
+            "input": 2.5,
+            "output": 5,
             "cache_read": 0.4,
             "tier": {
               "type": "context",
@@ -505,8 +108,246 @@
           }
         ],
         "context_over_200k": {
-          "input": 4,
-          "output": 12,
+          "input": 2.5,
+          "output": 5,
+          "cache_read": 0.4
+        }
+      }
+    },
+    "grok-4.3": {
+      "id": "grok-4.3",
+      "name": "Grok 4.3",
+      "family": "grok",
+      "attachment": true,
+      "reasoning": true,
+      "reasoning_options": [
+        {
+          "type": "effort",
+          "values": [
+            "none",
+            "low",
+            "medium",
+            "high"
+          ]
+        }
+      ],
+      "tool_call": true,
+      "structured_output": true,
+      "temperature": true,
+      "release_date": "2026-04-17",
+      "last_updated": "2026-04-17",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "pdf"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "open_weights": false,
+      "limit": {
+        "context": 1000000,
+        "output": 30000
+      },
+      "cost": {
+        "input": 1.25,
+        "output": 2.5,
+        "cache_read": 0.2,
+        "tiers": [
+          {
+            "input": 2.5,
+            "output": 5,
+            "cache_read": 0.4,
+            "tier": {
+              "type": "context",
+              "size": 200000
+            }
+          }
+        ],
+        "context_over_200k": {
+          "input": 2.5,
+          "output": 5,
+          "cache_read": 0.4
+        }
+      }
+    },
+    "grok-imagine-image-quality": {
+      "id": "grok-imagine-image-quality",
+      "name": "Grok Imagine Image Quality",
+      "family": "grok",
+      "attachment": true,
+      "reasoning": false,
+      "tool_call": false,
+      "temperature": false,
+      "release_date": "2026-04-03",
+      "last_updated": "2026-04-03",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "pdf"
+        ],
+        "output": [
+          "image",
+          "pdf"
+        ]
+      },
+      "open_weights": false,
+      "limit": {
+        "context": 8000,
+        "output": 0
+      }
+    },
+    "grok-imagine-video": {
+      "id": "grok-imagine-video",
+      "name": "Grok Imagine Video",
+      "family": "grok",
+      "attachment": true,
+      "reasoning": false,
+      "tool_call": false,
+      "temperature": false,
+      "release_date": "2026-01-28",
+      "last_updated": "2026-01-28",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "video",
+          "pdf"
+        ],
+        "output": [
+          "video"
+        ]
+      },
+      "open_weights": false,
+      "limit": {
+        "context": 1024,
+        "output": 0
+      }
+    },
+    "grok-4.20-0309-reasoning": {
+      "id": "grok-4.20-0309-reasoning",
+      "name": "Grok 4.20 (Reasoning)",
+      "family": "grok",
+      "attachment": true,
+      "reasoning": true,
+      "reasoning_options": [],
+      "tool_call": true,
+      "structured_output": true,
+      "temperature": true,
+      "release_date": "2026-03-09",
+      "last_updated": "2026-03-09",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "pdf"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "open_weights": false,
+      "limit": {
+        "context": 1000000,
+        "output": 30000
+      },
+      "cost": {
+        "input": 1.25,
+        "output": 2.5,
+        "cache_read": 0.2,
+        "tiers": [
+          {
+            "input": 2.5,
+            "output": 5,
+            "cache_read": 0.4,
+            "tier": {
+              "type": "context",
+              "size": 200000
+            }
+          }
+        ],
+        "context_over_200k": {
+          "input": 2.5,
+          "output": 5,
+          "cache_read": 0.4
+        }
+      }
+    },
+    "grok-imagine-image": {
+      "id": "grok-imagine-image",
+      "name": "Grok Imagine Image",
+      "family": "grok",
+      "attachment": true,
+      "reasoning": false,
+      "tool_call": false,
+      "temperature": false,
+      "release_date": "2026-01-28",
+      "last_updated": "2026-01-28",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "pdf"
+        ],
+        "output": [
+          "image",
+          "pdf"
+        ]
+      },
+      "open_weights": false,
+      "limit": {
+        "context": 8000,
+        "output": 0
+      }
+    },
+    "grok-build-0.1": {
+      "id": "grok-build-0.1",
+      "name": "Grok Build 0.1",
+      "family": "grok-build",
+      "attachment": true,
+      "reasoning": true,
+      "reasoning_options": [],
+      "tool_call": true,
+      "structured_output": true,
+      "temperature": true,
+      "release_date": "2026-04-16",
+      "last_updated": "2026-04-16",
+      "modalities": {
+        "input": [
+          "text",
+          "image",
+          "pdf"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "open_weights": false,
+      "limit": {
+        "context": 256000,
+        "output": 256000
+      },
+      "cost": {
+        "input": 1,
+        "output": 2,
+        "cache_read": 0.2,
+        "tiers": [
+          {
+            "input": 2,
+            "output": 4,
+            "cache_read": 0.4,
+            "tier": {
+              "type": "context",
+              "size": 200000
+            }
+          }
+        ],
+        "context_over_200k": {
+          "input": 2,
+          "output": 4,
           "cache_read": 0.4
         }
       }
