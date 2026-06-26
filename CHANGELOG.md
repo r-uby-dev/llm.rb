@@ -103,6 +103,16 @@ major release: `v12.0.0`.
   The default chat model is now `grok-4.3`. <br>
   The default image model is now `grok-imagine-image-quality`.
 
+* **Return an `LLM::Object` from `LLM::Response#content!`** <br>
+  The Hash-like, indifferent access data structure known as
+  `LLM::Object` provides a convenient interface around a Hash
+  object. It allows method access via `obj.key`, and decays
+  into a Hash in many cases.
+
+  The `LLM::Response#content!` method now wraps its content
+  in an `LLM::Object` but only after it has parsed its
+  content (a JSON string) into a Ruby data structure.
+
 * **Refresh model metadata** <br>
   Update `data/*.json` files with current provider model listings,
   pricing, and capabilities.
