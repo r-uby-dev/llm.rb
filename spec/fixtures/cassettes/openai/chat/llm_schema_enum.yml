@@ -2,119 +2,195 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.openai.com/v1/chat/completions
+    uri: https://api.openai.com/v1/responses
     body:
       encoding: UTF-8
-      string: '{"messages":[{"role":"user","content":[{"type":"text","text":"What
-        fruit is your favorite?"}]},{"role":"user","content":[{"type":"text","text":"Your
-        favorite fruit is pineapple"}]}],"model":"gpt-4.1","response_format":{"type":"json_schema","json_schema":{"name":"JSONSchema","schema":{"type":"object","properties":{"fruit":{"description":"The
-        favorite fruit","enum":["apple","pineapple","orange"],"type":"string"}},"required":["fruit"]}}}}'
+      string: '{"input":[{"role":"user","content":[{"type":"input_text","text":"Your
+        favorite fruit is pineapple"}]},{"role":"user","content":[{"type":"input_text","text":"What
+        fruit is your favorite?"}]}],"model":"gpt-4.1","text":{"format":{"type":"json_schema","name":"JSONSchema","schema":{"type":"object","properties":{"fruit":{"description":"The
+        favorite fruit","enum":["apple","pineapple","orange"],"type":"string"}},"required":["fruit"],"additionalProperties":false}}}}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:04:43 GMT
+      - Fri, 26 Jun 2026 01:38:32 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Access-Control-Expose-Headers:
-      - X-Request-ID
-      Openai-Organization:
-      - user-j1pztzt5nogpcsid23u7gskj
-      Openai-Processing-Ms:
-      - '358'
-      Openai-Project:
-      - proj_YSiqu4bByPgi6EwPnLiY8irR
-      Openai-Version:
-      - '2020-10-01'
-      Server:
-      - cloudflare
-      X-Ratelimit-Limit-Requests:
-      - '500'
-      X-Ratelimit-Limit-Tokens:
-      - '30000'
-      X-Ratelimit-Remaining-Requests:
-      - '499'
-      X-Ratelimit-Remaining-Tokens:
-      - '29982'
-      X-Ratelimit-Reset-Requests:
-      - 120ms
-      X-Ratelimit-Reset-Tokens:
-      - 36ms
-      X-Request-Id:
-      - req_c7c4260fb83a4ec9b7f2202f406a54ec
-      X-Openai-Proxy-Wasm:
-      - v0.1
+      Cf-Ray:
+      - a1187e3379dd0320-GRU
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=NdURp3EO3dNKaFDnCzoCpsTvx7Ii5si0mEFH6wzZ9gY-1772769882.7455473-1.0.1.1-i9TjexKQPmMv5jsQ9q7sK.RTeN_bygwdIZwxTwLuCU7bsbJadKbB6JkZKkckUxsQNCVYBG5_zy2VqbbcS19xGVyrP5UlG6JON_zjT0gnwaJVLgjxOUvVt9ZqlM2gOqdm;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:34:43 GMT
+      Server:
+      - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      Cf-Ray:
-      - 9d7e7a57298f58f7-GRU
+      Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
+      - X-Request-ID
+      Openai-Organization:
+      - user-j1pztzt5nogpcsid23u7gskj
+      Openai-Processing-Ms:
+      - '534'
+      Openai-Project:
+      - proj_YSiqu4bByPgi6EwPnLiY8irR
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '800000'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 0s
+      X-Request-Id:
+      - req_a94da3f49a044dca9bff032226924a6e
+      Set-Cookie:
+      - __cf_bm=SixfFo6WW_kSS8sMaW4FpYJuexzlRanCNFZCNGEsktc-1782437911.6019516-1.0.1.1-CNc_YtrNUi0PskIpkcXGokkE.h922ww.gR_WU.JTXhGounsnQU1jDmEPkYNT6hDbxc.1T4lHfc.00TUUT2zUV3H9jwaeBinwsoZI6ArVUW.rDYBI4XWv5qO6pOY6vLEc;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:08:32 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: |
+      string: |-
         {
-          "id": "chatcmpl-DGGiYJZo1GW7FkCG9BwF3SbjGlW8E",
-          "object": "chat.completion",
-          "created": 1772769882,
+          "id": "resp_027c5d86e230567f006a3dd817bcd48192ba720e53449db8ea",
+          "object": "response",
+          "created_at": 1782437911,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782437912,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": null,
+          "max_tool_calls": null,
           "model": "gpt-4.1-2025-04-14",
-          "choices": [
+          "moderation": null,
+          "output": [
             {
-              "index": 0,
-              "message": {
-                "role": "assistant",
-                "content": "{\"fruit\":\"pineapple\"}",
-                "refusal": null,
-                "annotations": []
-              },
-              "logprobs": null,
-              "finish_reason": "stop"
+              "id": "msg_027c5d86e230567f006a3dd81810508192b77fe1051d5d3264",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "{\"fruit\":\"pineapple\"}"
+                }
+              ],
+              "role": "assistant"
             }
           ],
-          "usage": {
-            "prompt_tokens": 68,
-            "completion_tokens": 6,
-            "total_tokens": 74,
-            "prompt_tokens_details": {
-              "cached_tokens": 0,
-              "audio_tokens": 0
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 1.0,
+          "text": {
+            "format": {
+              "type": "json_schema",
+              "description": null,
+              "name": "JSONSchema",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "fruit": {
+                    "description": "The favorite fruit",
+                    "enum": [
+                      "apple",
+                      "pineapple",
+                      "orange"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "fruit"
+                ],
+                "additionalProperties": false
+              },
+              "strict": true
             },
-            "completion_tokens_details": {
-              "reasoning_tokens": 0,
-              "audio_tokens": 0,
-              "accepted_prediction_tokens": 0,
-              "rejected_prediction_tokens": 0
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
             }
           },
-          "service_tier": "default",
-          "system_fingerprint": "fp_a6317c457c"
+          "tools": [],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 61,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 7,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 68
+          },
+          "user": null,
+          "metadata": {}
         }
-  recorded_at: Fri, 06 Mar 2026 04:04:31 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 01:38:25 GMT
+recorded_with: VCR 6.4.0

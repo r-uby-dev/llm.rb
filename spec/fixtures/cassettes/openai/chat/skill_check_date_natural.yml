@@ -2,32 +2,32 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.openai.com/v1/chat/completions
+    uri: https://api.openai.com/v1/responses
     body:
       encoding: UTF-8
-      string: '{"messages":[{"role":"user","content":[{"type":"text","text":"What''s
-        today''s date?"}]}],"model":"gpt-4.1","tools":[{"type":"function","name":"check_date","function":{"name":"check_date","description":"Check
-        the current date through a local system tool","parameters":null}}]}'
+      string: '{"input":[{"role":"user","content":[{"type":"input_text","text":"What''s
+        today''s date?"}]}],"model":"gpt-4.1","tools":[{"type":"function","name":"check_date","description":"Check
+        the current date through a local system tool","parameters":{"type":"object","properties":{},"additionalProperties":false},"strict":false}]}'
     headers:
       User-Agent:
-      - llm.rb v4.21.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Wed, 22 Apr 2026 00:06:54 GMT
+      - Fri, 26 Jun 2026 01:39:42 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -35,7 +35,7 @@ http_interactions:
       Connection:
       - keep-alive
       Cf-Ray:
-      - 9f0062997dbede1e-GIG
+      - a1187fbf1ad38dd8-GRU
       Cf-Cache-Status:
       - DYNAMIC
       Server:
@@ -45,17 +45,17 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
       - X-Request-ID
       Openai-Organization:
       - user-j1pztzt5nogpcsid23u7gskj
       Openai-Processing-Ms:
-      - '350'
+      - '7575'
       Openai-Project:
       - proj_YSiqu4bByPgi6EwPnLiY8irR
       Openai-Version:
       - '2020-10-01'
-      X-Openai-Proxy-Wasm:
-      - v0.1
       X-Ratelimit-Limit-Requests:
       - '5000'
       X-Ratelimit-Limit-Tokens:
@@ -63,102 +63,336 @@ http_interactions:
       X-Ratelimit-Remaining-Requests:
       - '4999'
       X-Ratelimit-Remaining-Tokens:
-      - '799992'
+      - '800000'
       X-Ratelimit-Reset-Requests:
       - 12ms
       X-Ratelimit-Reset-Tokens:
       - 0s
       X-Request-Id:
-      - req_c13c37e3cd7649529585543de6e7f0be
+      - req_103dbe08a3c349fe99f0d3940086cfdc
       Set-Cookie:
-      - __cf_bm=QCVSi4ta4IDjCNCZwuAlzobEf0Wknp7ya8iOW7F1gII-1776816413.678418-1.0.1.1-RlmZGNlaMLBe56CyOcZQ6.QoMHRw4C5iVvs_ss2RHiPmV7weS7PUMPQ_lxyz_qFmduZ2Ou5NN85kHGEK3wspoHwBXYmp6jJb2Xh.A2GNCoAUOL_5GGDCxIOEBt_Crux2;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Wed, 22 Apr 2026
-        00:36:54 GMT
+      - __cf_bm=AZk5hQvd7s9wgf7Fwk1iP5R98oQJnLUd.aR2Aavm8iQ-1782437974.8972735-1.0.1.1-tOpv1Ll.yNee4EMVQIrOIKVX5PXrZsg0vLSV8TRtwR6vzxMKAdYaCti3rwyuCzbb2hA7L5ZwUS3c9pXWyPwnVbsnbugx92yZO7d1ybC5ymQVpK3MSfgdqGrsCWJUb33Y;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:09:42 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: |
+      string: |-
         {
-          "id": "chatcmpl-DXFPCKZJRd0mUZpV8ObvRS3bbCPW6",
-          "object": "chat.completion",
-          "created": 1776816414,
+          "id": "resp_0baa4d139aace88e006a3dd859c754819c988ab3653f40ebc5",
+          "object": "response",
+          "created_at": 1782437977,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782437982,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": null,
+          "max_tool_calls": null,
           "model": "gpt-4.1-2025-04-14",
-          "choices": [
+          "moderation": null,
+          "output": [
             {
-              "index": 0,
-              "message": {
-                "role": "assistant",
-                "content": null,
-                "tool_calls": [
-                  {
-                    "id": "call_Yyb5PBscbzy86j5t8CCPHymS",
-                    "type": "function",
-                    "function": {
-                      "name": "check_date",
-                      "arguments": "{}"
-                    }
+              "id": "fc_0baa4d139aace88e006a3dd85b4a44819cbebab43e19c4acb8",
+              "type": "function_call",
+              "status": "completed",
+              "arguments": "{}",
+              "call_id": "call_OhohJdP2tRyfQljcjSksrqz3",
+              "name": "check_date"
+            }
+          ],
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 1.0,
+          "text": {
+            "format": {
+              "type": "text"
+            },
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
+            }
+          },
+          "tools": [
+            {
+              "type": "function",
+              "description": "Check the current date through a local system tool",
+              "name": "check_date",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              },
+              "strict": false
+            }
+          ],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 39,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 11,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 50
+          },
+          "user": null,
+          "metadata": {}
+        }
+  recorded_at: Fri, 26 Jun 2026 01:39:35 GMT
+- request:
+    method: post
+    uri: https://api.openai.com/v1/responses
+    body:
+      encoding: UTF-8
+      string: '{"input":[{"role":"user","content":[{"type":"input_text","text":"Recent
+        context:"}]},{"role":"user","content":[{"type":"input_text","text":"What''s
+        today''s date?"}]},{"role":"system","content":[{"type":"input_text","text":"You
+        are a small date-checking skill.\n\nWhen called:\n1. Run the `date` command
+        through the available tool.\n2. Read the tool result.\n3. Return a short plain-language
+        answer with today''s date.\n"}]},{"role":"user","content":[{"type":"input_text","text":"Solve
+        the user''s query."}]}],"model":"gpt-4.1","tools":[{"type":"function","name":"system","description":"Runs
+        system commands","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"],"additionalProperties":false},"strict":false}]}'
+    headers:
+      User-Agent:
+      - llm.rb v11.3.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Fri, 26 Jun 2026 01:39:43 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cf-Ray:
+      - a1187ff0d90b2829-GRU
+      Cf-Cache-Status:
+      - DYNAMIC
+      Server:
+      - cloudflare
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
+      - X-Request-ID
+      Openai-Organization:
+      - user-j1pztzt5nogpcsid23u7gskj
+      Openai-Processing-Ms:
+      - '538'
+      Openai-Project:
+      - proj_YSiqu4bByPgi6EwPnLiY8irR
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '800000'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 0s
+      X-Request-Id:
+      - req_fd33f47be1e14c5ebd3b81ad8e08fd35
+      Set-Cookie:
+      - __cf_bm=CzirfNKbIZE.7sh1JyLhyfVRVGazQC7Mk6GLM4F9k3M-1782437982.859724-1.0.1.1-1KgkAchfl87tQlMA4MeIGgYf2IcSsTdB5fbGGruvLSKz7STYiZJ5X3uIvMfv_jiWmTrGVqiBjH3Sf7pNx77gpVQ3qGhOZGk5USk5U0mxF2imO4WH_anAghH.U_Zik_IU;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:09:43 GMT
+      Alt-Svc:
+      - h3=":443"; ma=86400
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "id": "resp_0bf431b9f814f2f1006a3dd85ef89c8192a3fa1ac8afbc966e",
+          "object": "response",
+          "created_at": 1782437983,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782437983,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": null,
+          "max_tool_calls": null,
+          "model": "gpt-4.1-2025-04-14",
+          "moderation": null,
+          "output": [
+            {
+              "id": "fc_0bf431b9f814f2f1006a3dd85f52648192bc5704a3e875a7e8",
+              "type": "function_call",
+              "status": "completed",
+              "arguments": "{\"command\":\"date\"}",
+              "call_id": "call_nF82DFp2Oy700rMvMNobp1gc",
+              "name": "system"
+            }
+          ],
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 1.0,
+          "text": {
+            "format": {
+              "type": "text"
+            },
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
+            }
+          },
+          "tools": [
+            {
+              "type": "function",
+              "description": "Runs system commands",
+              "name": "system",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string"
                   }
+                },
+                "required": [
+                  "command"
                 ],
-                "refusal": null,
-                "annotations": []
+                "additionalProperties": false
               },
-              "logprobs": null,
-              "finish_reason": "tool_calls"
+              "strict": false
             }
           ],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
           "usage": {
-            "prompt_tokens": 45,
-            "completion_tokens": 10,
-            "total_tokens": 55,
-            "prompt_tokens_details": {
-              "cached_tokens": 0,
-              "audio_tokens": 0
+            "input_tokens": 102,
+            "input_tokens_details": {
+              "cached_tokens": 0
             },
-            "completion_tokens_details": {
-              "reasoning_tokens": 0,
-              "audio_tokens": 0,
-              "accepted_prediction_tokens": 0,
-              "rejected_prediction_tokens": 0
-            }
+            "output_tokens": 14,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 116
           },
-          "service_tier": "default",
-          "system_fingerprint": "fp_f068f95466"
+          "user": null,
+          "metadata": {}
         }
-  recorded_at: Wed, 22 Apr 2026 00:06:28 GMT
+  recorded_at: Fri, 26 Jun 2026 01:39:36 GMT
 - request:
     method: post
-    uri: https://api.openai.com/v1/chat/completions
+    uri: https://api.openai.com/v1/responses
     body:
       encoding: UTF-8
-      string: '{"messages":[{"role":"user","content":[{"type":"text","text":"Recent
-        context:"}]},{"role":"user","content":[{"type":"text","text":"What''s today''s
-        date?"}]},{"role":"system","content":[{"type":"text","text":"You are a small
-        date-checking skill.\n\nWhen called:\n1. Run the `date` command through the
-        available tool.\n2. Read the tool result.\n3. Return a short plain-language
-        answer with today''s date.\n"}]},{"role":"user","content":[{"type":"text","text":"Solve
-        the user''s query."}]}],"model":"gpt-4.1","tools":[{"type":"function","name":"system","function":{"name":"system","description":"Runs
-        system commands","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}}]}'
+      string: '{"input":[{"type":"function_call_output","call_id":"call_nF82DFp2Oy700rMvMNobp1gc","output":"{\"success\":\"2025-08-24\"}"}],"model":"gpt-4.1","previous_response_id":"resp_0bf431b9f814f2f1006a3dd85ef89c8192a3fa1ac8afbc966e","tools":[{"type":"function","name":"system","description":"Runs
+        system commands","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"],"additionalProperties":false},"strict":false}]}'
     headers:
       User-Agent:
-      - llm.rb v4.21.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Wed, 22 Apr 2026 00:06:55 GMT
+      - Fri, 26 Jun 2026 01:39:44 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -166,7 +400,7 @@ http_interactions:
       Connection:
       - keep-alive
       Cf-Ray:
-      - 9f00629e6c734c8a-GIG
+      - a1187ff57e94ae57-GRU
       Cf-Cache-Status:
       - DYNAMIC
       Server:
@@ -176,17 +410,17 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
       - X-Request-ID
       Openai-Organization:
       - user-j1pztzt5nogpcsid23u7gskj
       Openai-Processing-Ms:
-      - '515'
+      - '545'
       Openai-Project:
       - proj_YSiqu4bByPgi6EwPnLiY8irR
       Openai-Version:
       - '2020-10-01'
-      X-Openai-Proxy-Wasm:
-      - v0.1
       X-Ratelimit-Limit-Requests:
       - '5000'
       X-Ratelimit-Limit-Tokens:
@@ -194,102 +428,161 @@ http_interactions:
       X-Ratelimit-Remaining-Requests:
       - '4999'
       X-Ratelimit-Remaining-Tokens:
-      - '799933'
+      - '800000'
       X-Ratelimit-Reset-Requests:
       - 12ms
       X-Ratelimit-Reset-Tokens:
-      - 5ms
+      - 0s
       X-Request-Id:
-      - req_a8d7bb7bdca34f5c8a7b4a5a389ffd77
+      - req_54aeca22380b457f9bcea04704a63de7
       Set-Cookie:
-      - __cf_bm=7rLhS9Oz77iLiU9sp0vwDFt1THfLJGtovukyJSGKXhg-1776816414.4617496-1.0.1.1-xeUxboHdCOgbFm_mGBBkZO0LAsQJjY3uxhaGmmrqW1_na4t30SZyp3XSsTtRaejtcwIx3iDFahNxMHQ6yOdXrTgOCrspzkzpsgy.IOCnyHDNftv1yXHgwhKyNCYlPm5e;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Wed, 22 Apr 2026
-        00:36:55 GMT
+      - __cf_bm=9VMsyNGZSV5m8ZM4UgQpU1HrAQgZncgOJ6mGz2PqHEs-1782437983.5996387-1.0.1.1-5lShW6P1M5QzYQmcNr55ySyvPKlVfsZ9eJ4IAp_oPpiyFHqC4h2BBBzvIRqb0jK1anYeSZJ4txRr05I_YXhDnI.Dy6QIeItXgYO3YrvLoaw5sMpCTMjd5FhTQxLS9ppn;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:09:44 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: |
+      string: |-
         {
-          "id": "chatcmpl-DXFPDBGgNKOtQ7c1CW9NUzLTWlu9k",
-          "object": "chat.completion",
-          "created": 1776816415,
+          "id": "resp_0bf431b9f814f2f1006a3dd85fbc348192bf33f954d41c1ede",
+          "object": "response",
+          "created_at": 1782437983,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782437984,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": null,
+          "max_tool_calls": null,
           "model": "gpt-4.1-2025-04-14",
-          "choices": [
+          "moderation": null,
+          "output": [
             {
-              "index": 0,
-              "message": {
-                "role": "assistant",
-                "content": null,
-                "tool_calls": [
-                  {
-                    "id": "call_1X5ZiXVAMmmvfFDiyiEhy3JE",
-                    "type": "function",
-                    "function": {
-                      "name": "system",
-                      "arguments": "{\"command\":\"date\"}"
-                    }
+              "id": "msg_0bf431b9f814f2f1006a3dd860108c819287460d38e957f5c0",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "Today's date is August 24, 2025."
+                }
+              ],
+              "role": "assistant"
+            }
+          ],
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": "resp_0bf431b9f814f2f1006a3dd85ef89c8192a3fa1ac8afbc966e",
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 1.0,
+          "text": {
+            "format": {
+              "type": "text"
+            },
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
+            }
+          },
+          "tools": [
+            {
+              "type": "function",
+              "description": "Runs system commands",
+              "name": "system",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string"
                   }
+                },
+                "required": [
+                  "command"
                 ],
-                "refusal": null,
-                "annotations": []
+                "additionalProperties": false
               },
-              "logprobs": null,
-              "finish_reason": "tool_calls"
+              "strict": false
             }
           ],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
           "usage": {
-            "prompt_tokens": 108,
-            "completion_tokens": 13,
-            "total_tokens": 121,
-            "prompt_tokens_details": {
-              "cached_tokens": 0,
-              "audio_tokens": 0
+            "input_tokens": 133,
+            "input_tokens_details": {
+              "cached_tokens": 0
             },
-            "completion_tokens_details": {
-              "reasoning_tokens": 0,
-              "audio_tokens": 0,
-              "accepted_prediction_tokens": 0,
-              "rejected_prediction_tokens": 0
-            }
+            "output_tokens": 13,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 146
           },
-          "service_tier": "default",
-          "system_fingerprint": "fp_121226f66d"
+          "user": null,
+          "metadata": {}
         }
-  recorded_at: Wed, 22 Apr 2026 00:06:29 GMT
+  recorded_at: Fri, 26 Jun 2026 01:39:37 GMT
 - request:
     method: post
-    uri: https://api.openai.com/v1/chat/completions
+    uri: https://api.openai.com/v1/responses
     body:
       encoding: UTF-8
-      string: '{"messages":[{"role":"user","content":[{"type":"text","text":"Recent
-        context:"}]},{"role":"user","content":[{"type":"text","text":"What''s today''s
-        date?"}]},{"role":"system","content":[{"type":"text","text":"You are a small
-        date-checking skill.\n\nWhen called:\n1. Run the `date` command through the
-        available tool.\n2. Read the tool result.\n3. Return a short plain-language
-        answer with today''s date.\n"}]},{"role":"user","content":[{"type":"text","text":"Solve
-        the user''s query."}]},{"role":"assistant","content":null,"tool_calls":[{"id":"call_1X5ZiXVAMmmvfFDiyiEhy3JE","type":"function","function":{"name":"system","arguments":"{\"command\":\"date\"}"}}]},{"role":"tool","tool_call_id":"call_1X5ZiXVAMmmvfFDiyiEhy3JE","content":"{\"success\":\"2025-08-24\"}"}],"model":"gpt-4.1","tools":[{"type":"function","name":"system","function":{"name":"system","description":"Runs
-        system commands","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}}]}'
+      string: '{"input":[{"type":"function_call_output","call_id":"call_OhohJdP2tRyfQljcjSksrqz3","output":"{\"content\":\"Today''s
+        date is August 24, 2025.\\n\"}"}],"model":"gpt-4.1","previous_response_id":"resp_0baa4d139aace88e006a3dd859c754819c988ab3653f40ebc5","tools":[{"type":"function","name":"check_date","description":"Check
+        the current date through a local system tool","parameters":{"type":"object","properties":{},"additionalProperties":false},"strict":false}]}'
     headers:
       User-Agent:
-      - llm.rb v4.21.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Wed, 22 Apr 2026 00:06:56 GMT
+      - Fri, 26 Jun 2026 01:39:45 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -297,7 +590,7 @@ http_interactions:
       Connection:
       - keep-alive
       Cf-Ray:
-      - 9f0062a7de0be10f-GIG
+      - a1187ffa6feeb6a9-GRU
       Cf-Cache-Status:
       - DYNAMIC
       Server:
@@ -307,17 +600,17 @@ http_interactions:
       X-Content-Type-Options:
       - nosniff
       Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
       - X-Request-ID
       Openai-Organization:
       - user-j1pztzt5nogpcsid23u7gskj
       Openai-Processing-Ms:
-      - '372'
+      - '526'
       Openai-Project:
       - proj_YSiqu4bByPgi6EwPnLiY8irR
       Openai-Version:
       - '2020-10-01'
-      X-Openai-Proxy-Wasm:
-      - v0.1
       X-Ratelimit-Limit-Requests:
       - '5000'
       X-Ratelimit-Limit-Tokens:
@@ -325,174 +618,124 @@ http_interactions:
       X-Ratelimit-Remaining-Requests:
       - '4999'
       X-Ratelimit-Remaining-Tokens:
-      - '799925'
-      X-Ratelimit-Reset-Requests:
-      - 12ms
-      X-Ratelimit-Reset-Tokens:
-      - 5ms
-      X-Request-Id:
-      - req_c531f8bc10c64b5bbffd9bd661c04f31
-      Set-Cookie:
-      - __cf_bm=IpzZOCwPLAcnBZG529JBRxtYB4ZeQd593cg20HSr5K4-1776816415.9740825-1.0.1.1-5FFI9Xcph37Uz90UTrrS_7.AIDJiuOl5WHW1lU1igeix3oHC0FWgRWngTOR0_F7PM8moG7iBMaqoFQHd7fhhYG2VFhOEaJ9I_XeW5KvFnLwieCTtA6yJOJVulWs_RgLx;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Wed, 22 Apr 2026
-        00:36:56 GMT
-      Alt-Svc:
-      - h3=":443"; ma=86400
-    body:
-      encoding: ASCII-8BIT
-      string: |
-        {
-          "id": "chatcmpl-DXFPEjh6hbvBHIIhta8nSMgiKoHM8",
-          "object": "chat.completion",
-          "created": 1776816416,
-          "model": "gpt-4.1-2025-04-14",
-          "choices": [
-            {
-              "index": 0,
-              "message": {
-                "role": "assistant",
-                "content": "Today's date is August 24, 2025.",
-                "refusal": null,
-                "annotations": []
-              },
-              "logprobs": null,
-              "finish_reason": "stop"
-            }
-          ],
-          "usage": {
-            "prompt_tokens": 138,
-            "completion_tokens": 12,
-            "total_tokens": 150,
-            "prompt_tokens_details": {
-              "cached_tokens": 0,
-              "audio_tokens": 0
-            },
-            "completion_tokens_details": {
-              "reasoning_tokens": 0,
-              "audio_tokens": 0,
-              "accepted_prediction_tokens": 0,
-              "rejected_prediction_tokens": 0
-            }
-          },
-          "service_tier": "default",
-          "system_fingerprint": "fp_121226f66d"
-        }
-  recorded_at: Wed, 22 Apr 2026 00:06:30 GMT
-- request:
-    method: post
-    uri: https://api.openai.com/v1/chat/completions
-    body:
-      encoding: UTF-8
-      string: '{"messages":[{"role":"user","content":[{"type":"text","text":"What''s
-        today''s date?"}]},{"role":"assistant","content":null,"tool_calls":[{"id":"call_Yyb5PBscbzy86j5t8CCPHymS","type":"function","function":{"name":"check_date","arguments":"{}"}}]},{"role":"tool","tool_call_id":"call_Yyb5PBscbzy86j5t8CCPHymS","content":"{\"content\":\"Today''s
-        date is August 24, 2025.\"}"}],"model":"gpt-4.1","tools":[{"type":"function","name":"check_date","function":{"name":"check_date","description":"Check
-        the current date through a local system tool","parameters":null}}]}'
-    headers:
-      User-Agent:
-      - llm.rb v4.21.0
-      Content-Type:
-      - application/json
-      Authorization:
-      - Bearer TOKEN
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      Transfer-Encoding:
-      - chunked
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Wed, 22 Apr 2026 00:06:57 GMT
-      Content-Type:
-      - application/json
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Cf-Ray:
-      - 9f0062abfbcb57c9-GIG
-      Cf-Cache-Status:
-      - DYNAMIC
-      Server:
-      - cloudflare
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      Access-Control-Expose-Headers:
-      - X-Request-ID
-      Openai-Organization:
-      - user-j1pztzt5nogpcsid23u7gskj
-      Openai-Processing-Ms:
-      - '320'
-      Openai-Project:
-      - proj_YSiqu4bByPgi6EwPnLiY8irR
-      Openai-Version:
-      - '2020-10-01'
-      X-Openai-Proxy-Wasm:
-      - v0.1
-      X-Ratelimit-Limit-Requests:
-      - '5000'
-      X-Ratelimit-Limit-Tokens:
       - '800000'
-      X-Ratelimit-Remaining-Requests:
-      - '4999'
-      X-Ratelimit-Remaining-Tokens:
-      - '799979'
       X-Ratelimit-Reset-Requests:
       - 12ms
       X-Ratelimit-Reset-Tokens:
-      - 1ms
+      - 0s
       X-Request-Id:
-      - req_0b6f3a1986d8453bb29c4e1bb91f9fd7
+      - req_8fea0f058ee444f288ce57b1baf87d17
       Set-Cookie:
-      - __cf_bm=y7ZVtVgXdWTcD9fw87PZhRieEVc8cM__CqUXTcZLTCA-1776816416.6308472-1.0.1.1-AMs.tOsx5JeKP5DGL8k_RW74czN9GVWJ4AGvsAmwJrpqGVZn4VbmJZd0BnRJFGcgmkKxNc_pr54Um63R80B9FWUNJ3jj0OtWpEkB9Zn43oGD64RaHkvFZAVm6tMutNIL;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Wed, 22 Apr 2026
-        00:36:57 GMT
+      - __cf_bm=PzEE7D4xYI98C2QJ_VRb6yCPEefhP6sHtdwXSKPvey0-1782437984.3916445-1.0.1.1-zEP1WvYtnNFXG1NGPvhVNFpYrWJFT_qtwKUiKjlSAX8wh8OSNEBVTpbk8wwJWXhT1CJ2bhzrwud90pTZZWqSzvgHPrmrG5w9H3JzyOHNXfTo8avCvr8NwL5eF7Id0NWK;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:09:45 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: |
+      string: |-
         {
-          "id": "chatcmpl-DXFPEvQTqyCLtOF5E53vKeeoTmyUy",
-          "object": "chat.completion",
-          "created": 1776816416,
+          "id": "resp_0baa4d139aace88e006a3dd86082cc819ca9314e738c0f6e17",
+          "object": "response",
+          "created_at": 1782437984,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782437984,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": null,
+          "max_tool_calls": null,
           "model": "gpt-4.1-2025-04-14",
-          "choices": [
+          "moderation": null,
+          "output": [
             {
-              "index": 0,
-              "message": {
-                "role": "assistant",
-                "content": "Today's date is August 24, 2025.",
-                "refusal": null,
-                "annotations": []
-              },
-              "logprobs": null,
-              "finish_reason": "stop"
+              "id": "msg_0baa4d139aace88e006a3dd860dc6c819c961a726bbc472d06",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "Today's date is August 24, 2025."
+                }
+              ],
+              "role": "assistant"
             }
           ],
-          "usage": {
-            "prompt_tokens": 78,
-            "completion_tokens": 12,
-            "total_tokens": 90,
-            "prompt_tokens_details": {
-              "cached_tokens": 0,
-              "audio_tokens": 0
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": "resp_0baa4d139aace88e006a3dd859c754819c988ab3653f40ebc5",
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 1.0,
+          "text": {
+            "format": {
+              "type": "text"
             },
-            "completion_tokens_details": {
-              "reasoning_tokens": 0,
-              "audio_tokens": 0,
-              "accepted_prediction_tokens": 0,
-              "rejected_prediction_tokens": 0
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
             }
           },
-          "service_tier": "default",
-          "system_fingerprint": "fp_f068f95466"
+          "tools": [
+            {
+              "type": "function",
+              "description": "Check the current date through a local system tool",
+              "name": "check_date",
+              "parameters": {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": false
+              },
+              "strict": false
+            }
+          ],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 74,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 13,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 87
+          },
+          "user": null,
+          "metadata": {}
         }
-  recorded_at: Wed, 22 Apr 2026 00:06:30 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 01:39:38 GMT
+recorded_with: VCR 6.4.0

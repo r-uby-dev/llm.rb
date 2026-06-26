@@ -9,81 +9,85 @@ http_interactions:
         was a positive news story from today?"}]}],"model":"gpt-4.1","tools":[{"type":"web_search"}]}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:06:30 GMT
+      - Fri, 26 Jun 2026 01:39:34 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Server:
-      - cloudflare
-      X-Ratelimit-Limit-Requests:
-      - '500'
-      X-Ratelimit-Limit-Tokens:
-      - '30000'
-      X-Ratelimit-Remaining-Requests:
-      - '499'
-      X-Ratelimit-Remaining-Tokens:
-      - '12866'
-      X-Ratelimit-Reset-Requests:
-      - 120ms
-      X-Ratelimit-Reset-Tokens:
-      - 34.268s
-      Openai-Version:
-      - '2020-10-01'
-      Openai-Organization:
-      - user-j1pztzt5nogpcsid23u7gskj
-      Openai-Project:
-      - proj_YSiqu4bByPgi6EwPnLiY8irR
-      X-Request-Id:
-      - req_82edc044758c40e69174ad28b38995b3
-      Openai-Processing-Ms:
-      - '3877'
+      Cf-Ray:
+      - a1187fa60b2b9a69-GRU
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=oagX1WIjKM_Jf2C7cTx8zikGWp48eYEGm2eingQGrIU-1772769986.5410547-1.0.1.1-2CfRJblEdzswCv9at8DzTUt6nqV7c212W2mPraWgdgSXtntRQQTTiWLBq8cDKFqfqBl9.amL9jKEPSxDlFSoMnTeL2KrDf9HKtamjs3gIWlcUSJ5TphQGCNMjr5RKa0q;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:36:30 GMT
+      Server:
+      - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      Cf-Ray:
-      - 9d7e7cdfeb201b16-GRU
+      Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
+      - X-Request-ID
+      Openai-Organization:
+      - user-j1pztzt5nogpcsid23u7gskj
+      Openai-Processing-Ms:
+      - '3791'
+      Openai-Project:
+      - proj_YSiqu4bByPgi6EwPnLiY8irR
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '782645'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 1.301s
+      X-Request-Id:
+      - req_a1925febe9a341e38f2a9636a0ba20dd
+      Set-Cookie:
+      - __cf_bm=Hd6.RAC5gk6NgBOOKYNvXrrVHfA8g6wrlhR4M1Pxwi0-1782437970.8872101-1.0.1.1-KEfa2XmIdVuMzdwRg1owWiljFRb800Nblz20BhoUJQwROD27S.SSeGSZcz2aBMLDmzGCjQyLEXZW7lc_9s33sICRTQy4zajeDw7QzyIL7llvGEhbFYCcEWdUT6ISyFWl;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:09:34 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |-
         {
-          "id": "resp_0be6d66411a938200069aa52c2a54c819682799c8c087432fb",
+          "id": "resp_0bc12d5a34f21d2b006a3dd852ffa081a0b41ddccdebebef6c",
           "object": "response",
-          "created_at": 1772769986,
+          "created_at": 1782437971,
           "status": "completed",
           "background": false,
           "billing": {
             "payer": "developer"
           },
-          "completed_at": 1772769990,
+          "completed_at": 1782437974,
           "error": null,
           "frequency_penalty": 0.0,
           "incomplete_details": null,
@@ -91,9 +95,10 @@ http_interactions:
           "max_output_tokens": null,
           "max_tool_calls": null,
           "model": "gpt-4.1-2025-04-14",
+          "moderation": null,
           "output": [
             {
-              "id": "ws_0be6d66411a938200069aa52c349f48196aa7a435982784a98",
+              "id": "ws_0bc12d5a34f21d2b006a3dd8536c1481a091914b7ce26443c7",
               "type": "web_search_call",
               "status": "completed",
               "action": {
@@ -105,7 +110,7 @@ http_interactions:
               }
             },
             {
-              "id": "msg_0be6d66411a938200069aa52c4eb048196882f0437d6426452",
+              "id": "msg_0bc12d5a34f21d2b006a3dd85522c481a0ba4d7453dfde96c7",
               "type": "message",
               "status": "completed",
               "content": [
@@ -114,14 +119,14 @@ http_interactions:
                   "annotations": [
                     {
                       "type": "url_citation",
-                      "end_index": 1095,
-                      "start_index": 987,
-                      "title": "NewsDepth | Season 56 | March 6, 2026 | NewsDepth 2025-2026 | Episode 22 | PBS",
-                      "url": "https://www.pbs.org/video/march-6-2026-newsdepth-2025-2026-episode-22-woiufx/?utm_source=openai"
+                      "end_index": 1185,
+                      "start_index": 1003,
+                      "title": "Hill Day 2026: United in purpose, nurses take crucial issues to policymakers",
+                      "url": "https://www.nursingworld.org/news/news-releases/2026-news-releases/hill-day-2026-united-in-purpose-nurses-take-crucial-issues-to-policymakers/?utm_source=openai"
                     }
                   ],
                   "logprobs": [],
-                  "text": "Here\u2019s a genuinely uplifting and positive news story from today, **Friday, March\u202f6,\u202f2026**:\n\nOn PBS\u2019s *NewsDepth* (Season\u202f56, Episode\u202f22), one highlight of the broadcast was about a young student named **Andy** in Cleveland. After volunteering at the Cleveland Kids\u2019 Book Bank\u2014a nonprofit that distributes free books to children in need\u2014Andy was inspired to organize a **community-wide book drive**, placing collection bins around his neighborhood with the help of his friend Mason, his teacher\u2011mom, and local partners like Broadview Heights Recreation Center and Saint Adalbert the Great Parish.\n\nThe response was heartwarming: so many books were donated that Andy\u2019s **entire basement and parts of his first floor were filled to the brim**! He expressed immense pride in how enthusiastic his community was, noting that these books will go on to help children across the area\u2014and that the effort taught him valuable lessons in leadership, collaboration, communication, and organization. ([pbs.org](https://www.pbs.org/video/march-6-2026-newsdepth-2025-2026-episode-22-woiufx/?utm_source=openai))\n\nThis story stands out not only for its immediate impact\u2014bringing literature and learning to children in need\u2014but also for showcasing youth empowerment, community spirit, and the ripple effect that one caring individual can catalyze. It\u2019s a wonderful reminder that simple acts of kindness can lead to transformative outcomes.\n\nIf you'd like to explore more feel\u2011good stories or similar community efforts from around the world, I\u2019m happy to help!"
+                  "text": "Here\u2019s a positive news story from **today, Friday, June 26, 2026**:\n\nOn **June 25, 2026**, hundreds of nurses from across the United States gathered on Capitol Hill for the American Nurses Association\u2019s (ANA) annual **Hill Day** to directly engage with members of Congress. Over 500 nurses participated\u2014representing 49 states, the District of Columbia, Guam, and the U.S. Virgin Islands\u2014and conducted **357 meetings** with lawmakers and their staff (including **87 meetings with members of Congress themselves**) to advocate on key issues like workforce protections, student loan recognition for nursing degrees, and expanded patient access to care. ANA President Jennifer Mensik Kennedy emphasized the importance of nurses sharing their lived experiences to influence policymaking. The event highlights the powerful role that healthcare professionals are playing in shaping public health legislation\u2014a meaningful and hopeful development for both the nursing profession and the communities they serve  \n([nursingworld.org](https://www.nursingworld.org/news/news-releases/2026-news-releases/hill-day-2026-united-in-purpose-nurses-take-crucial-issues-to-policymakers/?utm_source=openai)).\n\nThis initiative not only showcases civic engagement and advocacy in action but also underscores how collective voices\u2014especially from trusted and essential professionals like nurses\u2014can shape policy and enhance healthcare outcomes.\n\nIf you\u2019d like more uplifting news or stories in other areas (science, environment, community, etc.), just let me know!"
                 }
               ],
               "role": "assistant"
@@ -131,8 +136,9 @@ http_interactions:
           "presence_penalty": 0.0,
           "previous_response_id": null,
           "prompt_cache_key": null,
-          "prompt_cache_retention": null,
+          "prompt_cache_retention": "in_memory",
           "reasoning": {
+            "context": null,
             "effort": null,
             "summary": null
           },
@@ -147,10 +153,31 @@ http_interactions:
             "verbosity": "medium"
           },
           "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 1
+            }
+          },
           "tools": [
             {
               "type": "web_search",
-              "filters": null,
+              "return_token_budget": "default",
+              "search_content_types": [
+                "text"
+              ],
               "search_context_size": "medium",
               "user_location": {
                 "type": "approximate",
@@ -165,18 +192,18 @@ http_interactions:
           "top_p": 1.0,
           "truncation": "disabled",
           "usage": {
-            "input_tokens": 17137,
+            "input_tokens": 17390,
             "input_tokens_details": {
               "cached_tokens": 0
             },
-            "output_tokens": 326,
+            "output_tokens": 293,
             "output_tokens_details": {
               "reasoning_tokens": 0
             },
-            "total_tokens": 17463
+            "total_tokens": 17683
           },
           "user": null,
           "metadata": {}
         }
-  recorded_at: Fri, 06 Mar 2026 04:06:18 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 01:39:27 GMT
+recorded_with: VCR 6.4.0

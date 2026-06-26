@@ -9,81 +9,85 @@ http_interactions:
         today''s news"}]}],"model":"gpt-4.1","store":false,"tools":[{"type":"web_search"}]}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:04:30 GMT
+      - Fri, 26 Jun 2026 01:38:13 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Server:
-      - cloudflare
-      X-Ratelimit-Limit-Requests:
-      - '500'
-      X-Ratelimit-Limit-Tokens:
-      - '30000'
-      X-Ratelimit-Remaining-Requests:
-      - '499'
-      X-Ratelimit-Remaining-Tokens:
-      - '0'
-      X-Ratelimit-Reset-Requests:
-      - 120ms
-      X-Ratelimit-Reset-Tokens:
-      - 1m4.941s
-      Openai-Version:
-      - '2020-10-01'
-      Openai-Organization:
-      - user-j1pztzt5nogpcsid23u7gskj
-      Openai-Project:
-      - proj_YSiqu4bByPgi6EwPnLiY8irR
-      X-Request-Id:
-      - req_04dd75aa8a0747e7aecf51f577e3b737
-      Openai-Processing-Ms:
-      - '9739'
+      Cf-Ray:
+      - a1187d8b7f04df6c-GRU
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=ThM7iiCQniSVvcFLWHl.mwjB.F9XwePaGrnhx1KQ6WE-1772769860.600579-1.0.1.1-PVcBhgbktrTozSoiVz94l.xlLVugp97LJxD250hCJzzqEMcbTDzGCHxnsxej00wCU5s1mz5mLdcE1ZQkJ2p93a8ahrJC4deppsAnQbCOUIGvZwhHq87IGFlV5p72fkYM;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:34:30 GMT
+      Server:
+      - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      Cf-Ray:
-      - 9d7e79ccbe03a463-GRU
+      Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
+      - X-Request-ID
+      Openai-Organization:
+      - user-j1pztzt5nogpcsid23u7gskj
+      Openai-Processing-Ms:
+      - '8035'
+      Openai-Project:
+      - proj_YSiqu4bByPgi6EwPnLiY8irR
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '782041'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 1.346s
+      X-Request-Id:
+      - req_165811d493ea4a1e882fe8b3f697c0a3
+      Set-Cookie:
+      - __cf_bm=BCT96JgpBEQF60.H3Bc3xB0.FTa7WoT0CKjDqaMGrKk-1782437884.7125766-1.0.1.1-ZolLHKE4F9YbuVzynZ3n0dLtPVa.sHKlUeibRMIgpGsC7zAM2ncXUPrgXyqMepeX9srswyokqkuyNt3Y6iFHz9KVy8p_nQ1QcHWXNR2QvZiUS0lxMqVKnUVgKhxN13uq;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:08:13 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |-
         {
-          "id": "resp_008b5e5f815cabc80169aa52451114819099ef600b09ebef97",
+          "id": "resp_07255d95a90d9bb0016a3dd7fd02b481928623978d6f3e3b34",
           "object": "response",
-          "created_at": 1772769861,
+          "created_at": 1782437885,
           "status": "completed",
           "background": false,
           "billing": {
             "payer": "developer"
           },
-          "completed_at": 1772769870,
+          "completed_at": 1782437892,
           "error": null,
           "frequency_penalty": 0.0,
           "incomplete_details": null,
@@ -91,21 +95,22 @@ http_interactions:
           "max_output_tokens": null,
           "max_tool_calls": null,
           "model": "gpt-4.1-2025-04-14",
+          "moderation": null,
           "output": [
             {
-              "id": "ws_008b5e5f815cabc80169aa5245ee288190bf2f3568e346f452",
+              "id": "ws_07255d95a90d9bb0016a3dd7fdbf9c81928f9124616dcd85bd",
               "type": "web_search_call",
               "status": "completed",
               "action": {
                 "type": "search",
                 "queries": [
-                  "today's top news headlines"
+                  "today's top news summary"
                 ],
-                "query": "today's top news headlines"
+                "query": "today's top news summary"
               }
             },
             {
-              "id": "msg_008b5e5f815cabc80169aa52490d188190b959aa2e0ef7284d",
+              "id": "msg_07255d95a90d9bb0016a3dd7ff237c819296967be3dc38a53f",
               "type": "message",
               "status": "completed",
               "content": [
@@ -114,63 +119,126 @@ http_interactions:
                   "annotations": [
                     {
                       "type": "url_citation",
-                      "end_index": 647,
-                      "start_index": 527,
-                      "title": "Human-caused climate change fuels early spring heat contributing to increasing severe weather risk across the central United States. | Climate Central",
-                      "url": "https://www.climatecentral.org/climate-shift-index-alert/central-us-march-2026?utm_source=openai"
+                      "end_index": 569,
+                      "start_index": 434,
+                      "title": "Europe's record-breaking heatwave has claimed hundreds of lives, health authorities say - ABC News",
+                      "url": "https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai"
                     },
                     {
                       "type": "url_citation",
-                      "end_index": 1020,
-                      "start_index": 867,
-                      "title": "Multi day storm event forecast across central and southern United States, March 4-6 - The Watchers",
-                      "url": "https://watchers.news/2026/03/04/multi-day-storm-event-forecast-across-central-and-southern-united-states-march-4-6/?utm_source=openai"
+                      "end_index": 817,
+                      "start_index": 682,
+                      "title": "Europe's record-breaking heatwave has claimed hundreds of lives, health authorities say - ABC News",
+                      "url": "https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai"
                     },
                     {
                       "type": "url_citation",
-                      "end_index": 1672,
-                      "start_index": 1537,
-                      "title": "March 6, 2026: National Advocacy Update | American Medical Association",
-                      "url": "https://www.ama-assn.org/health-care-advocacy/advocacy-update/march-6-2026-national-advocacy-update?utm_source=openai"
+                      "end_index": 1125,
+                      "start_index": 990,
+                      "title": "Europe's record-breaking heatwave has claimed hundreds of lives, health authorities say - ABC News",
+                      "url": "https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai"
                     },
                     {
                       "type": "url_citation",
-                      "end_index": 2182,
-                      "start_index": 2068,
-                      "title": "Xinhua world news summary at 0030 GMT, March 6",
-                      "url": "https://www.china.org.cn/world/Off_the_Wire/2026-03/06/content_118365048.shtml?utm_source=openai"
+                      "end_index": 1476,
+                      "start_index": 1341,
+                      "title": "Europe's record-breaking heatwave has claimed hundreds of lives, health authorities say - ABC News",
+                      "url": "https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai"
                     },
                     {
                       "type": "url_citation",
-                      "end_index": 2999,
-                      "start_index": 2903,
-                      "title": "Weekly Immigration News \u2013 March 6, 2026 - McBean Immigration Law",
-                      "url": "https://mcbeanlaw.com/weekly-immigration-news-march-6-2026/?utm_source=openai"
+                      "end_index": 1755,
+                      "start_index": 1620,
+                      "title": "Europe's record-breaking heatwave has claimed hundreds of lives, health authorities say - ABC News",
+                      "url": "https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai"
                     },
                     {
                       "type": "url_citation",
-                      "end_index": 4178,
-                      "start_index": 4076,
-                      "title": "Cyber News Roundup \u2013 March 6th 2026",
-                      "url": "https://www.integrity360.com/cyber-news-roundup-march-6th-2026?utm_source=openai"
+                      "end_index": 2029,
+                      "start_index": 1894,
+                      "title": "Europe's record-breaking heatwave has claimed hundreds of lives, health authorities say - ABC News",
+                      "url": "https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai"
                     },
                     {
                       "type": "url_citation",
-                      "end_index": 4521,
-                      "start_index": 4407,
-                      "title": "Xinhua world news summary at 0030 GMT, March 6",
-                      "url": "https://www.china.org.cn/world/Off_the_Wire/2026-03/06/content_118365048.shtml?utm_source=openai"
+                      "end_index": 2223,
+                      "start_index": 2088,
+                      "title": "Europe's record-breaking heatwave has claimed hundreds of lives, health authorities say - ABC News",
+                      "url": "https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai"
                     },
                     {
                       "type": "url_citation",
-                      "end_index": 4973,
-                      "start_index": 4881,
-                      "title": "2026 in American music",
-                      "url": "https://en.wikipedia.org/wiki/2026_in_American_music?utm_source=openai"
+                      "end_index": 2506,
+                      "start_index": 2371,
+                      "title": "Europe's record-breaking heatwave has claimed hundreds of lives, health authorities say - ABC News",
+                      "url": "https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai"
+                    },
+                    {
+                      "type": "url_citation",
+                      "end_index": 2972,
+                      "start_index": 2834,
+                      "title": "High-level U.S.-Iran talks conclude with a road map for peace, mediators say - The Washington Post",
+                      "url": "https://www.washingtonpost.com/world/2026/06/21/us-iranian-meet-switzerland-hash-out-peace-plan/?utm_source=openai"
+                    },
+                    {
+                      "type": "url_citation",
+                      "end_index": 3250,
+                      "start_index": 3112,
+                      "title": "High-level U.S.-Iran talks conclude with a road map for peace, mediators say - The Washington Post",
+                      "url": "https://www.washingtonpost.com/world/2026/06/21/us-iranian-meet-switzerland-hash-out-peace-plan/?utm_source=openai"
+                    },
+                    {
+                      "type": "url_citation",
+                      "end_index": 3634,
+                      "start_index": 3496,
+                      "title": "High-level U.S.-Iran talks conclude with a road map for peace, mediators say - The Washington Post",
+                      "url": "https://www.washingtonpost.com/world/2026/06/21/us-iranian-meet-switzerland-hash-out-peace-plan/?utm_source=openai"
+                    },
+                    {
+                      "type": "url_citation",
+                      "end_index": 4254,
+                      "start_index": 4132,
+                      "title": "Supreme Court sides with Trump over stripping deportation protections from Syrians and Haitians - CBS News",
+                      "url": "https://www.cbsnews.com/news/supreme-court-temporary-protected-status-syrians-haitians/?utm_source=openai"
+                    },
+                    {
+                      "type": "url_citation",
+                      "end_index": 4553,
+                      "start_index": 4431,
+                      "title": "Supreme Court sides with Trump over stripping deportation protections from Syrians and Haitians - CBS News",
+                      "url": "https://www.cbsnews.com/news/supreme-court-temporary-protected-status-syrians-haitians/?utm_source=openai"
+                    },
+                    {
+                      "type": "url_citation",
+                      "end_index": 5195,
+                      "start_index": 5056,
+                      "title": "FERC Launches Aggressive Targeted Action to Speed Large Load Integration | Federal Energy Regulatory Commission",
+                      "url": "https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration?utm_source=openai"
+                    },
+                    {
+                      "type": "url_citation",
+                      "end_index": 5594,
+                      "start_index": 5455,
+                      "title": "FERC Launches Aggressive Targeted Action to Speed Large Load Integration | Federal Energy Regulatory Commission",
+                      "url": "https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration?utm_source=openai"
+                    },
+                    {
+                      "type": "url_citation",
+                      "end_index": 5874,
+                      "start_index": 5735,
+                      "title": "FERC Launches Aggressive Targeted Action to Speed Large Load Integration | Federal Energy Regulatory Commission",
+                      "url": "https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration?utm_source=openai"
+                    },
+                    {
+                      "type": "url_citation",
+                      "end_index": 6198,
+                      "start_index": 6059,
+                      "title": "FERC Launches Aggressive Targeted Action to Speed Large Load Integration | Federal Energy Regulatory Commission",
+                      "url": "https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration?utm_source=openai"
                     }
                   ],
                   "logprobs": [],
-                  "text": "Here is a comprehensive summary of notable news from **Friday, March 6, 2026** (today\u2019s date):\n\n---\n\n##  Weather & Climate: Unseasonably Warm with Severe Weather Risks  \n- Much of the central and eastern U.S. is experiencing **springlike warmth**, with temperatures forecast to reach **73\u201390\u202f\u00b0F**, as much as **34\u202f\u00b0F above average** in the Upper Midwest. These conditions are driven in part by **human-caused climate change**, doubling the likelihood of such extreme heat across approximately **2.8 million square kilometers** ([climatecentral.org](https://www.climatecentral.org/climate-shift-index-alert/central-us-march-2026?utm_source=openai)).  \n- The **Storm Prediction Center** has issued an **Enhanced Risk** of severe thunderstorms\u2014threatening **damaging winds, large hail, and possibly tornadoes**\u2014across parts of the Southern and Central Plains on March 6 ([watchers.news](https://watchers.news/2026/03/04/multi-day-storm-event-forecast-across-central-and-southern-united-states-march-4-6/?utm_source=openai)).\n\n---\n\n##  U.S. Policy & Politics  \n- The **American Medical Association (AMA)** released a national advocacy update. It highlighted two bills recently passed by the Senate HELP Committee: the **Health Care Cybersecurity and Resiliency Act** and the **Living Donor Protection Act**, both receiving bipartisan support. The AMA also urged the **Assistant Secretary for Technology Policy (ASTP)** to preserve essential EHR functionality, maintain **AI transparency**, and ensure interoperability in upcoming rulemaking ([ama-assn.org](https://www.ama-assn.org/health-care-advocacy/advocacy-update/march-6-2026-national-advocacy-update?utm_source=openai)).  \n- In a major personnel development, **President Trump** announced via Truth Social that **Senator Markwayne Mullin (R\u2011Oklahoma)** will become the **Secretary of Homeland Security**, effective **March\u202f31, 2026**. The current Secretary, **Kristi Noem**, will transition to a newly created role as **Special Envoy for \u201cThe Shield of the Americas\u201d**, a new Western Hemisphere security initiative ([china.org.cn](https://www.china.org.cn/world/Off_the_Wire/2026-03/06/content_118365048.shtml?utm_source=openai)).  \n- The **Trump administration** requested that the **Supreme Court** allow it to terminate **Temporary Protected Status (TPS)** for about **7,000 Syrians** living in the U.S. Additionally, reports indicate plans to **close a controversial ICE jail in Texas**, where multiple detainee deaths occurred and a measles outbreak forced quarantines. Separately, **Hennepin County (MN)** launched an online portal for residents to report alleged immigrant enforcement abuses. Furthermore, ICE aims to spend **$220 million** on **17,800 Tasers**, a major increase from current levels. Meanwhile, advocates in **Los Angeles** raised concerns about a HUD proposal that could strip housing assistance from mixed-status households ([mcbeanlaw.com](https://mcbeanlaw.com/weekly-immigration-news-march-6-2026/?utm_source=openai)).\n\n---\n\n##  Cybersecurity & Cyber Threats  \n- A surge in **hacktivist cyber activity** has been observed in conjunction with escalating tensions in the Middle East. Between February 28 and March 2, over **149 DDoS attacks** were claimed, primarily in the Middle East, Europe, and North America.  \n- In response, **Europol**, with international cooperation and private sector support, disrupted the **Tycoon2FA phishing-as-a-service platform**, seizing **330 domains** tied to phishing operations.  \n- Meanwhile, researchers uncovered a phishing method exploiting **OAuth redirections** to bypass authentication safeguards, increasingly seen in attacks against government and public sector targets.  \n- Cyber threats are also rising in the **maritime sector**, where **ransomware** and **operational technology (OT)** attacks surged in 2025\u2014up **150%** for OT and **800%** for network device breaches. The report also noted widespread **GPS spoofing** incidents affecting thousands of vessels, highlighting the rapidly growing digital vulnerabilities in shipping infrastructure ([integrity360.com](https://www.integrity360.com/cyber-news-roundup-march-6th-2026?utm_source=openai)).\n\n---\n\n##  International Affairs  \n- In the **Middle East**, Israeli airstrikes targeted **southern Beirut\u2019s suburbs**, prompting warnings for residents to evacuate. This marks a significant escalation in the conflict landscape ([china.org.cn](https://www.china.org.cn/world/Off_the_Wire/2026-03/06/content_118365048.shtml?utm_source=openai)).\n\n---\n\n##  Culture & Entertainment  \n- In music news, **March 6, 2026** marks the release of several highly anticipated albums:\n  - **Gnarls Barkley** releases **\"Atlanta\"**, their first studio album in 18 years.\n  - Other long-awaited releases also drop today: **Surfbort** with *Reality Star*; **Vial** with *Hellhound*; and **Whiplash** with *Thrashquake* ([en.wikipedia.org](https://en.wikipedia.org/wiki/2026_in_American_music?utm_source=openai)).\n\n---\n\n### Summary Table\n\n| Category        | Notable Highlights |\n|-----------------|---------------------|\n| Weather         | Unseasonable warmth; severe weather risk across central U.S. |\n| U.S. Policy     | AMA advocacy; Homeland Security leadership change; TPS and ICE policy updates |\n| Cybersecurity   | Surge in hacktivist attacks; phishing platform disrupted; maritime cyber threats rise |\n| International   | Israeli airstrikes on Beirut suburbs |\n| Entertainment   | Major album releases from Gnarls Barkley, Surfbort, Vial, and Whiplash |\n\n---\n\n If you'd like to explore any of these topics further\u2014such as more details on the breakout albums, climate data, U.S. policy changes, or global developments\u2014just let me know!"
+                  "text": "Here\u2019s a detailed and fully up-to-date summary of today\u2019s top global and U.S. news\u2014Friday, June 26, 2026:\n\n---\n\n## International News\n\n**1. Europe Suffers Deadly Record-Breaking Heatwave**  \nEurope continues to reel under an extreme heatwave, with multiple countries grappling with dangerously high temperatures and tragic loss of life.\n\n  - More than 101 million Europeans are expected to experience temperatures above 35\u202f\u00b0C (95\u202f\u00b0F) ([abc.net.au](https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai)).  \n  - Between Sunday and Wednesday, Spain\u2019s MoMo mortality monitoring system attributed 212 deaths to the heat ([abc.net.au](https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai)).  \n  - The UK recorded its hottest-ever June day\u201436.4\u202f\u00b0C in Somerset\u2014prompting a surge in emergency \"Category\u202f1\" calls, with 642 life-threatening incidents in a single day ([abc.net.au](https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai)).  \n  - In France, heat-related incidents have increased sharply: a three-year-old boy died in a hot vehicle outside Paris, two other children reportedly died in similar circumstances, and at least 48 people drowned ([abc.net.au](https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai)). Paramedics in Paris reported 25 cardiac arrests in 24 hours, compared to fewer than 10 on a typical day, and emergency room visits quadrupled ([abc.net.au](https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai)). Authorities have also banned public alcohol consumption in Paris from midday onward to prevent exacerbating dehydration and health risks ([abc.net.au](https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai)).  \n  - Switzerland broke June records with 38\u202f\u00b0C in Basel ([abc.net.au](https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai)). The Netherlands issued its first-ever red alert for heat, while Germany, Austria, Italy, and the Czech Republic also face escalating temperatures ([abc.net.au](https://www.abc.net.au/news/2026-06-26/hundreds-of-deaths-recorded-as-heatwave-grips-europe/106843702?utm_source=openai)).\n\n**2. U.S.\u2013Iran Peace Talks Advance Roadmap Agreement**  \nHigh-level diplomatic talks between the United States and Iran concluded successfully, with mediators reporting promising progress.\n\n  - Hosted in Switzerland, the negotiations resulted in a collective roadmap designed to culminate in a final agreement within 60 days ([washingtonpost.com](https://www.washingtonpost.com/world/2026/06/21/us-iranian-meet-switzerland-hash-out-peace-plan/?utm_source=openai)).  \n  - A de-escalation working group\u2014featuring Lebanon, alongside the U.S. and Iran\u2014will address the conflict between Israel and Hezbollah ([washingtonpost.com](https://www.washingtonpost.com/world/2026/06/21/us-iranian-meet-switzerland-hash-out-peace-plan/?utm_source=openai)).  \n  - Despite the encouraging trajectory, developments were shaken by President Trump\u2019s pre-talk threats, which included warnings of potential U.S. military action and seizure of the Strait of Hormuz if Iran interfered with maritime navigation ([washingtonpost.com](https://www.washingtonpost.com/world/2026/06/21/us-iranian-meet-switzerland-hash-out-peace-plan/?utm_source=openai)).\n\n---\n\n## U.S. News\n\n**3. Supreme Court Rules to End Deportation Protections for Syrians and Haitians**  \nIn a significant ruling, the U.S. Supreme Court has sided with the Trump administration in halting judicial delays on ending Temporary Protected Status (TPS) for Syrian and Haitian immigrants.\n\n  - The Court affirmed that the TPS statute bars judicial review of non\u2011constitutional challenges\u2014effectively permitting the administration to terminate protections without court-imposed reprieves ([cbsnews.com](https://www.cbsnews.com/news/supreme-court-temporary-protected-status-syrians-haitians/?utm_source=openai)).  \n  - The decision affects more than 356,000 individuals (over 6,000 from Syria and 350,000 from Haiti) by allowing the termination of their legal protections to move forward ([cbsnews.com](https://www.cbsnews.com/news/supreme-court-temporary-protected-status-syrians-haitians/?utm_source=openai)).\n\n---\n\n## U.S. Domestic and Policy News\n\n**4. FERC Orders Grid Reform to Support Large Energy Loads**  \nThe Federal Energy Regulatory Commission (FERC) has taken steps to modernize the U.S. electric grid in response to the growing demands of large energy users like data centers and manufacturers.\n\n  - On June 18, FERC issued show-cause orders to all six regional grid operators\u2014PJM, MISO, SPP, CAISO, ISO-NE, and NYISO\u2014requiring them to justify or reform their tariffs for large loads within 60 days ([ferc.gov](https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration?utm_source=openai)).  \n  - The reforms target five key areas: streamlining transmission applications, ensuring cost transparency, accommodating behind\u2011the\u2011meter generation, offering new services for flexible loads, and improving infrastructure planning for co-located generators ([ferc.gov](https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration?utm_source=openai)).  \n  - Within 30 days, each operator must also provide plans for ensuring sufficient generation capacity to meet current and future demands ([ferc.gov](https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration?utm_source=openai)). FERC Chair Laura Swett emphasized that the initiative aims to serve innovation, support AI-driven industries, and strengthen U.S. manufacturing while maintaining consumer protections ([ferc.gov](https://www.ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration?utm_source=openai)).\n\n---\n\n## Summary Overview\n\n- **Europe faces a catastrophic heatwave**, causing hundreds of deaths and widespread strain on healthcare and emergency systems.\n- **U.S.\u2013Iran talks show glimmer of diplomatic progress**, with a roadmap aimed at peace and de-escalation protocols underway.\n- **Domestic U.S. policy sees major shifts**: Supreme Court limits deportation protections for Syrians and Haitians, and FERC mandates grid reform to support energy-intensive economic growth.\n\n---\n\nLet me know if you\u2019d like a deeper dive into any of these stories or a focus on another region or topic!"
                 }
               ],
               "role": "assistant"
@@ -180,8 +248,9 @@ http_interactions:
           "presence_penalty": 0.0,
           "previous_response_id": null,
           "prompt_cache_key": null,
-          "prompt_cache_retention": null,
+          "prompt_cache_retention": "in_memory",
           "reasoning": {
+            "context": null,
             "effort": null,
             "summary": null
           },
@@ -196,10 +265,31 @@ http_interactions:
             "verbosity": "medium"
           },
           "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 1
+            }
+          },
           "tools": [
             {
               "type": "web_search",
-              "filters": null,
+              "return_token_budget": "default",
+              "search_content_types": [
+                "text"
+              ],
               "search_context_size": "medium",
               "user_location": {
                 "type": "approximate",
@@ -214,18 +304,18 @@ http_interactions:
           "top_p": 1.0,
           "truncation": "disabled",
           "usage": {
-            "input_tokens": 31641,
+            "input_tokens": 17095,
             "input_tokens_details": {
               "cached_tokens": 0
             },
-            "output_tokens": 1155,
+            "output_tokens": 1189,
             "output_tokens_details": {
               "reasoning_tokens": 0
             },
-            "total_tokens": 32796
+            "total_tokens": 18284
           },
           "user": null,
           "metadata": {}
         }
-  recorded_at: Fri, 06 Mar 2026 04:04:18 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 01:38:06 GMT
+recorded_with: VCR 6.4.0

@@ -2,119 +2,174 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.openai.com/v1/chat/completions
+    uri: https://api.openai.com/v1/responses
     body:
       encoding: UTF-8
-      string: '{"messages":[{"role":"user","content":[{"type":"text","text":"Could
-        the image be a book ?"},{"type":"text","text":"If there is any chance, answer
-        in the affirmative"},{"type":"text","text":"Answer with yes or no"},{"type":"text","text":"Nothing
-        else"},{"type":"text","text":"spec/fixtures/images/bluebook.png"}]}],"model":"gpt-4.1"}'
+      string: '{"input":[{"role":"user","content":[{"type":"input_text","text":"Could
+        the image be a book ?"},{"type":"input_text","text":"If there is any chance,
+        answer in the affirmative"},{"type":"input_text","text":"Answer with yes or
+        no"},{"type":"input_text","text":"Nothing else"},{"type":"input_text","text":"spec/fixtures/images/bluebook.png"}]}],"model":"gpt-4.1"}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:04:42 GMT
+      - Fri, 26 Jun 2026 01:38:30 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Access-Control-Expose-Headers:
-      - X-Request-ID
-      Openai-Organization:
-      - user-j1pztzt5nogpcsid23u7gskj
-      Openai-Processing-Ms:
-      - '338'
-      Openai-Project:
-      - proj_YSiqu4bByPgi6EwPnLiY8irR
-      Openai-Version:
-      - '2020-10-01'
-      Server:
-      - cloudflare
-      X-Ratelimit-Limit-Requests:
-      - '500'
-      X-Ratelimit-Limit-Tokens:
-      - '30000'
-      X-Ratelimit-Remaining-Requests:
-      - '499'
-      X-Ratelimit-Remaining-Tokens:
-      - '29962'
-      X-Ratelimit-Reset-Requests:
-      - 120ms
-      X-Ratelimit-Reset-Tokens:
-      - 76ms
-      X-Request-Id:
-      - req_de0af39406b34098af131c46d0d31b57
-      X-Openai-Proxy-Wasm:
-      - v0.1
+      Cf-Ray:
+      - a1187e1c6be47ff0-GRU
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=YkX2f4sEa004k296HNqovQk02zek_hDun78xgbUd8LA-1772769881.6379726-1.0.1.1-la04eWsI47tW5.aGcD7CQG.P3UGwhVmZ0hMnOstej2OikSuzlEx2Gjp3EPK3.1wT6A7kAf.rb_keDRfqXdSBkQVK52GGuxANHg89SErf_SExmeFmRa5S32pWhzvwfv7_;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:34:42 GMT
+      Server:
+      - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      Cf-Ray:
-      - 9d7e7a503d0bf28c-GRU
+      Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
+      - X-Request-ID
+      Openai-Organization:
+      - user-j1pztzt5nogpcsid23u7gskj
+      Openai-Processing-Ms:
+      - '2287'
+      Openai-Project:
+      - proj_YSiqu4bByPgi6EwPnLiY8irR
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '800000'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 0s
+      X-Request-Id:
+      - req_684e77edd37e4e0a83ef0a37b137eea0
+      Set-Cookie:
+      - __cf_bm=OwbFEfNQ_Th6EcSsKfDj98H6WsYew33bAJUksaRj4Vg-1782437907.9099622-1.0.1.1-iW1B0QuzSUoBfYFFTShGk.Wb.RkV7_Wr0QEQW2L7v3cx4hXPRLHIVjee4tPceCdwUyVtOGgmfe0wh0.vRiGPQb5Z94C3_T0Goi9KVYO3Ktm_he9mJH.x9Dzwk4rlDxUm;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:08:30 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: |
+      string: |-
         {
-          "id": "chatcmpl-DGGiXiY0wh7N8P7gLXvFxDemivR1Q",
-          "object": "chat.completion",
-          "created": 1772769881,
+          "id": "resp_074c4cb7fe33eb73006a3dd81405008191a8b3647495e6028b",
+          "object": "response",
+          "created_at": 1782437908,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782437910,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": null,
+          "max_tool_calls": null,
           "model": "gpt-4.1-2025-04-14",
-          "choices": [
+          "moderation": null,
+          "output": [
             {
-              "index": 0,
-              "message": {
-                "role": "assistant",
-                "content": "Yes",
-                "refusal": null,
-                "annotations": []
-              },
-              "logprobs": null,
-              "finish_reason": "stop"
+              "id": "msg_074c4cb7fe33eb73006a3dd81628dc8191918057134c7077dc",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "Yes"
+                }
+              ],
+              "role": "assistant"
             }
           ],
-          "usage": {
-            "prompt_tokens": 40,
-            "completion_tokens": 1,
-            "total_tokens": 41,
-            "prompt_tokens_details": {
-              "cached_tokens": 0,
-              "audio_tokens": 0
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 1.0,
+          "text": {
+            "format": {
+              "type": "text"
             },
-            "completion_tokens_details": {
-              "reasoning_tokens": 0,
-              "audio_tokens": 0,
-              "accepted_prediction_tokens": 0,
-              "rejected_prediction_tokens": 0
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
             }
           },
-          "service_tier": "default",
-          "system_fingerprint": "fp_a6317c457c"
+          "tools": [],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 40,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 2,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 42
+          },
+          "user": null,
+          "metadata": {}
         }
-  recorded_at: Fri, 06 Mar 2026 04:04:29 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 01:38:23 GMT
+recorded_with: VCR 6.4.0

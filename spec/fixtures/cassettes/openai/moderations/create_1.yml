@@ -8,7 +8,7 @@ http_interactions:
       string: '{"input":[{"type":"text","text":"I hate you"}],"model":"omni-moderation-latest"}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:06:03 GMT
+      - Fri, 26 Jun 2026 01:39:17 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -39,30 +39,32 @@ http_interactions:
       Openai-Project:
       - proj_YSiqu4bByPgi6EwPnLiY8irR
       X-Request-Id:
-      - req_ce829181663b4237a3f305bde5ef64e7
+      - req_6b84235aabf34d7ea06de9f70a5d95a1
       Openai-Processing-Ms:
-      - '287'
+      - '432'
       X-Openai-Proxy-Wasm:
       - v0.1
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=Mu8_f9Hu4lwOfCbWErWxz9OedcD0hZuV_OmpTO6HWcU-1772769963.2191434-1.0.1.1-CmpWS04p2VRhWt_IEt_6kct_YXveyPHwREX4SBRyeNDzJhdTQvOgl6HKhXchdz4ytiesPBQwrJy49g5sL2JqDGv8Tzk8QDBZQ2SknrrXk5Dn84Z961qX79yyWl9fCQmz;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:36:03 GMT
+      Access-Control-Expose-Headers:
+      - CF-Ray
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
+      Set-Cookie:
+      - __cf_bm=PsA4tNuOGKUQ8j6k9F_9lfC0saTwqUoZjetXdTEXG9I-1782437956.6020784-1.0.1.1-faP7fSNJ45Ji3xxCPW4TEYRt8_c6.sS.N769BZIU3Kj6Mnqe6sdzH.WaRO8U2RMsywwkQo4lq1vt31rj21HYbDV6eHxccWBgYKz7.c8EuSW4qUlT1KiPdscG3loTQyb6;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:09:17 GMT
       Cf-Ray:
-      - 9d7e7c4e18d41c9c-GRU
+      - a1187f4ccc74e967-GRU
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |-
         {
-          "id": "modr-329",
+          "id": "modr-9377",
           "model": "omni-moderation-latest",
           "results": [
             {
@@ -141,5 +143,5 @@ http_interactions:
             }
           ]
         }
-  recorded_at: Fri, 06 Mar 2026 04:05:51 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 01:39:10 GMT
+recorded_with: VCR 6.4.0

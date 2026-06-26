@@ -8,7 +8,7 @@ http_interactions:
       string: '{"name":"test store"}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:07:32 GMT
+      - Fri, 26 Jun 2026 01:45:47 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -39,32 +39,34 @@ http_interactions:
       Openai-Project:
       - proj_YSiqu4bByPgi6EwPnLiY8irR
       X-Request-Id:
-      - req_7b4749b833b8402ab6cb1b6bc6ac3f79
+      - req_ddf27d5420d54da88ff625bb562f6cc6
       Openai-Processing-Ms:
-      - '486'
+      - '430'
       X-Openai-Proxy-Wasm:
       - v0.1
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=QHzwFv4bqktvS3qPJOyhSgZrPkdlow.guktByZ_g6Zo-1772770051.7958791-1.0.1.1-y9JcHmm4dIJu5irWR5s_yUu2xLatdOGVPdJ98XqKcSzs0lNXiatiKiAjMCrmxR7P1QsCfcXXjlBYJWi_ycjU.fOz2oaOWltuHcqcS98WRh9e8_O_PNfgxHNhAD6ltcj6;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:37:32 GMT
+      Access-Control-Expose-Headers:
+      - CF-Ray
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
+      Set-Cookie:
+      - __cf_bm=PF6LrWKm93wJZJbV17Owjjx_hG5d.9Y37lmDW9RzRjo-1782438346.804183-1.0.1.1-to2sTcSPVsmvtDIX5Aj86OuhU6pf4pi4Wq4jixrpThhvL3WFWfIlu2Y2hf_vhn8vPal4IIu7Lc2cjW6.MxC3.Zw52r0K_eHot20UOOOtXWmueCwlzCJF1X5Yi7vQKABE;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:15:47 GMT
       Cf-Ray:
-      - 9d7e7e77b857b7f1-GRU
+      - a11888d389678dd8-GRU
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |-
         {
-          "id": "vs_69aa5303e7c48191a8f02112f844f42b",
+          "id": "vs_6a3dd9cae7648191a46ad5f421235329",
           "object": "vector_store",
-          "created_at": 1772770052,
+          "created_at": 1782438347,
           "name": "test store",
           "description": null,
           "usage_bytes": 0,
@@ -78,19 +80,19 @@ http_interactions:
           "status": "completed",
           "expires_after": null,
           "expires_at": null,
-          "last_active_at": 1772770052,
+          "last_active_at": 1782438347,
           "metadata": {}
         }
-  recorded_at: Fri, 06 Mar 2026 04:07:20 GMT
+  recorded_at: Fri, 26 Jun 2026 01:45:40 GMT
 - request:
     method: post
-    uri: https://api.openai.com/v1/vector_stores/vs_69aa5303e7c48191a8f02112f844f42b/search
+    uri: https://api.openai.com/v1/vector_stores/vs_6a3dd9cae7648191a46ad5f421235329/search
     body:
       encoding: UTF-8
       string: '{"query":"nonexistent query"}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
@@ -105,7 +107,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:07:33 GMT
+      - Fri, 26 Jun 2026 01:45:48 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -121,23 +123,25 @@ http_interactions:
       Openai-Project:
       - proj_YSiqu4bByPgi6EwPnLiY8irR
       X-Request-Id:
-      - req_e09ee859746941a1808da863187ed2e8
+      - req_07f2eba68bc542608c8530d175f657b9
       Openai-Processing-Ms:
-      - '648'
+      - '490'
       X-Openai-Proxy-Wasm:
       - v0.1
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=9iRyWqKqBAsv4ofnUxyzbJCLmX9TGzqS_v1WCaBgdQU-1772770052.5019135-1.0.1.1-KR3uM92jR4W9c3uVnOzcOit..IBBHZl9y91DPMfSY7EGckN18Huigi1ifPaazOK1qn2Cg.6YlLMDoBYQbPKzZKyXE3IeGHVgkbCV2aNAuQnVfIzVLUC6jzHODr_mD173;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:37:33 GMT
+      Access-Control-Expose-Headers:
+      - CF-Ray
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
+      Set-Cookie:
+      - __cf_bm=QKnj60hQCQ8w2ib6XdrOJl35zJkd2PrEus3XoZ5b0_Q-1782438347.4595113-1.0.1.1-G_evXviE0rjzyQzfZjWYAATc85uk8Mexb8d.Fs0f0mMECThTNJcOld0FFjyXyB3rKSZbSEUCy1fNdxY6.bYECLZVKYM.36xpV1M5Q1sCxoMvkQtOAJGxUf0.6IwtqPs3;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:15:48 GMT
       Cf-Ray:
-      - 9d7e7e7c2c6945d3-GRU
+      - a11888d79d4af239-GRU
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -152,16 +156,16 @@ http_interactions:
           "has_more": false,
           "next_page": null
         }
-  recorded_at: Fri, 06 Mar 2026 04:07:21 GMT
+  recorded_at: Fri, 26 Jun 2026 01:45:41 GMT
 - request:
     method: delete
-    uri: https://api.openai.com/v1/vector_stores/vs_69aa5303e7c48191a8f02112f844f42b
+    uri: https://api.openai.com/v1/vector_stores/vs_6a3dd9cae7648191a46ad5f421235329
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
@@ -176,7 +180,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:07:34 GMT
+      - Fri, 26 Jun 2026 01:45:49 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -192,32 +196,34 @@ http_interactions:
       Openai-Project:
       - proj_YSiqu4bByPgi6EwPnLiY8irR
       X-Request-Id:
-      - req_20ed3f36f84644588b5a15eca72eb4b5
+      - req_cf415bca18b74a46bf1c07da81e74589
       Openai-Processing-Ms:
-      - '877'
+      - '946'
       X-Openai-Proxy-Wasm:
       - v0.1
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=VURFkPtHG6aCHUvCtqjw7MKIjyLWeS9hXOisBSJM7hY-1772770053.3614047-1.0.1.1-F149bT54xA3IiHAA7GW_EpKaFMacI0asUn2jnQMPDOSovzTafVTH6OwuUNU5SevFNPkns4vghnC90il_IDHHN97DbkFVHEki6tXVO2yeff9B4A_wqifjvkfV6IO_EtwE;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:37:34 GMT
+      Access-Control-Expose-Headers:
+      - CF-Ray
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
+      Set-Cookie:
+      - __cf_bm=yivrdsh1XpGROFfkXyU9G8QcsHllRI1MlBSd4juYzL8-1782438348.1637864-1.0.1.1-XTStqXFBki2ZZ5IZDj2wynmwDbwakNbdImy_83T1U.HDTyslf1Neg01F0VlGmVurFw7xQbixyy7_9lTAHJEkJGedW9AXYzXYcAvkGbh0XzMXdaK5cA6DaMEzAaljaBK_;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:15:49 GMT
       Cf-Ray:
-      - 9d7e7e818b25b7a9-GRU
+      - a11888dc09bbf1f6-GRU
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
       string: |-
         {
-          "id": "vs_69aa5303e7c48191a8f02112f844f42b",
+          "id": "vs_6a3dd9cae7648191a46ad5f421235329",
           "object": "vector_store.deleted",
           "deleted": true
         }
-  recorded_at: Fri, 06 Mar 2026 04:07:22 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 01:45:42 GMT
+recorded_with: VCR 6.4.0

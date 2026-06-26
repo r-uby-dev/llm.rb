@@ -5,30 +5,30 @@ http_interactions:
     uri: https://api.openai.com/v1/files
     body:
       encoding: UTF-8
-      string: "--BOUNDARY__ba31e834dfa10dda4ac133f64fd0e898\r\nContent-Disposition:
+      string: "--BOUNDARY__00031960e4e8c146303bd6eec8de24dc\r\nContent-Disposition:
         form-data; name=\"file\";filename=\"readme.md\"\r\nContent-Type: text/markdown\r\n\r\n##
-        About\n\nHello world\n\r\n--BOUNDARY__ba31e834dfa10dda4ac133f64fd0e898\r\nContent-Disposition:
-        form-data; name=\"purpose\"\r\n\r\nassistants\r\n--BOUNDARY__ba31e834dfa10dda4ac133f64fd0e898--\r\n"
+        About\n\nHello world\n\r\n--BOUNDARY__00031960e4e8c146303bd6eec8de24dc\r\nContent-Disposition:
+        form-data; name=\"purpose\"\r\n\r\nassistants\r\n--BOUNDARY__00031960e4e8c146303bd6eec8de24dc--\r\n"
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
-      - multipart/form-data; boundary=BOUNDARY__ba31e834dfa10dda4ac133f64fd0e898
+      - multipart/form-data; boundary=BOUNDARY__00031960e4e8c146303bd6eec8de24dc
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:04:48 GMT
+      - Fri, 26 Jun 2026 01:38:38 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -38,9 +38,9 @@ http_interactions:
       Server:
       - cloudflare
       X-Request-Id:
-      - req_07b87f5f86b84ae985bd79f1055aff1f
+      - req_e739a22de1dd4e48b54092ef84bc11e5
       Openai-Processing-Ms:
-      - '182'
+      - '356'
       Openai-Version:
       - '2020-10-01'
       Openai-Organization:
@@ -53,16 +53,18 @@ http_interactions:
       - v0.1
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=ndZ_xHX8F0cnLaJyywmAtApSbTorIdYwnAAv43S_f7c-1772769888.5965316-1.0.1.1-mkByFujns1deTiTtY4eZFBErm1byJU7VprtFHcW3.P3jPXBeNOn3ikToNf2.p_xHheb6S1h9bsb8_xVmMulvCxehkU9yw4sxlDds4e5vFGrER9VlVWm9DiwoeGLh6LSK;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:34:48 GMT
+      Access-Control-Expose-Headers:
+      - CF-Ray
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
+      Set-Cookie:
+      - __cf_bm=3s0RRTt0CNSw2SBs25ZToDLy6NYTejmcKzerjSjIXos-1782437917.7110498-1.0.1.1-W22KgiS3MI.KKyMbCyyxHtHBqbKFnldMmXxhp9sKRvLIYjV1GPxUJgtTxVwxIwSIj_H0l3KM61p9v8TP2ihVDRjVytjRB152rjtN4wYK1RyXeRrNimimEDJCPlyblilC;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:08:38 GMT
       Cf-Ray:
-      - 9d7e7a7bb86cd7d7-GRU
+      - a1187e59ab68cdc3-GRU
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -70,25 +72,25 @@ http_interactions:
       string: |
         {
           "object": "file",
-          "id": "file-SKAnPEPeYZgnAMyMUf15mp",
+          "id": "file-BqP3vTRZWduoXWF11XwBef",
           "purpose": "assistants",
           "filename": "readme.md",
           "bytes": 22,
-          "created_at": 1772769888,
+          "created_at": 1782437917,
           "expires_at": null,
           "status": "processed",
           "status_details": null
         }
-  recorded_at: Fri, 06 Mar 2026 04:04:36 GMT
+  recorded_at: Fri, 26 Jun 2026 01:38:31 GMT
 - request:
     method: delete
-    uri: https://api.openai.com/v1/files/file-SKAnPEPeYZgnAMyMUf15mp
+    uri: https://api.openai.com/v1/files/file-BqP3vTRZWduoXWF11XwBef
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
@@ -103,7 +105,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:04:49 GMT
+      - Fri, 26 Jun 2026 01:38:38 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -113,9 +115,9 @@ http_interactions:
       Server:
       - cloudflare
       X-Request-Id:
-      - req_1d99c3ada4cb45ce9a62a2e8d75bbe0a
+      - req_2f7bfa0428874649b3f6d980552dcc55
       Openai-Processing-Ms:
-      - '262'
+      - '332'
       Openai-Version:
       - '2020-10-01'
       Openai-Organization:
@@ -128,16 +130,18 @@ http_interactions:
       - v0.1
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=d5LXplHDcqnZAoYWv93fHX.SHHfWDWgjaEXw62HyuNM-1772769888.984455-1.0.1.1-toHMXGT81BAw4oO6dcLD3A.t_6iWmyVKRIFQdrznT8bN4Gur0AKXXW4dPlwV4yCOwPK8ySH3WH_VA4PamFPjKggNXlsS2t0JTDxQP__M9pgBzihiKdNIqpB1LZv3HuGI;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:34:49 GMT
+      Access-Control-Expose-Headers:
+      - CF-Ray
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
+      Set-Cookie:
+      - __cf_bm=i78CSCasrzHuXVcpNuFUb448B5CTLFXKaeDawtn78y0-1782437918.295142-1.0.1.1-6By_yyE0JuaEuhqz.AWdMUDf2Q6ghgBcqN7NHjL.Q4ObJWbV9e7wh96jLoolInpUnIfb3esD6EuPhSMR0SrmtNITsB2bP8fll9_yEPXLBoaSC8DwxbTlhY2RzWbBQbfI;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:08:38 GMT
       Cf-Ray:
-      - 9d7e7a7e2d0d998e-GRU
+      - a1187e5d5b2ab1fc-GRU
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
@@ -146,7 +150,7 @@ http_interactions:
         {
           "object": "file",
           "deleted": true,
-          "id": "file-SKAnPEPeYZgnAMyMUf15mp"
+          "id": "file-BqP3vTRZWduoXWF11XwBef"
         }
-  recorded_at: Fri, 06 Mar 2026 04:04:37 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 01:38:31 GMT
+recorded_with: VCR 6.4.0

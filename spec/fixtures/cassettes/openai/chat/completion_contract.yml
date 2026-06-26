@@ -2,82 +2,172 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.openai.com/v1/chat/completions
+    uri: https://api.openai.com/v1/responses
     body:
       encoding: UTF-8
-      string: '{"messages":[{"role":"user","content":[{"type":"text","text":"Hello,
+      string: '{"input":[{"role":"user","content":[{"type":"input_text","text":"Hello,
         world!"}]}],"model":"gpt-4.1"}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:04:32 GMT
+      - Fri, 26 Jun 2026 01:38:16 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Access-Control-Expose-Headers:
-      - X-Request-ID
-      Openai-Organization:
-      - user-j1pztzt5nogpcsid23u7gskj
-      Openai-Processing-Ms:
-      - '317'
-      Openai-Project:
-      - proj_YSiqu4bByPgi6EwPnLiY8irR
-      Openai-Version:
-      - '2020-10-01'
-      Server:
-      - cloudflare
-      X-Ratelimit-Limit-Requests:
-      - '500'
-      X-Ratelimit-Limit-Tokens:
-      - '30000'
-      X-Ratelimit-Remaining-Requests:
-      - '499'
-      X-Ratelimit-Remaining-Tokens:
-      - '29994'
-      X-Ratelimit-Reset-Requests:
-      - 120ms
-      X-Ratelimit-Reset-Tokens:
-      - 12ms
-      X-Request-Id:
-      - req_cce5897690854ac8a580c76029702e23
-      X-Openai-Proxy-Wasm:
-      - v0.1
+      Cf-Ray:
+      - a1187dc82af50300-GRU
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=UCqpv29zzImKwDO1LWwcIfHeisCpHeDVoDLUl6V17Xo-1772769871.619085-1.0.1.1-rAsPaI9YpqYW3WRw_I7wAH69.aNfD1vNMee3I.cdURHR.MQVXsQOfO_g3PTjFIWsyrL5xHqgc4fgqoXvWtEJkHCSkzOwA.xJzyjuprp7f79QnnLgY7mnfzRwJTZhUW1E;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:34:32 GMT
+      Server:
+      - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      Cf-Ray:
-      - 9d7e7a11997aaf70-GRU
+      Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
+      - X-Request-ID
+      Openai-Organization:
+      - user-j1pztzt5nogpcsid23u7gskj
+      Openai-Processing-Ms:
+      - '1433'
+      Openai-Project:
+      - proj_YSiqu4bByPgi6EwPnLiY8irR
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '800000'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 0s
+      X-Request-Id:
+      - req_ba3f7a60b96146188b73c9277f71e63b
+      Set-Cookie:
+      - __cf_bm=dODVm1mw2oomN_CAT4.8EBsL.8H6bXYfSQUqm3mmqPk-1782437894.428432-1.0.1.1-nxHID5ONENv8SCUuvMFYlnlQpWZNnmKOypAo.3o4VR_pD9cJMarEPgzzNCv25dzldTq_8Bl6zGuog7KLzP8KOSmG7E7KSUJKEsSk6p1fIvI99fvs8qbEpd.SdcQxLX3U;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:08:16 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        ewogICJpZCI6ICJjaGF0Y21wbC1ER0dpTjY4R2VKc2pIUzJkODNheGYyTG1WU1pkeiIsCiAgIm9iamVjdCI6ICJjaGF0LmNvbXBsZXRpb24iLAogICJjcmVhdGVkIjogMTc3Mjc2OTg3MSwKICAibW9kZWwiOiAiZ3B0LTQuMS0yMDI1LTA0LTE0IiwKICAiY2hvaWNlcyI6IFsKICAgIHsKICAgICAgImluZGV4IjogMCwKICAgICAgIm1lc3NhZ2UiOiB7CiAgICAgICAgInJvbGUiOiAiYXNzaXN0YW50IiwKICAgICAgICAiY29udGVudCI6ICJIZWxsbywgd29ybGQhIPCfkYsgIFxuSG93IGNhbiBJIGhlbHAgeW91IHRvZGF5PyIsCiAgICAgICAgInJlZnVzYWwiOiBudWxsLAogICAgICAgICJhbm5vdGF0aW9ucyI6IFtdCiAgICAgIH0sCiAgICAgICJsb2dwcm9icyI6IG51bGwsCiAgICAgICJmaW5pc2hfcmVhc29uIjogInN0b3AiCiAgICB9CiAgXSwKICAidXNhZ2UiOiB7CiAgICAicHJvbXB0X3Rva2VucyI6IDExLAogICAgImNvbXBsZXRpb25fdG9rZW5zIjogMTQsCiAgICAidG90YWxfdG9rZW5zIjogMjUsCiAgICAicHJvbXB0X3Rva2Vuc19kZXRhaWxzIjogewogICAgICAiY2FjaGVkX3Rva2VucyI6IDAsCiAgICAgICJhdWRpb190b2tlbnMiOiAwCiAgICB9LAogICAgImNvbXBsZXRpb25fdG9rZW5zX2RldGFpbHMiOiB7CiAgICAgICJyZWFzb25pbmdfdG9rZW5zIjogMCwKICAgICAgImF1ZGlvX3Rva2VucyI6IDAsCiAgICAgICJhY2NlcHRlZF9wcmVkaWN0aW9uX3Rva2VucyI6IDAsCiAgICAgICJyZWplY3RlZF9wcmVkaWN0aW9uX3Rva2VucyI6IDAKICAgIH0KICB9LAogICJzZXJ2aWNlX3RpZXIiOiAiZGVmYXVsdCIsCiAgInN5c3RlbV9maW5nZXJwcmludCI6ICJmcF9hNjMxN2M0NTdjIgp9Cg==
-  recorded_at: Fri, 06 Mar 2026 04:04:19 GMT
-recorded_with: VCR 6.3.1
+      string: |-
+        {
+          "id": "resp_0b69f1e1925ea33e006a3dd8068ae8819e86519af7fe7a96d5",
+          "object": "response",
+          "created_at": 1782437894,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782437895,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": null,
+          "max_tool_calls": null,
+          "model": "gpt-4.1-2025-04-14",
+          "moderation": null,
+          "output": [
+            {
+              "id": "msg_0b69f1e1925ea33e006a3dd807c388819e937335694abcec0f",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "Hello, world! \ud83d\udc4b How can I help you today?"
+                }
+              ],
+              "role": "assistant"
+            }
+          ],
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 1.0,
+          "text": {
+            "format": {
+              "type": "text"
+            },
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
+            }
+          },
+          "tools": [],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 11,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 14,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 25
+          },
+          "user": null,
+          "metadata": {}
+        }
+  recorded_at: Fri, 26 Jun 2026 01:38:09 GMT
+recorded_with: VCR 6.4.0

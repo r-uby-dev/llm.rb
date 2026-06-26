@@ -2,268 +2,394 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.openai.com/v1/chat/completions
+    uri: https://api.openai.com/v1/responses
     body:
       encoding: UTF-8
-      string: '{"messages":[{"role":"user","content":[{"type":"text","text":"Can you
-        run the date command ? Can you run the pwd command ? Can you run the whoami
-        command ?"}]},{"role":"user","content":[{"type":"text","text":"You are a bot
-        that can run UNIX commands"}]}],"model":"gpt-4.1","tools":[{"type":"function","name":"system","function":{"name":"system","description":"Run
-        a shell command","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}}]}'
+      string: '{"input":[{"role":"user","content":[{"type":"input_text","text":"You
+        are a bot that can run UNIX commands"}]},{"role":"user","content":[{"type":"input_text","text":"Can
+        you run the date command ? Can you run the pwd command ? Can you run the whoami
+        command ?"}]}],"model":"gpt-4.1","tools":[{"type":"function","name":"system","description":"Run
+        a shell command","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"],"additionalProperties":false},"strict":false}]}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:04:39 GMT
+      - Fri, 26 Jun 2026 01:38:26 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Access-Control-Expose-Headers:
-      - X-Request-ID
-      Openai-Organization:
-      - user-j1pztzt5nogpcsid23u7gskj
-      Openai-Processing-Ms:
-      - '1117'
-      Openai-Project:
-      - proj_YSiqu4bByPgi6EwPnLiY8irR
-      Openai-Version:
-      - '2020-10-01'
-      Server:
-      - cloudflare
-      X-Ratelimit-Limit-Requests:
-      - '500'
-      X-Ratelimit-Limit-Tokens:
-      - '30000'
-      X-Ratelimit-Remaining-Requests:
-      - '499'
-      X-Ratelimit-Remaining-Tokens:
-      - '29963'
-      X-Ratelimit-Reset-Requests:
-      - 120ms
-      X-Ratelimit-Reset-Tokens:
-      - 74ms
-      X-Request-Id:
-      - req_68a5eb4fdd9b42f6a10009a0b0775509
-      X-Openai-Proxy-Wasm:
-      - v0.1
+      Cf-Ray:
+      - a1187e06ee63e90b-GRU
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=oJ14nKuKhvvml5gNUND_Ys8Mcp_uwNlPVp19fhBu0.s-1772769878.3046052-1.0.1.1-NpOZuq.zGJWJHWYXyyFssgJnM38sGgGfUq1BHxBMlecQI3CnPUE30esg5FMSsPoU7y.jJtnNtqlSp_vqg5kl1f_bKjOMnIneBxBC28sumRhz1oo9.cvN90rsjvPA3QM.;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:34:39 GMT
+      Server:
+      - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      Cf-Ray:
-      - 9d7e7a3b68b81cf1-GRU
+      Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
+      - X-Request-ID
+      Openai-Organization:
+      - user-j1pztzt5nogpcsid23u7gskj
+      Openai-Processing-Ms:
+      - '2070'
+      Openai-Project:
+      - proj_YSiqu4bByPgi6EwPnLiY8irR
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '800000'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 0s
+      X-Request-Id:
+      - req_00cf41d6dda040028f41bc8d0263f4b8
+      Set-Cookie:
+      - __cf_bm=XIIPn30x2kG2f28vXpClzLBtzNL_5RRAUaZvvmSWwIg-1782437904.4656374-1.0.1.1-Vpaek6EexYGd.elwk4iLQPjteWhWGW1Ode5Jc9RgmN4GYkU4hfcBz0nxmuhXF6TBfowU3HzSJXb.Z0jgOpTDC2W4UEzNnOU9QffGPlXr5eWQ0yXLb38miRwgmlkV4ViJ;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:08:26 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: |
+      string: |-
         {
-          "id": "chatcmpl-DGGiU8yGkVUiVWOtZMzHq3XOYbOtr",
-          "object": "chat.completion",
-          "created": 1772769878,
+          "id": "resp_0efa6980e6f924a1006a3dd81170fc81a1ab13ed3b5c44d749",
+          "object": "response",
+          "created_at": 1782437905,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782437906,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": null,
+          "max_tool_calls": null,
           "model": "gpt-4.1-2025-04-14",
-          "choices": [
+          "moderation": null,
+          "output": [
             {
-              "index": 0,
-              "message": {
-                "role": "assistant",
-                "content": null,
-                "tool_calls": [
-                  {
-                    "id": "call_Dm44oEV4uDc4d8uzlaef8hX1",
-                    "type": "function",
-                    "function": {
-                      "name": "system",
-                      "arguments": "{\"command\": \"date\"}"
-                    }
-                  },
-                  {
-                    "id": "call_A85TWlwKrOydckHWMHse1PPr",
-                    "type": "function",
-                    "function": {
-                      "name": "system",
-                      "arguments": "{\"command\": \"pwd\"}"
-                    }
-                  },
-                  {
-                    "id": "call_YlEmpqrziUNMcvcIChUvZpdm",
-                    "type": "function",
-                    "function": {
-                      "name": "system",
-                      "arguments": "{\"command\": \"whoami\"}"
-                    }
-                  }
-                ],
-                "refusal": null,
-                "annotations": []
-              },
-              "logprobs": null,
-              "finish_reason": "tool_calls"
+              "id": "fc_0efa6980e6f924a1006a3dd812698c81a1837d1be12810ede3",
+              "type": "function_call",
+              "status": "completed",
+              "arguments": "{\"command\":\"date\"}",
+              "call_id": "call_Dv3kTb9AflyDh8yiHZdtW7PH",
+              "name": "system"
+            },
+            {
+              "id": "fc_0efa6980e6f924a1006a3dd81269e081a1a604962971d4786b",
+              "type": "function_call",
+              "status": "completed",
+              "arguments": "{\"command\":\"pwd\"}",
+              "call_id": "call_mC0TrlB25ylXNVdjoRcg9j24",
+              "name": "system"
+            },
+            {
+              "id": "fc_0efa6980e6f924a1006a3dd81269f081a1b70168a9f9790454",
+              "type": "function_call",
+              "status": "completed",
+              "arguments": "{\"command\":\"whoami\"}",
+              "call_id": "call_n9JukXXfJFARKOotMA5ST7DQ",
+              "name": "system"
             }
           ],
-          "usage": {
-            "prompt_tokens": 76,
-            "completion_tokens": 56,
-            "total_tokens": 132,
-            "prompt_tokens_details": {
-              "cached_tokens": 0,
-              "audio_tokens": 0
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": null,
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 1.0,
+          "text": {
+            "format": {
+              "type": "text"
             },
-            "completion_tokens_details": {
-              "reasoning_tokens": 0,
-              "audio_tokens": 0,
-              "accepted_prediction_tokens": 0,
-              "rejected_prediction_tokens": 0
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
             }
           },
-          "service_tier": "default",
-          "system_fingerprint": "fp_2ae1a6dbeb"
+          "tools": [
+            {
+              "type": "function",
+              "description": "Run a shell command",
+              "name": "system",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "command"
+                ],
+                "additionalProperties": false
+              },
+              "strict": false
+            }
+          ],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 70,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 57,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 127
+          },
+          "user": null,
+          "metadata": {}
         }
-  recorded_at: Fri, 06 Mar 2026 04:04:27 GMT
+  recorded_at: Fri, 26 Jun 2026 01:38:19 GMT
 - request:
     method: post
-    uri: https://api.openai.com/v1/chat/completions
+    uri: https://api.openai.com/v1/responses
     body:
       encoding: UTF-8
-      string: '{"messages":[{"role":"user","content":[{"type":"text","text":"You are
-        a bot that can run UNIX commands"}]},{"role":"user","content":[{"type":"text","text":"Can
-        you run the date command ? Can you run the pwd command ? Can you run the whoami
-        command ?"}]},{"role":"assistant","content":null,"tool_calls":[{"id":"call_Dm44oEV4uDc4d8uzlaef8hX1","type":"function","function":{"name":"system","arguments":"{\"command\":
-        \"date\"}"}},{"id":"call_A85TWlwKrOydckHWMHse1PPr","type":"function","function":{"name":"system","arguments":"{\"command\":
-        \"pwd\"}"}},{"id":"call_YlEmpqrziUNMcvcIChUvZpdm","type":"function","function":{"name":"system","arguments":"{\"command\":
-        \"whoami\"}"}}]},{"role":"tool","tool_call_id":"call_Dm44oEV4uDc4d8uzlaef8hX1","content":"{\"stderr\":\"\",\"stdout\":\"Fri
-        Mar  6 01:04:27 -03 2026\\n\"}"},{"role":"tool","tool_call_id":"call_A85TWlwKrOydckHWMHse1PPr","content":"{\"stderr\":\"\",\"stdout\":\"/usr/home/developer/p/git.home.network/llmrb/llm.rb\\n\"}"},{"role":"tool","tool_call_id":"call_YlEmpqrziUNMcvcIChUvZpdm","content":"{\"stderr\":\"\",\"stdout\":\"developer\\n\"}"}],"model":"gpt-4.1","tools":[{"type":"function","name":"system","function":{"name":"system","description":"Run
-        a shell command","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"]}}}]}'
+      string: '{"input":[{"type":"function_call_output","call_id":"call_Dv3kTb9AflyDh8yiHZdtW7PH","output":"{\"stderr\":\"\",\"stdout\":\"Fri
+        Jun 26 01:38:19 UTC 2026\\n\"}"},{"type":"function_call_output","call_id":"call_mC0TrlB25ylXNVdjoRcg9j24","output":"{\"stderr\":\"\",\"stdout\":\"/home/robert/projects/llm.rb/\\n\"}"},{"type":"function_call_output","call_id":"call_n9JukXXfJFARKOotMA5ST7DQ","output":"{\"stderr\":\"\",\"stdout\":\"robert\\n\"}"}],"model":"gpt-4.1","previous_response_id":"resp_0efa6980e6f924a1006a3dd81170fc81a1ab13ed3b5c44d749","tools":[{"type":"function","name":"system","description":"Run
+        a shell command","parameters":{"type":"object","properties":{"command":{"type":"string"}},"required":["command"],"additionalProperties":false},"strict":false}]}'
     headers:
       User-Agent:
-      - llm.rb v4.4.0
+      - llm.rb v11.3.1
       Content-Type:
       - application/json
       Authorization:
       - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Transfer-Encoding:
-      - chunked
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Fri, 06 Mar 2026 04:04:41 GMT
+      - Fri, 26 Jun 2026 01:38:27 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
       - chunked
       Connection:
       - keep-alive
-      Access-Control-Expose-Headers:
-      - X-Request-ID
-      Openai-Organization:
-      - user-j1pztzt5nogpcsid23u7gskj
-      Openai-Processing-Ms:
-      - '1559'
-      Openai-Project:
-      - proj_YSiqu4bByPgi6EwPnLiY8irR
-      Openai-Version:
-      - '2020-10-01'
-      Server:
-      - cloudflare
-      X-Ratelimit-Limit-Requests:
-      - '500'
-      X-Ratelimit-Limit-Tokens:
-      - '30000'
-      X-Ratelimit-Remaining-Requests:
-      - '499'
-      X-Ratelimit-Remaining-Tokens:
-      - '29917'
-      X-Ratelimit-Reset-Requests:
-      - 120ms
-      X-Ratelimit-Reset-Tokens:
-      - 166ms
-      X-Request-Id:
-      - req_328f473ee6a443a5883a351d9ee0977a
-      X-Openai-Proxy-Wasm:
-      - v0.1
+      Cf-Ray:
+      - a1187e15485560aa-GRU
       Cf-Cache-Status:
       - DYNAMIC
-      Set-Cookie:
-      - __cf_bm=v9wPOsQLUAOwQdITarjL0y7CzMhV7YCa_.iwBu9WLvY-1772769879.6456373-1.0.1.1-RkHxqrazbV6ya_MuWnbZhO1mt3MAvfNu8IwaQ3lEuy0PCzS.t8i4oBNgU06uvRmLGY8oo2jTqBXDKlktboXSzkvSmCkBF1HLQR5GXBjSKSu7aNN4lmV4t0pCB9VGNkBm;
-        HttpOnly; Secure; Path=/; Domain=api.openai.com; Expires=Fri, 06 Mar 2026
-        04:34:41 GMT
+      Server:
+      - cloudflare
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
       X-Content-Type-Options:
       - nosniff
-      Cf-Ray:
-      - 9d7e7a43cafda4de-GRU
+      Access-Control-Expose-Headers:
+      - CF-Ray
+      - CF-Ray
+      - X-Request-ID
+      Openai-Organization:
+      - user-j1pztzt5nogpcsid23u7gskj
+      Openai-Processing-Ms:
+      - '938'
+      Openai-Project:
+      - proj_YSiqu4bByPgi6EwPnLiY8irR
+      Openai-Version:
+      - '2020-10-01'
+      X-Ratelimit-Limit-Requests:
+      - '5000'
+      X-Ratelimit-Limit-Tokens:
+      - '800000'
+      X-Ratelimit-Remaining-Requests:
+      - '4999'
+      X-Ratelimit-Remaining-Tokens:
+      - '800000'
+      X-Ratelimit-Reset-Requests:
+      - 12ms
+      X-Ratelimit-Reset-Tokens:
+      - 0s
+      X-Request-Id:
+      - req_aff3f1227fe244779cef5d7d5619c7c3
+      Set-Cookie:
+      - __cf_bm=aOHsJ0fIxExa1rRUWowmL44cmRReJ_pIyEtbYo9pn_I-1782437906.763859-1.0.1.1-.T7O0bns4JzqjOIShbX7aryFT9aMr7SoTzCGG_Oc6M4xXnAGgBvoWl7lipYejjHs94gmkqUz4a7GaH_ENhhY5d40r8X9VKnzJZRMKqH0r7BSo4luLbILhZE_bkgGggUw;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=api.openai.com; Expires=Fri,
+        26 Jun 2026 02:08:27 GMT
       Alt-Svc:
       - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: |
+      string: |-
         {
-          "id": "chatcmpl-DGGiWvdeiWMatfHlHZKpTvgfgCUaX",
-          "object": "chat.completion",
-          "created": 1772769880,
+          "id": "resp_0efa6980e6f924a1006a3dd812df7081a18fdf0e3ef608b85c",
+          "object": "response",
+          "created_at": 1782437906,
+          "status": "completed",
+          "background": false,
+          "billing": {
+            "payer": "developer"
+          },
+          "completed_at": 1782437907,
+          "error": null,
+          "frequency_penalty": 0.0,
+          "incomplete_details": null,
+          "instructions": null,
+          "max_output_tokens": null,
+          "max_tool_calls": null,
           "model": "gpt-4.1-2025-04-14",
-          "choices": [
+          "moderation": null,
+          "output": [
             {
-              "index": 0,
-              "message": {
-                "role": "assistant",
-                "content": "Here are the results of the commands:\n\n- date: Fri Mar  6 01:04:27 -03 2026\n- pwd: /usr/home/developer/p/git.home.network/llmrb/llm.rb\n- whoami: developer\n\nLet me know if you need to run any other commands!",
-                "refusal": null,
-                "annotations": []
-              },
-              "logprobs": null,
-              "finish_reason": "stop"
+              "id": "msg_0efa6980e6f924a1006a3dd8135ba481a181196c01a5ec2994",
+              "type": "message",
+              "status": "completed",
+              "content": [
+                {
+                  "type": "output_text",
+                  "annotations": [],
+                  "logprobs": [],
+                  "text": "Here are the outputs for the commands you asked about:\n\n- date: Fri Jun 26 01:38:19 UTC 2026\n- pwd: /home/robert/projects/llm.rb/\n- whoami: robert\n\nLet me know if you need to run anything else!"
+                }
+              ],
+              "role": "assistant"
             }
           ],
-          "usage": {
-            "prompt_tokens": 207,
-            "completion_tokens": 68,
-            "total_tokens": 275,
-            "prompt_tokens_details": {
-              "cached_tokens": 0,
-              "audio_tokens": 0
+          "parallel_tool_calls": true,
+          "presence_penalty": 0.0,
+          "previous_response_id": "resp_0efa6980e6f924a1006a3dd81170fc81a1ab13ed3b5c44d749",
+          "prompt_cache_key": null,
+          "prompt_cache_retention": "in_memory",
+          "reasoning": {
+            "context": null,
+            "effort": null,
+            "summary": null
+          },
+          "safety_identifier": null,
+          "service_tier": "default",
+          "store": true,
+          "temperature": 1.0,
+          "text": {
+            "format": {
+              "type": "text"
             },
-            "completion_tokens_details": {
-              "reasoning_tokens": 0,
-              "audio_tokens": 0,
-              "accepted_prediction_tokens": 0,
-              "rejected_prediction_tokens": 0
+            "verbosity": "medium"
+          },
+          "tool_choice": "auto",
+          "tool_usage": {
+            "image_gen": {
+              "input_tokens": 0,
+              "input_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "output_tokens": 0,
+              "output_tokens_details": {
+                "image_tokens": 0,
+                "text_tokens": 0
+              },
+              "total_tokens": 0
+            },
+            "web_search": {
+              "num_requests": 0
             }
           },
-          "service_tier": "default",
-          "system_fingerprint": "fp_2ae1a6dbeb"
+          "tools": [
+            {
+              "type": "function",
+              "description": "Run a shell command",
+              "name": "system",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "command": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "command"
+                ],
+                "additionalProperties": false
+              },
+              "strict": false
+            }
+          ],
+          "top_logprobs": 0,
+          "top_p": 1.0,
+          "truncation": "disabled",
+          "usage": {
+            "input_tokens": 173,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 63,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 236
+          },
+          "user": null,
+          "metadata": {}
         }
-  recorded_at: Fri, 06 Mar 2026 04:04:29 GMT
-recorded_with: VCR 6.3.1
+  recorded_at: Fri, 26 Jun 2026 01:38:21 GMT
+recorded_with: VCR 6.4.0
