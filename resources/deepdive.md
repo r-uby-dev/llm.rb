@@ -21,6 +21,8 @@ didn't make it into the homepage documentation.
 
 ## Table of contents
 
+- [Agents](#agents)
+  - [As a subclass](#as-a-subclass)
 - [MCP](#mcp)
   - [stdio](#stdio)
   - [http](#http)
@@ -45,6 +47,68 @@ didn't make it into the homepage documentation.
 - [Images](#images)
   - [Generation](#generation)
   - [Edits](#edits)
+
+## Agents
+
+An agent is represented by the
+[`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)
+class, and it is built on top of
+[`LLM::Context`](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html) -
+the heart of the runtime. An agent manages the tool loop automatically,
+implements a tool loop guard for misbehaving models, and
+it can use five different concurrency strategies to execute
+tools.
+
+An agent can be a subclass of
+[`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html),
+or a direct
+instance of it. The subclass approach is useful when you
+want reusable agents that can attach behavior (as methods)
+to their own class.
+
+#### As a subclass
+
+A subclass of
+[`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html)
+can define its model, tools,
+and other attributes at the class-level. All of these
+attributes are optional, and they act as defaults that
+can be overriden on the instance level.
+
+The example uses the `:fork` concurrency model. It has
+two primary benefits: tools are run in parallel, and in
+a separate process with a separate memory address space.
+
+The example purposefully demonstrates how the attributes
+can be lazily defined with a block, or a Symbol that is
+evaluated as an instance method on the subclass. It is
+not strictly neccessary, though, and the example would
+be simpler without it.
+
+```ruby
+class Agent < LLM::Agent
+  model "deepseek-v4-pro"
+  tools { [DoResearch, FinalizeResearch, ActOnResearch] }
+  stream { $stdout }
+  tracer :set_tracer
+  concurrency :fork
+
+  def research!
+    talk "start the research"
+  end
+
+  private
+
+  def set_tracer
+    LLM::Tracer::Logger.new(llm, io: $stderr)
+  end
+end
+llm   = LLM.deepseek(key: ENV["KEY"])
+agent = Agent.new(llm).tap(&:research!)
+agent.talk "How did the research go?"
+```
+
+[Back to top](#table-of-contents)
 
 ## MCP
 
