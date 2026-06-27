@@ -133,6 +133,84 @@ agent.talk "Hello, fellow agent"
 
 [Back to top](#table-of-contents)
 
+## Tools
+
+A tool extends the capabilities of a model. <br>
+A tool is a subclass of
+[`LLM::Tool`](https://r.uby.dev/api-docs/llm.rb/LLM/Tool.html)
+that has a name,
+a description, and an optional set of typed parameters.
+
+A tool also has a method associated with it, and when the
+model calls a tool it will do so through this method &ndash;
+alongside any parameters the tool might have defined.
+
+In other words, a tool provides a way for a model to
+call a method you have written, and it returns a value
+to the model that is considered the tool's response.
+The model then proceeds to process the tool's response,
+and then might generate its own response, or perhaps call
+another tool.
+
+#### LLM::Tool
+
+A tool can be defined by subclassing
+[`LLM::Tool`](https://r.uby.dev/api-docs/llm.rb/LLM/Tool.html)
+with
+a name, description, and optional set of parameters. The
+tool name, and description should be informative so the
+model can understand what the tool does and how it can
+serve a user's query.
+
+```ruby
+require "llm"
+require "shellwords"
+
+class Shell < LLM::Shell
+  name "shell"
+  description "execute a shell command"
+  parameter :name, String, "the command's name"
+  parameter :arguments, Array[String], "One or more arguments"
+  required %i[name]
+  defaults arguments: []
+
+  def call(name:, arguments:)
+    out = `#{name.shellscape} #{arguments.map(&:shellescape).join(" ")}`
+    {ok: $?.success, out:}
+  end
+end
+
+llm = LLM.deepseek(key: ENV["KEY"])
+agent = LLM::Agent.new(llm, tools: [Shell], stream: $stdout)
+agent.talk "What files are in the current working directory?"
+```
+
+#### Errors
+
+Exceptions that might be raised by a tool are automatically
+rescued and returned to the model as a structured error.
+Otherwise &ndash; the conversation's history could be left
+in an invalid state.
+
+That's because a tool call must complete with a tool response,
+that's the only valid response a model expects, so even in the
+case of an error, something must be returned that communicates
+what happened.
+
+```ruby
+
+class Error < LLM::Tool
+  name "error"
+  description "demo how errors are handled"
+
+  ##
+  # Returns
+  # {error: true, kind: "RuntimeError", message: "boom"}
+  def call
+    raise "boom"
+  end
+end
+
 ## MCP
 
 #### stdio
