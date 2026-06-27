@@ -33,11 +33,12 @@ module LLM::OpenAI::RequestAdapter
       when LLM::Message then adapt_content(content.content, role: content.role)
       when LLM::Object
         case content.kind
-        when :image_url then [{type: :image_url, image_url: {url: content.value.to_s}}]
+        when :image_url then [{type: :input_image, image_url: content.value.to_s}]
         when :remote_file then adapt_remote_file(content.value)
-        when :local_file then prompt_error!(content)
+        when :local_file then adapt_local_file(content.value)
         else prompt_error!(content)
         end
+      when Array then content.flat_map { adapt_content(_1, role:) }
       else
         prompt_error!(content)
       end
@@ -75,6 +76,14 @@ module LLM::OpenAI::RequestAdapter
         [{type: :input_image, file_id: content.id}]
       else
         [{type: :input_file, file_id: content.id}]
+      end
+    end
+
+    def adapt_local_file(file)
+      if file.image?
+        [{type: :input_image, image_url: file.to_data_uri}]
+      else
+        [{type: :input_file, filename: file.basename, file_data: file.to_data_uri}]
       end
     end
 
