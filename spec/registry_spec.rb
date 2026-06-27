@@ -49,7 +49,7 @@ RSpec.describe LLM::Registry do
     let(:provider) { :anthropic }
 
     include_examples "model exists", "claude-opus-4-1"
-    include_examples "model exists", "claude-3-5-haiku-latest"
+    include_examples "model exists", "claude-haiku-4-5-20251001"
   end
 
   context "when given deepseek" do
