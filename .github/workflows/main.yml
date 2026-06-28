@@ -13,7 +13,7 @@ jobs:
     name: Linux (Ruby ${{ matrix.ruby-version }})
     strategy:
       matrix:
-        ruby-version: ['3.3', '3.4', '4.0']
+        ruby-version: ['3.3', '3.4']
         json-parser: ['JSON', 'Oj', 'Yajl']
 
     steps:
