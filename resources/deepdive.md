@@ -492,6 +492,42 @@ end
 
 [Back to top](#table-of-contents)
 
+## Serialization
+
+The [`LLM::Context`](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html)
+class can be serialized to JSON and stored in a string or on disk.
+That is powerful because a context contains runtime state that can
+be restored later, in a different process or even on a different
+machine. And because an agent is implemented on top of
+[`LLM::Context`](https://r.uby.dev/api-docs/llm.rb/LLM/Context.html)
+this feature works for [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html),
+too.
+
+#### Save to disk
+
+The runtime can serialize its state to a string, a text file, or
+a database column. The option that fits best depends on your application
+and environment. Web applications might be more interested in the [ORM](#orm)
+feature, which is built on top of the serialization feature.
+
+```ruby
+##
+# Create a provider
+llm = LLM.deepseek(key: ENV["KEY"])
+
+##
+# Save agent
+agent1 = LLM::Agent.new(llm)
+agent1.talk "remember my name is robert"
+agent1.save(path: "agent.json")
+
+##
+# Restore agent
+agent2 = LLM::Agent.new(llm, stream: $stdout)
+agent2.restore(path: "agent.json")
+agent2.talk "what's my name?"
+```
+
 ## ORM
 
 Both ActiveRecord, and Sequel have first-class support on the
