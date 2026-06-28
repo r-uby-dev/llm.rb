@@ -822,7 +822,10 @@ IO.copy_stream res.images[0], "mustache.png"
 
 #### DeepSeek
 
-With DeepSeek, the input and output are SVG documents:
+The DeepSeek provider does not provide an image generation model
+but it is possible to ask a text-to-text model to produce
+vector graphics (SVGs), and in that limited sense, it can become
+a capable text-to-image model.
 
 ```ruby
 require "llm"
@@ -835,16 +838,17 @@ res = llm.images.edit(prompt: "make the rocket red", image: "rocket.svg")
 IO.copy_stream res.images[0], "rocket-edited.svg"
 ```
 
-Another unique DeepSeek feature is that you can maintain
-a session that can perform multiple image generations rather
-than just one-shot generations. It's possible because under
-the hood this feature is implemented with
+An interesting property of the DeepSeek implementation is that
+it can maintain a session that can perform multiple image generations
+or edits rather than just one-shot generations.
+
+It's possible because under the hood
 [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html),
-and the
+is attached to the
 [`LLM::Response`](https://r.uby.dev/api-docs/llm.rb/LLM/Response.html)
-that is returned includes an
-`agent` method. It is specific to this endpoint though.
-It works like this:
+object that is returned to the caller. So the response includes an
+`agent` method, and it can be carried across multiple generations.
+It is specific to this endpoint though. It works like this:
 
 ```ruby
 require "llm"
