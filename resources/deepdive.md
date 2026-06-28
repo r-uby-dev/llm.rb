@@ -28,6 +28,9 @@ features that didn't make it into the homepage documentation.
 - [Agents](#agents)
   - [As a subclass](#as-a-subclass)
   - [As an object](#as-an-object)
+- [Skills](#skills)
+  - [SKILL.md](#skillmd)
+  - [Run it](#run-it)
 - [MCP](#mcp)
   - [stdio](#stdio)
   - [http](#http)
@@ -198,7 +201,6 @@ case of an error, something must be returned that communicates
 what happened.
 
 ```ruby
-
 class Error < LLM::Tool
   name "error"
   description "demo how errors are handled"
@@ -210,6 +212,61 @@ class Error < LLM::Tool
     raise "boom"
   end
 end
+```
+
+## Skills
+
+The skill concept is borrowed from tools like Claude and
+Codex, but llm.rb gives it a runtime of its own. A skill
+is a directory with a `SKILL.md` file. That file contains
+frontmatter where the skill's name, description, and tools
+can be declared.
+
+#### SKILL.md
+
+The `SKILL.md` file can look like this. When a skill runs,
+the runtime spawns a subagent with its own context window
+and message history. Some context is inherited from the
+parent agent, though.
+
+By default the subagent can only access the tools declared
+by the skill. The `inherit` directive lets it inherit the
+parent agent's tools instead, including A2A and MCP tools.
+
+```markdown
+---
+name: git-skill
+description: reads my git history and writes a summary
+tools: ['git-log', 'git-show', 'write-file']
+---
+
+## Task
+
+Collect a log of recent history.
+Analyze each commit.
+Write a summary to summary.txt
+```
+
+#### Run it
+
+Given the skill above, llm.rb only needs the path to the
+directory that contains `SKILL.md`. Under the hood, a skill
+is represented as a tool the model can call. That means
+a skill can be called whenever it satisfies the user's
+request &ndash; in the same way that a regular tool can.
+
+This feature also works with both the ActiveRecord, and
+Sequel integrations.
+
+```ruby
+require "llm"
+
+llm = LLM.deepseek(key: ENV["KEY"])
+agent = LLM::Agent.new(llm, skills: [__dir__])
+agent.talk "run the git skill"
+```
+
+[Back to top](#table-of-contents)
 
 ## MCP
 
