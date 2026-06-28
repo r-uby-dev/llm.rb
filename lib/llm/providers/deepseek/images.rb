@@ -75,7 +75,7 @@ class LLM::DeepSeek
     # @return [LLM::Response<LLM::DeepSeek::ResponseAdapter::Image>]
     #  Returns a response
     def edit(prompt:, image:, model: @provider.default_model, agent: nil, size: nil, n: nil, response_format: nil, quality: nil, style: nil)
-      file  = LLM.File(image)
+      file = LLM.File(image)
       agent ||= LLM::Agent.new(@provider, model:, instructions: edit_instructions(file), response_format: {type: "json_object"})
       res = agent.talk(prompt)
       res = LLM::DeepSeek::ResponseAdapter.adapt(res, type: :image)
