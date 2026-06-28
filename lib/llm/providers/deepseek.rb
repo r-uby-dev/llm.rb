@@ -19,6 +19,8 @@ module LLM
   #   ctx.messages.select(&:assistant?).each { print "[#{_1.role}]", _1.content, "\n" }
   class DeepSeek < OpenAI
     require_relative "deepseek/request_adapter"
+    require_relative "deepseek/response_adapter"
+    require_relative "deepseek/images"
     include DeepSeek::RequestAdapter
 
     ##
@@ -42,9 +44,9 @@ module LLM
     end
 
     ##
-    # @raise [NotImplementedError]
+    # @raise [LLM::DeepSeek::Images]
     def images
-      raise NotImplementedError
+      LLM::DeepSeek::Images.new(self)
     end
 
     ##

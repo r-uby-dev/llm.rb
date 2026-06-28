@@ -764,18 +764,19 @@ agent = LLM::Agent.new(llm, tracer: LLM::Tracer::Logger.new(llm, path: "deepseek
 
 ## Images
 
-The OpenAI, Google, xAI, and DeepInfra providers have builtin
-image generation capabilities. OpenAI, xAI, and DeepInfra also
-support image edits. Google, though, only supports image
-generation and not edits.
+The OpenAI, Google, xAI, DeepInfra, and DeepSeek providers have
+builtin image generation capabilities. OpenAI, xAI, and DeepInfra
+also support image edits. Google only supports image generation,
+and DeepSeek only supports vector generation through SVG output.
 
 #### Generation
 
 The [`LLM::Provider#images`](https://r.uby.dev/api-docs/llm.rb/LLM/Provider.html#images-instance_method)
 method returns an Image
 object that a subset of providers implement. At the
-moment Google, xAI, OpenAI, and DeepInfra have image generation
-capabilities.
+moment Google, xAI, OpenAI, DeepInfra, and DeepSeek have image
+generation capabilities. DeepSeek is the odd one out: it generates
+SVG documents rather than raster images.
 
 ```ruby
 require "llm"
@@ -804,7 +805,7 @@ IO.copy_stream res.images[0], "dogrocket.png"
 #### Edits
 
 OpenAI, xAI, and DeepInfra have the same interface for image edits. <br>
-Google does not have edit image support. <br>
+Google and DeepSeek do not have edit image support. <br>
 
 ```ruby
 require "llm"
