@@ -1,0 +1,120 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.deepseek.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"messages":[{"role":"system","content":[{"type":"text","text":"Generate
+        a complete SVG document that satisfies the user''s prompt. Respond with a
+        JSON object that has exactly one key: svg. The value of svg must be a valid
+        standalone SVG document as a string. Do not include markdown, code fences,
+        commentary, or any keys other than svg."}]},{"role":"user","content":[{"type":"text","text":"A
+        dog on a rocket to the moon"}]}],"model":"deepseek-v4-flash","response_format":{"type":"json_object"}}'
+    headers:
+      User-Agent:
+      - llm.rb v12.0.0.beta.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Sun, 28 Jun 2026 20:35:13 GMT
+      Server:
+      - elb
+      Vary:
+      - origin, access-control-request-method, access-control-request-headers
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Ds-Trace-Id:
+      - cd6e44cf6ddb0fdb5acc02819056da55
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 8b3395cb053299c777a472e2167d0152.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU1-P5
+      X-Amz-Cf-Id:
+      - 86fsmb3OkQJw1WDREcK6KdPfojlIegshfqpBGY9VeoiSiyppLubKyg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"829790c8-78af-4671-877a-3745ddd1d823","object":"chat.completion","created":1782678913,"model":"deepseek-v4-flash","choices":[{"index":0,"message":{"role":"assistant","content":"{\n  \"svg\":
+        \"<svg xmlns=''http://www.w3.org/2000/svg'' viewBox=''0 0 800 600'' width=''800''
+        height=''600''><defs><radialGradient id=''moonGrad'' cx=''50%'' cy=''50%''
+        r=''50%''><stop offset=''0%'' stop-color=''#f0e68c''/><stop offset=''100%''
+        stop-color=''#bdb76b''/></radialGradient><linearGradient id=''rocketBody''
+        x1=''0'' y1=''0'' x2=''0'' y2=''1''><stop offset=''0%'' stop-color=''#dc143c''/><stop
+        offset=''100%'' stop-color=''#8b0000''/></linearGradient><linearGradient id=''flame''
+        x1=''0'' y1=''0'' x2=''0'' y2=''1''><stop offset=''0%'' stop-color=''#ff8c00''/><stop
+        offset=''50%'' stop-color=''#ffd700'' stop-opacity=''0.8''/><stop offset=''100%''
+        stop-color=''#ffff00'' stop-opacity=''0''/></linearGradient></defs><rect width=''800''
+        height=''600'' fill=''#0a0a2e''/><circle cx=''750'' cy=''150'' r=''120'' fill=''url(#moonGrad)''/><circle
+        cx=''720'' cy=''120'' r=''20'' fill=''#d2b48c'' opacity=''0.4''/><circle cx=''780''
+        cy=''180'' r=''15'' fill=''#d2b48c'' opacity=''0.3''/><circle cx=''710'' cy=''200''
+        r=''10'' fill=''#d2b48c'' opacity=''0.2''/><circle cx=''760'' cy=''100'' r=''12''
+        fill=''#d2b48c'' opacity=''0.3''/><g transform=''translate(350, 200) rotate(-30)''><!--
+        Rocket body --><rect x=''-30'' y=''-120'' width=''60'' height=''200'' rx=''15''
+        fill=''url(#rocketBody)'' stroke=''#b22222'' stroke-width=''2''/><!-- Nose
+        cone --><path d=''M -30 -120 Q 0 -180 30 -120 Z'' fill=''#dc143c'' stroke=''#b22222''
+        stroke-width=''2''/><!-- Window --><circle cx=''0'' cy=''-60'' r=''22'' fill=''#fff''
+        stroke=''#333'' stroke-width=''2''/><circle cx=''0'' cy=''-60'' r=''18'' fill=''#87ceeb''/><!--
+        Dog inside window --><g transform=''translate(0, -60)''><ellipse cx=''0''
+        cy=''5'' rx=''14'' ry=''10'' fill=''#d2b48c''/><ellipse cx=''-6'' cy=''-2''
+        rx=''6'' ry=''5'' fill=''#8b4513''/><ellipse cx=''6'' cy=''-2'' rx=''6'' ry=''5''
+        fill=''#8b4513''/><circle cx=''-5'' cy=''-2'' r=''2'' fill=''#000''/><circle
+        cx=''5'' cy=''-2'' r=''2'' fill=''#000''/><ellipse cx=''0'' cy=''3'' rx=''3''
+        ry=''2'' fill=''#000''/><path d=''M-3 3 Q0 6 3 3'' stroke=''#000'' stroke-width=''1''
+        fill=''none''/><ellipse cx=''-10'' cy=''-5'' rx=''6'' ry=''3'' fill=''#8b4513''
+        transform=''rotate(-20 -10 -5)''/><ellipse cx=''10'' cy=''-5'' rx=''6'' ry=''3''
+        fill=''#8b4513'' transform=''rotate(20 10 -5)''/><ellipse cx=''-12'' cy=''8''
+        rx=''6'' ry=''4'' fill=''#d2b48c''/><ellipse cx=''12'' cy=''8'' rx=''6'' ry=''4''
+        fill=''#d2b48c''/></g><!-- Fins --><path d=''M -30 -60 L -60 20 L -30 20 Z''
+        fill=''#ff4500'' stroke=''#b22222'' stroke-width=''2''/><path d=''M 30 -60
+        L 60 20 L 30 20 Z'' fill=''#ff4500'' stroke=''#b22222'' stroke-width=''2''/><path
+        d=''M -15 80 L -20 140 L 0 120 Z'' fill=''#ff4500'' stroke=''#b22222'' stroke-width=''2''
+        opacity=''0.5''/><path d=''M 15 80 L 20 140 L 0 120 Z'' fill=''#ff4500'' stroke=''#b22222''
+        stroke-width=''2'' opacity=''0.5''/></g><!-- Flame --><path d=''M 350 430
+        Q 370 480 350 520 Q 330 480 350 430'' fill=''url(#flame)'' transform=''rotate(-30,
+        350, 430)''/></g><!-- Stars --><circle cx=''100'' cy=''60'' r=''2'' fill=''#fff''/><circle
+        cx=''250'' cy=''80'' r=''2'' fill=''#fff''/><circle cx=''400'' cy=''30'' r=''2''
+        fill=''#fff''/><circle cx=''600'' cy=''100'' r=''2'' fill=''#fff''/><circle
+        cx=''150'' cy=''200'' r=''2'' fill=''#fff''/><circle cx=''300'' cy=''300''
+        r=''2'' fill=''#fff''/><circle cx=''500'' cy=''250'' r=''2'' fill=''#fff''/><circle
+        cx=''700'' cy=''350'' r=''2'' fill=''#fff''/><circle cx=''50'' cy=''400''
+        r=''2'' fill=''#fff''/><circle cx=''200'' cy=''500'' r=''2'' fill=''#fff''/><circle
+        cx=''650'' cy=''480'' r=''2'' fill=''#fff''/><circle cx=''450'' cy=''550''
+        r=''2'' fill=''#fff''/><circle cx=''80'' cy=''150'' r=''1.5'' fill=''#fff''/><circle
+        cx=''120'' cy=''300'' r=''1.5'' fill=''#fff''/><circle cx=''520'' cy=''60''
+        r=''1.5'' fill=''#fff''/><circle cx=''680'' cy=''200'' r=''1.5'' fill=''#fff''/></svg>\"\n}","reasoning_content":"We
+        need to generate an SVG of a dog on a rocket to the moon. The SVG must be
+        standalone, valid, and visually appealing. We''ll create a simple illustration:
+        a rocket flying left to right, with a dog peeking out of a window, and the
+        moon in the background. Use bright colors, cartoon style.\n\nPlan:\n- SVG
+        viewBox: 0 0 800 600\n- Background: dark blue space with stars\n- Moon: large
+        circle on the right side\n- Rocket: angled upward, with fins, window, exhaust
+        flame\n- Dog: inside window, showing head with ears\n\nLet''s write the SVG.
+        Use basic shapes: circles, rectangles, paths, polygons.\n\nI''ll create a
+        detailed SVG."},"logprobs":null,"finish_reason":"stop"}],"usage":{"prompt_tokens":93,"completion_tokens":1629,"total_tokens":1722,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":151},"prompt_cache_hit_tokens":0,"prompt_cache_miss_tokens":93},"system_fingerprint":"fp_8b330d02d0_prod0820_fp8_kvcache_20260402"}'
+  recorded_at: Sun, 28 Jun 2026 20:35:10 GMT
+recorded_with: VCR 6.4.0
