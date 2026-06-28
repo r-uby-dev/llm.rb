@@ -80,14 +80,12 @@ major release: `v12.0.0`.
 * **Add a new provider: LLM::DeepInfra** <br>
   [DeepInfra](https://deepinfra.com) provide OpenAI-compatible
   endpoints for a large catalog of hosted open-source and
-  open-weight models.
-
-  Capabilities like tool calling, structured outputs, and
+  open-weight models. <br> Capabilities like tool calling, structured outputs, and
   reasoning can depend on the model.
 
 * **Add new image provider: LLM::DeepInfra::Images** <br>
   [DeepInfra](https://deepinfra.com) provide access to
-  diverse set of text-to-image models. Learn more about the
+  diverse set of text-to-image models. <br> Learn more about the
   available models on their [text-to-image models](https://deepinfra.com/models/text-to-image)
   page.
 
@@ -108,7 +106,7 @@ major release: `v12.0.0`.
   This change fixes that by supporting both image, document,
   and other media types that OpenAI may support.
 
-* **Add `LLM::Response#id` across all providers**
+* **Add `LLM::Response#id` across all providers** <br>
   This method was previously implemented via `method_missing`,
   and the field name could change depending on the provider.
   The new method is a catch-all that provides a single method
