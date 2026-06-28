@@ -98,6 +98,13 @@ major release: `v12.0.0`.
   that's the approach this feature takes. It is limited
   to vector graphics rather than raster images.
 
+* **DeepSeek: attach `LLM::Response#agent` to image responses** <br>
+  The DeepSeek image API is built on top of
+  [`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html).
+  Image responses now expose that agent via `res.agent`, which makes
+  it possible to carry the same session across multiple generations
+  or edits.
+
 * **xAI: add `LLM::XAI::Images#edit`** <br>
   With this change it is possible to both generate images
   from a prompt, and edit an existing image with a prompt.

@@ -820,6 +820,8 @@ res = llm.images.edit(prompt: "add a mustache", image: "self.jpg")
 IO.copy_stream res.images[0], "mustache.png"
 ```
 
+#### DeepSeek
+
 With DeepSeek, the input and output are SVG documents:
 
 ```ruby
@@ -831,6 +833,32 @@ require "llm"
 llm = LLM.deepseek(key: ENV["KEY"])
 res = llm.images.edit(prompt: "make the rocket red", image: "rocket.svg")
 IO.copy_stream res.images[0], "rocket-edited.svg"
+```
+
+Another unique DeepSeek feature is that you can maintain
+a session that can perform multiple image generations rather
+than just one-shot generations. It's possible because under
+the hood this feature is implemented with
+[`LLM::Agent`](https://r.uby.dev/api-docs/llm.rb/LLM/Agent.html),
+and the
+[`LLM::Response`](https://r.uby.dev/api-docs/llm.rb/LLM/Response.html)
+that is returned includes an
+`agent` method. It is specific to this endpoint though.
+It works like this:
+
+```ruby
+require "llm"
+
+llm = LLM.deepseek(key: ENV["DEEPSEEK_SECRET"])
+agent = nil
+loop do
+  print "> "
+  prompt = $stdin.gets
+  res = llm.images.create(prompt:, agent:)
+  agent = res.agent
+  IO.copy_stream res.images[0], "image.svg"
+  print "ok: saved image.svg", "\n"
+end
 ```
 
 [Back to top](#table-of-contents)

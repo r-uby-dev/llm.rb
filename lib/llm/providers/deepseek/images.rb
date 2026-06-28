@@ -42,10 +42,12 @@ class LLM::DeepSeek
     #  Exists for compatibility with other providers.
     # @return [LLM::Response<LLM::DeepSeek::ResponseAdapter::Image>]
     #  Returns a response
-    def create(prompt:, model: @provider.default_model, size: nil, n: nil, response_format: nil, quality: nil, style: nil)
-      agent = LLM::Agent.new(@provider, model:, instructions: create_instructions, response_format: {type: "json_object"})
+    def create(prompt:, model: @provider.default_model, agent: nil, size: nil, n: nil, response_format: nil, quality: nil, style: nil)
+      agent ||= LLM::Agent.new(@provider, model:, instructions: create_instructions, response_format: {type: "json_object"})
       res = agent.talk(prompt)
-      LLM::DeepSeek::ResponseAdapter.adapt(res, type: :image)
+      res = LLM::DeepSeek::ResponseAdapter.adapt(res, type: :image)
+      res.define_singleton_method(:agent) { agent }
+      res
     end
 
     ##
@@ -72,11 +74,13 @@ class LLM::DeepSeek
     #  Exists for compatibility with other providers.
     # @return [LLM::Response<LLM::DeepSeek::ResponseAdapter::Image>]
     #  Returns a response
-    def edit(prompt:, image:, model: @provider.default_model, size: nil, n: nil, response_format: nil, quality: nil, style: nil)
+    def edit(prompt:, image:, model: @provider.default_model, agent: nil, size: nil, n: nil, response_format: nil, quality: nil, style: nil)
       file  = LLM.File(image)
-      agent = LLM::Agent.new(@provider, model:, instructions: edit_instructions(file), response_format: {type: "json_object"})
+      agent ||= LLM::Agent.new(@provider, model:, instructions: edit_instructions(file), response_format: {type: "json_object"})
       res = agent.talk(prompt)
-      LLM::DeepSeek::ResponseAdapter.adapt(res, type: :image)
+      res = LLM::DeepSeek::ResponseAdapter.adapt(res, type: :image)
+      res.define_singleton_method(:agent) { agent }
+      res
     end
 
     private
