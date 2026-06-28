@@ -43,24 +43,59 @@ class LLM::DeepSeek
     # @return [LLM::Response<LLM::DeepSeek::ResponseAdapter::Image>]
     #  Returns a response
     def create(prompt:, model: @provider.default_model, size: nil, n: nil, response_format: nil, quality: nil, style: nil)
-      agent = LLM::Agent.new(@provider, model:, instructions:, response_format: {type: "json_object"})
+      agent = LLM::Agent.new(@provider, model:, instructions: create_instructions, response_format: {type: "json_object"})
       res = agent.talk(prompt)
       LLM::DeepSeek::ResponseAdapter.adapt(res, type: :image)
     end
 
     ##
-    # @raise [NotImplementedError]
-    def edit(...)
-      raise NotImplementedError, "image edit capabilities not available on deepseek"
+    # @param [String] prompt
+    #  A prompt
+    # @param [String] model
+    #  A text-to-image model.
+    # @param [String, LLM::File] image
+    #  The path to an SVG file
+    # @param [void] size
+    #  This parameter is a noop.
+    #  Exists for compatibility with other providers.
+    # @param [void] n
+    #  This parameter is a noop.
+    #  Exists for compatibility with other providers.
+    # @param [void] response_format
+    #  This parameter is a noop.
+    #  Exists for compatibility with other providers.
+    # @param [void] quality
+    #  This parameter is a noop.
+    #  Exists for compatibility with other providers.
+    # @param [void] style
+    #  This parameter is a noop.
+    #  Exists for compatibility with other providers.
+    # @return [LLM::Response<LLM::DeepSeek::ResponseAdapter::Image>]
+    #  Returns a response
+    def edit(prompt:, image:, model: @provider.default_model, size: nil, n: nil, response_format: nil, quality: nil, style: nil)
+      file  = LLM.File(image)
+      agent = LLM::Agent.new(@provider, model:, instructions: edit_instructions(file), response_format: {type: "json_object"})
+      res = agent.talk(prompt)
+      LLM::DeepSeek::ResponseAdapter.adapt(res, type: :image)
     end
 
     private
 
-    def instructions
+    def create_instructions
       "Generate a complete SVG document that satisfies the user's prompt. " \
       "Respond with a JSON object that has exactly one key: svg. " \
       "The value of svg must be a valid standalone SVG document as a string. " \
       "Do not include markdown, code fences, commentary, or any keys other than svg."
+    end
+
+    def edit_instructions(file)
+      file.with_io do |io|
+        "Edit the SVG document that is provided according to the user's prompt" \
+        "Respond with a JSON object that has exactly one key: svg. " \
+        "The value of svg must be a valid standalone SVG document as a string. " \
+        "Do not include markdown, code fences, commentary, or any keys other than svg." \
+        "The SVG document follows:\n\n#{io.read}" \
+      end
     end
 
     [:path, :headers, :execute, :transport].each do |m|

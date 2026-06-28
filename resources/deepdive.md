@@ -766,8 +766,9 @@ agent = LLM::Agent.new(llm, tracer: LLM::Tracer::Logger.new(llm, path: "deepseek
 
 The OpenAI, Google, xAI, DeepInfra, and DeepSeek providers have
 builtin image generation capabilities. OpenAI, xAI, and DeepInfra
-also support image edits. Google only supports image generation,
-and DeepSeek only supports vector generation through SVG output.
+also support image edits. Google only supports image generation.
+DeepSeek supports generation and edits too, but only through SVG
+output rather than raster image models.
 
 #### Generation
 
@@ -805,7 +806,8 @@ IO.copy_stream res.images[0], "dogrocket.png"
 #### Edits
 
 OpenAI, xAI, and DeepInfra have the same interface for image edits. <br>
-Google and DeepSeek do not have edit image support. <br>
+DeepSeek also supports edits, but only for SVG files. <br>
+Google does not have edit image support. <br>
 
 ```ruby
 require "llm"
@@ -816,6 +818,19 @@ require "llm"
 llm = LLM.openai(key: ENV["KEY"])
 res = llm.images.edit(prompt: "add a mustache", image: "self.jpg")
 IO.copy_stream res.images[0], "mustache.png"
+```
+
+With DeepSeek, the input and output are SVG documents:
+
+```ruby
+require "llm"
+
+##
+# Edit rocket.svg and change its color
+# Save to rocket-edited.svg
+llm = LLM.deepseek(key: ENV["KEY"])
+res = llm.images.edit(prompt: "make the rocket red", image: "rocket.svg")
+IO.copy_stream res.images[0], "rocket-edited.svg"
 ```
 
 [Back to top](#table-of-contents)

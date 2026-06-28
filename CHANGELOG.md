@@ -89,14 +89,14 @@ major release: `v12.0.0`.
   available models on their [text-to-image models](https://deepinfra.com/models/text-to-image)
   page.
 
-** **DeepSeek: add `LLM::DeepSeek::Images#create`**
-  This new API can generate vector graphics (SVGs) <br>
+* **DeepSeek: add `LLM::DeepSeek::Images#create` and `#edit`** <br>
+  This new API can generate and edit vector graphics (SVGs). <br>
   It is an experimental approach and API.
 
   DeepSeek does not provide an image generation model however
   its text-to-text models can generate SVG documents, and
   that's the approach this feature takes. It is limited
-  to vector graphics, and does not support edit functionality.
+  to vector graphics rather than raster images.
 
 * **xAI: add `LLM::XAI::Images#edit`** <br>
   With this change it is possible to both generate images
