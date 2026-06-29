@@ -17,4 +17,8 @@ RSpec.describe "LLM::Context: deepseek" do
   context LLM::Function do
     include_examples "LLM::Context: functions", :deepseek
   end
+
+  context LLM::Schema do
+    include_examples "LLM::Context: schema", :deepseek
+  end
 end

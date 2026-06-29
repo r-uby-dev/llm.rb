@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.deepseek.com/v1/chat/completions
+    body:
+      encoding: UTF-8
+      string: '{"messages":[{"role":"system","content":[{"type":"text","text":"Respond
+        with a single valid JSON object. Do not include markdown, code fences, commentary,
+        or any text outside the JSON object. The JSON object must match this schema:
+        object\n  fruit: string (required, enum: \"apple\" | \"pineapple\" | \"orange\")
+        - The favorite fruit"}]},{"role":"user","content":[{"type":"text","text":"Your
+        favorite fruit is pineapple"}]},{"role":"user","content":[{"type":"text","text":"What
+        fruit is your favorite?"}]}],"model":"deepseek-v4-flash","response_format":{"type":"json_object"}}'
+    headers:
+      User-Agent:
+      - llm.rb v12.0.0.beta.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - Bearer TOKEN
+      Transfer-Encoding:
+      - chunked
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Date:
+      - Mon, 29 Jun 2026 01:42:42 GMT
+      Server:
+      - elb
+      Vary:
+      - origin, access-control-request-method, access-control-request-headers
+      Access-Control-Allow-Credentials:
+      - 'true'
+      X-Ds-Trace-Id:
+      - de1141eb770964fae589d1a9b0a633e6
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Cache:
+      - Miss from cloudfront
+      Via:
+      - 1.1 d7753f1621e1f6b86a08e8fad9c5749a.cloudfront.net (CloudFront)
+      X-Amz-Cf-Pop:
+      - GRU1-P8
+      X-Amz-Cf-Id:
+      - l_sJbF_7Sg9cyJCH93xfHGqGEDUWC7mU73NCs8q30SuXmnfkaqHqUg==
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"73fd74fe-4d31-4b15-870f-3c0098a1b276","object":"chat.completion","created":1782697362,"model":"deepseek-v4-flash","choices":[{"index":0,"message":{"role":"assistant","content":"{\"fruit\":\"pineapple\"}","reasoning_content":"We
+        are asked: \"Your favorite fruit is pineapple\" then \"What fruit is your
+        favorite?\" So the favorite fruit is pineapple. The JSON should have key \"fruit\"
+        with value \"pineapple\"."},"logprobs":null,"finish_reason":"stop"}],"usage":{"prompt_tokens":99,"completion_tokens":47,"total_tokens":146,"prompt_tokens_details":{"cached_tokens":0},"completion_tokens_details":{"reasoning_tokens":40},"prompt_cache_hit_tokens":0,"prompt_cache_miss_tokens":99},"system_fingerprint":"fp_8b330d02d0_prod0820_fp8_kvcache_20260402"}'
+  recorded_at: Mon, 29 Jun 2026 01:42:28 GMT
+recorded_with: VCR 6.4.0
