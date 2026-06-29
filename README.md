@@ -303,6 +303,19 @@ type.
 </p>
 If you're on a budget, DeepSeek is hard to beat.
 </details>
+<details>
+<summary>Can I download llm.rb via a decentralized network?</summary>
+<br>
+You can!
+<br>
+We are on the <a href="https://radicle.network">radicle.network</a>
+<br>
+Every commit that lands on GitHub also lands on Radicle.
+<br>
+Our repository ID is z2PtfQ6dYwyYaW2aGrztG1sMyDmCE.
+<br>
+Browse on <a href="https://radicle.network/nodes/iris.radicle.network/z2PtfQ6dYwyYaW2aGrztG1sMyDmCE">the web</a>.
+</details>
 
 ## Resources
 
