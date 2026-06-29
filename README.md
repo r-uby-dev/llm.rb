@@ -249,6 +249,60 @@ wasn't possible to cover every feature without the README becoming a small book.
 The [r.uby.dev](https://r.uby.dev) homepage also includes more learning material
 and resources.
 
+## FAQ
+
+**What providers does llm.rb support?**
+
+China-based
+
+* DeepSeek
+* zAI
+
+US-based
+
+* OpenAI
+* Google (Gemini)
+* xAI
+* AWS bedrock
+* DeepInfra
+* Anthropic
+
+Openweights
+
+* DeepSeek
+* zAI
+* DeepInfra
+* AWS bedrock
+
+Host your own
+
+* Ollama
+* Llamacpp
+
+**I have a limited budget. What should I do?**
+
+There a few options. The first option is to host
+your own model, and use the ollama or llamacpp
+providers. This can be diffilcult though because
+a capable model requires hardware that can
+match it. If you have the ability to self-host,
+this would be my first option.
+
+The second option is DeepSeek. <br>
+The deepseek-v4-flash model costs pennies to use. <br>
+And llm.rb has been optimized for deepseek. For example,
+DeepSeek does not have image generation capabilities
+but on the llm.rb runtime it does (vector graphics only,
+though).
+
+The same is true for structured outputs. DeepSeek does
+not support structured outputs in the same way as OpenAI or
+Google, but the llm.rb runtime makes it appear as
+though it does, through the `json_object` response
+type.
+
+If you're on a budget, DeepSeek is hard to beat.
+
 ## License
 
 [BSD Zero Clause](https://choosealicense.com/licenses/0bsd/)
