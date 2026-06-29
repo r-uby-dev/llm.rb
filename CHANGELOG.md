@@ -117,6 +117,17 @@ major release: `v12.0.0`.
   in the sense that it is called after the properties of
   a schema have been defined.
 
+* **Add `LLM::Schema#to_s` and `LLM::Schema.to_s`** <br>
+  Schemas can now be rendered as a prompt-friendly string.
+  This is useful when the shape of a schema needs to be
+  described in natural-language instructions rather than
+  passed through a native structured output interface.
+
+* **DeepSeek: add `LLM::Schema` support** <br>
+  DeepSeek can now use `schema:` for structured output.
+  llm.rb handles this by setting `response_format: {type: "json_object"}`
+  and describing the schema in a system message.
+
 * **OpenAI: add local file support to the Responses API** <br>
   Our responses API implementation lacked local file support. <br>
   This change fixes that by supporting both image, document,

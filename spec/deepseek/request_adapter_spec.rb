@@ -78,3 +78,32 @@ RSpec.describe "LLM::DeepSeek::RequestAdapter::Completion" do
     end
   end
 end
+
+RSpec.describe "LLM::DeepSeek::RequestAdapter schema adaptation" do
+  let(:provider) { LLM.deepseek(key: "test") }
+
+  let(:schema) do
+    Class.new(LLM::Schema) do
+      property :name, String, "name", required: true
+      property :age, Integer, "age"
+    end
+  end
+
+  describe "#normalize_complete_params" do
+    subject(:normalized) { provider.send(:normalize_complete_params, schema:) }
+
+    it "sets json_object response format" do
+      params, = normalized
+      expect(params[:response_format]).to eq(type: "json_object")
+    end
+
+    it "injects a system message describing the schema" do
+      params, = normalized
+      expect(params[:messages].size).to eq(1)
+      expect(params[:messages].first.role).to eq("system")
+      expect(params[:messages].first.content).to include("Respond with a single valid JSON object.")
+      expect(params[:messages].first.content).to include("name: string (required) - name")
+      expect(params[:messages].first.content).to include("age?: integer - age")
+    end
+  end
+end
