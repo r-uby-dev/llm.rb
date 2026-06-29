@@ -37,6 +37,7 @@ module LLM
   require_relative "llm/server_tool"
   require_relative "llm/mcp"
   require_relative "llm/a2a"
+  require_relative "llm/uridata"
 
   ##
   # Thread-safe monitors for different contexts

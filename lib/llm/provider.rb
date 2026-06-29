@@ -348,8 +348,8 @@ class LLM::Provider
 
   private
 
-  def path(suffix)
-    return suffix if @base_path.empty?
+  def path(suffix, base_path: true)
+    return suffix if !base_path || @base_path.empty?
     "#{@base_path}#{suffix}"
   end
 

@@ -59,8 +59,23 @@ class LLM::Transport
     # @return [LLM::Object, String]
     def parse_response(res)
       case res["content-type"]
-      when %r{\Aapplication/json\s*} then LLM::Object.from(LLM.json.load(res.body))
+      when %r{\Aapplication/json\s*}
+        body = read_body(res.body)
+        LLM::Object.from(LLM.json.load(body))
       else res.body
+      end
+    end
+
+    ##
+    # @param [#class] body
+    # @return [String]
+    def read_body(body)
+      case body.class.to_s
+      when "Net::ReadAdapter"
+        str = +""
+        body.read_body { str << _1 }
+        str
+      else body
       end
     end
   end

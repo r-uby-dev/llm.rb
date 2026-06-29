@@ -20,6 +20,8 @@ module LLM
     HOST = "api.deepinfra.com"
     BASE_PATH = "/v1/openai"
     require_relative "deepinfra/images"
+    require_relative "deepinfra/audio"
+    require_relative "deepinfra/response_adapter"
 
     ##
     # @param key (see LLM::Provider#initialize)
@@ -64,9 +66,9 @@ module LLM
     end
 
     ##
-    # @raise [NotImplementedError]
+    # @return [LLM::DeepInfra::Audio]
     def audio
-      raise NotImplementedError
+      LLM::DeepInfra::Audio.new(self)
     end
 
     ##
