@@ -19,7 +19,7 @@ class LLM::Schema
     #  Whether the node is the root schema object
     # @return [String]
     def render(node, indent: 0, name: nil, root: false)
-      line = +"#{" " * indent}"
+      line = (" " * indent).to_s
       if name
         line << name.to_s
         line << "?" unless node.required?
@@ -27,7 +27,7 @@ class LLM::Schema
       end
       line << type_name(node)
       metadata = metadata_for(node, include_required: !root)
-      line << " (#{metadata.join(', ')})" unless metadata.empty?
+      line << " (#{metadata.join(", ")})" unless metadata.empty?
       line << " - #{node.description}" if node.respond_to?(:description) && node.description
       nested = nested_lines(node, indent: indent + 2)
       ([line] + nested).join("\n")
@@ -99,7 +99,7 @@ class LLM::Schema
       details = []
       details << "required" if include_required && node.required?
       details << "default: #{value(node.default)}" if node.default
-      details << "enum: #{node.enum.map { value(_1) }.join(' | ')}" if node.enum
+      details << "enum: #{node.enum.map { value(_1) }.join(" | ")}" if node.enum
       details << "const: #{value(node.const)}" if node.const
       h.except(:type, :description, :default, :enum, :const, :required, :properties, :items, :anyOf, :oneOf, :allOf)
         .each { |key, val| details << "#{key}: #{value(val)}" }
