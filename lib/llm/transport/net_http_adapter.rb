@@ -21,7 +21,7 @@ class LLM::Transport
       when :put then ::Net::HTTP::Put.new(path, headers)
       when :patch then ::Net::HTTP::Patch.new(path, headers)
       when :delete then ::Net::HTTP::Delete.new(path, headers)
-      else ::Net::HTTP::GenericRequest.new(method, path, nil, headers)
+      else ::Net::HTTPGenericRequest.new(method, path, nil, headers)
       end
       if req.body
         http_req.body = req.body
