@@ -241,14 +241,6 @@ agent = Agent.create!
 agent.talk "perform research"
 ```
 
-## Resources
-
-If you like what you read so far, check out the [deepdive.md](https://r.uby.dev/llm/deepdive/)
-and [API docs](https://r.uby.dev/api-docs/llm.rb) to learn more. Unfortunately it
-wasn't possible to cover every feature without the README becoming a small book.
-The [r.uby.dev](https://r.uby.dev) homepage also includes more learning material
-and resources.
-
 ## FAQ
 
 <details>
@@ -311,6 +303,14 @@ type.
 </p>
 If you're on a budget, DeepSeek is hard to beat.
 </details>
+
+## Resources
+
+If you like what you read so far, check out the [deepdive.md](https://r.uby.dev/llm/deepdive/)
+to learn more. Unfortunately it
+wasn't possible to cover every feature without the README becoming a small book.
+The [r.uby.dev](https://r.uby.dev) homepage also includes more learning material
+and resources.
 
 ## License
 
