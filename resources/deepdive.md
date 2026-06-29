@@ -57,6 +57,10 @@ features that didn't make it into the homepage documentation.
 - [Images](#images)
   - [Generation](#generation)
   - [Edits](#edits)
+- [Audio](#audio)
+  - [text-to-speech](#text-to-speech)
+  - [speech-to-text](#speech-to-text)
+  - [translation](#translation)
 
 ## Agents
 
@@ -899,6 +903,60 @@ loop do
   IO.copy_stream res.images[0], "image.svg"
   print "ok: saved image.svg", "\n"
 end
+```
+
+[Back to top](#table-of-contents)
+
+## Audio
+
+The audio interface defined by llm.rb describes three methods,
+although not every provider implements all of them. Generally
+speaking the audio interface is for text-to-speech, and
+speech-to-text models.
+
+The following providers have audio support:
+
+* OpenAI - full support
+* Google - partial support
+* DeepInfra - planned, but not yet supported
+
+#### text-to-speech
+
+The `create_speech` method generates an audio clip based
+on the given input.
+
+```ruby
+require "llm"
+
+llm = LLM.openai(key: ENV["KEY"])
+res = llm.audio.create_speech(input: "Hello world")
+IO.copy_stream res.audio, "helloworld.mp3"
+```
+
+#### speech-to-text
+
+The `create_transcription` method transcribes a given
+audio clip as text.
+
+```ruby
+require "llm"
+
+llm = LLM.google(key: ENV["KEY"])
+res = llm.audio.create_transcription(file: "helloworld.mp3")
+res.text # => "Hello world"
+```
+
+#### translation
+
+The `create_translation` method translates a given audio
+clip, then transcribes it as text.
+
+```ruby
+require "llm"
+
+llm = LLM.google(key: ENV["KEY"])
+res = llm.audio.create_translation(file: "bomdia.mp3")
+res.text # => "Good day"
 ```
 
 [Back to top](#table-of-contents)
