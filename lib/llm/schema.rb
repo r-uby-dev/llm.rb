@@ -34,6 +34,7 @@
 class LLM::Schema
   require_relative "schema/version"
   require_relative "schema/parser"
+  require_relative "schema/renderer"
   require_relative "schema/leaf"
   require_relative "schema/object"
   require_relative "schema/array"
@@ -153,6 +154,14 @@ class LLM::Schema
   end
 
   ##
+  # Render the schema as a prompt-friendly string.
+  # @return [String]
+  def self.to_s
+    Renderer.render(object, root: true)
+  end
+  (class << self; self; end).alias_method(:inspect, :to_s)
+
+  ##
   # @api private
   def self.lock(&)
     @__monitor.synchronize(&)
@@ -233,4 +242,12 @@ class LLM::Schema
   def null
     Null.new
   end
+
+  ##
+  # Render a schema leaf as a prompt-friendly string.
+  # @return [String]
+  def to_s
+    self.class.to_s
+  end
+  alias_method :inspect, :to_s
 end

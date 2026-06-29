@@ -80,6 +80,33 @@ RSpec.describe LLM::Schema do
     end
   end
 
+  context "#to_s" do
+    let(:schema) do
+      Class.new(LLM::Schema) do
+        property :name, String, "name description", required: true
+        property :age, Integer, "age description", required: true
+        property :nickname, String, "nickname description", default: "johnny"
+        property :role, String, "role description", enum: %w[admin user]
+      end
+    end
+
+    it "renders a prompt-friendly description for a schema class" do
+      expect(schema.to_s).to eq(<<~TEXT.chomp)
+        object
+          name: string (required) - name description
+          age: integer (required) - age description
+          nickname?: string (default: "johnny") - nickname description
+          role?: string (enum: "admin" | "user") - role description
+      TEXT
+    end
+
+    it "renders a prompt-friendly description for a leaf" do
+      expect(schema.object["name"].to_s).to eq(
+        %(string (required) - name description)
+      )
+    end
+  end
+
   context "when given nested schema classes" do
     let(:address_schema) do
       Class.new(LLM::Schema) do
@@ -120,6 +147,15 @@ RSpec.describe LLM::Schema do
       object = person_schema.object
       expect(object.to_h[:required]).to eq(%w[name address])
       expect(object["address"].to_h[:required]).to eq(["street"])
+    end
+
+    it "renders nested objects" do
+      expect(person_schema.to_s).to eq(<<~TEXT.chomp)
+        object
+          name: string (required) - name description
+          address: object (required) - address description
+            street: string (required) - street description
+      TEXT
     end
   end
 

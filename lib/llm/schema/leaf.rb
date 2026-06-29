@@ -95,13 +95,19 @@ class LLM::Schema
     ##
     # @return [Hash]
     def to_h
-      {description: @description, default: @default, enum: @enum}.compact
+      {description: @description, default: @default, enum: @enum, const: @const}.compact
     end
 
     ##
     # @return [String]
     def to_json(options = {})
       to_h.to_json(options)
+    end
+
+    ##
+    # @return [String]
+    def to_s
+      LLM::Schema::Renderer.render(self)
     end
 
     ##
