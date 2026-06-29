@@ -185,7 +185,7 @@ class Shell < LLM::Shell
 
   def call(name:, arguments:)
     out = `#{name.shellscape} #{arguments.map(&:shellescape).join(" ")}`
-    {ok: $?.success, out:}
+    {ok: $?.success?, out:}
   end
 end
 
