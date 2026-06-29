@@ -4,7 +4,7 @@
     "DEEPINFRA_API_KEY"
   ],
   "npm": "@ai-sdk/deepinfra",
-  "name": "DeepInfra",
+  "name": "Deep Infra",
   "doc": "https://deepinfra.com/models",
   "models": {
     "meta-llama/Llama-4-Maverick-17B-128E-Instruct-FP8": {
@@ -700,6 +700,53 @@
         "input": 0.4,
         "output": 1.75,
         "cache_read": 0.08
+      }
+    },
+    "zai-org/GLM-5.2": {
+      "id": "zai-org/GLM-5.2",
+      "name": "GLM-5.2",
+      "family": "glm",
+      "attachment": false,
+      "reasoning": true,
+      "reasoning_options": [
+        {
+          "type": "toggle"
+        },
+        {
+          "type": "effort",
+          "values": [
+            "low",
+            "medium",
+            "high",
+            "xhigh"
+          ]
+        }
+      ],
+      "tool_call": true,
+      "interleaved": {
+        "field": "reasoning_content"
+      },
+      "structured_output": true,
+      "temperature": true,
+      "release_date": "2026-06-13",
+      "last_updated": "2026-06-13",
+      "modalities": {
+        "input": [
+          "text"
+        ],
+        "output": [
+          "text"
+        ]
+      },
+      "open_weights": true,
+      "limit": {
+        "context": 1048576,
+        "output": 32768
+      },
+      "cost": {
+        "input": 0.95,
+        "output": 3,
+        "cache_read": 0.18
       }
     },
     "zai-org/GLM-5.1": {
