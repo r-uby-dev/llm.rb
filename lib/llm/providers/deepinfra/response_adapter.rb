@@ -5,6 +5,8 @@ class LLM::DeepInfra
   # @private
   module ResponseAdapter
     module Audio
+      ##
+      # @return [LLM::URIData]
       def audio
         @audio ||= LLM::URIData.parse(super)
       end

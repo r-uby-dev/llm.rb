@@ -139,6 +139,18 @@ major release: `v12.0.0`.
   The new method is a catch-all that provides a single method
   that works across all providers.
 
+* **OpenAI: normalize text-to-speech responses** <br>
+  The `res.audio` method now returns an
+  [`LLM::URIData`](https://r.uby.dev/api-docs/llm.rb/LLM/URIData.html)
+  object for OpenAI text-to-speech responses. The object provides
+  `encoded`, `decoded`, `content_type`, and `encoding_type`.
+
+* **DeepInfra: normalize text-to-speech responses** <br>
+  The `res.audio` method now returns an
+  [`LLM::URIData`](https://r.uby.dev/api-docs/llm.rb/LLM/URIData.html)
+  object for DeepInfra text-to-speech responses. The object provides
+  `encoded`, `decoded`, `content_type`, and `encoding_type`.
+
 ### Fix
 
 * **Fix Google `temperature` parameter fall-through** <br>
