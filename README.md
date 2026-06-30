@@ -333,3 +333,5 @@ Commercial production use requires a commercial license.
 <br>
 Each version converts to the [BSD Zero Clause](https://choosealicense.com/licenses/0bsd/)
 four years after its first public release.
+<br>
+Contact [robert@r.uby.dev](mailto:robert@r.uby.dev) for a commercial license.
