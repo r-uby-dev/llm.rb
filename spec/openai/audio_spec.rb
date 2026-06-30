@@ -15,7 +15,9 @@ RSpec.describe "LLM::OpenAI::Audio" do
     end
 
     it "returns an audio" do
-      expect(response.audio).to be_instance_of(StringIO)
+      expect(response.audio).to be_instance_of(LLM::URIData)
+      expect(response.audio.content_type).to eq("audio/mpeg")
+      expect(response.audio.decoded).to be_instance_of(StringIO)
     end
   end
 

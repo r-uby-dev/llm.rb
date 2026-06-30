@@ -22,7 +22,7 @@ class LLM::OpenAI
     # @example
     #   llm = LLM.openai(key: ENV["KEY"])
     #   res = llm.images.create_speech(input: "A dog on a rocket to the moon")
-    #   File.binwrite("rocket.mp3", res.audio.string)
+    #   IO.copy_stream res.audio.decoded, "rocket.mp3"
     # @see https://platform.openai.com/docs/api-reference/audio/createSpeech OpenAI docs
     # @param [String] input The text input
     # @param [String] voice The voice to use
@@ -36,7 +36,11 @@ class LLM::OpenAI
       req.body = LLM.json.dump({input:, voice:, model:, response_format:}.merge!(params))
       io = StringIO.new("".b)
       res, span, tracer = execute(request: req, operation: "request") { _1.read_body { |chunk| io << chunk } }
-      res = LLM::Response.new(res).tap { _1.define_singleton_method(:audio) { io } }
+      content_type = res["content-type"].to_s.split(";").first
+      content_type = content_type.empty? ? LLM::Mime[".#{response_format}"] : content_type
+      data = "data:#{content_type};base64,#{[io.string].pack("m0")}"
+      res.body = LLM::Object.from(audio: data)
+      res = ResponseAdapter.adapt(LLM::Response.new(res), type: :audio)
       tracer.on_request_finish(operation: "request", model:, res:, span:)
       res
     end
