@@ -139,6 +139,13 @@ major release: `v12.0.0`.
   The new method is a catch-all that provides a single method
   that works across all providers.
 
+* **Add `LLM::DeepInfra::Audio`** <br>
+  DeepInfra implements most of the llm.rb audio interface
+  with both the `create_speech` and `create_transcription`
+  methods. The `create_translation` method is not implemented,
+  and the available text-to-speech and speech-to-text models
+  are more varied than other providers.
+
 * **OpenAI: normalize text-to-speech responses** <br>
   The `res.audio` method now returns an
   [`LLM::URIData`](https://r.uby.dev/api-docs/llm.rb/LLM/URIData.html)
