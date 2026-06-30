@@ -30,6 +30,28 @@ class LLM::DeepInfra
     end
 
     ##
+    # @see https://deepinfra.com/models/automatic-speech-recognition speech-to-text models
+    # @see https://docs.deepinfra.com/apis/speech API docs
+    # @param [String, LLM::File] file
+    #  An audio file
+    # @param [String] model
+    #  A speech-to-text model.
+    # @param [Hash] params
+    #  Any other model-specific parameters
+    # @return [LLM::Response]
+    def create_transcription(file:, model: "openai/whisper-large-v3", **params)
+      path = path("/v1/inference/#{model}", base_path: false)
+      multi = LLM::Multipart.new(params.merge!(audio: LLM.File(file)))
+      req = LLM::Transport::Request.post(path, headers)
+      req["content-type"] = multi.content_type
+      transport.set_body_stream(req, multi.body)
+      res, span, tracer = execute(request: req, operation: "request")
+      res = LLM::Response.new(res)
+      tracer.on_request_finish(operation: "request", model:, res:, span:)
+      res
+    end
+
+    ##
     # @raise [NotImplementedError]
     def create_translation(...)
       raise NotImplementedError

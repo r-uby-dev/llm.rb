@@ -685,7 +685,7 @@ estimate = res.content!
 ##
 # Let's print the estimate
 if estimate.applicable
-  print "The person is approx ", estimage.age, " years old", "\n"
+  print "The person is approx ", estimate.age.to_s, " years old", "\n"
   print "I have a confidence rating of ", estimate.confidence.to_s, "\n"
 else
   print "This photo is not applicable:", "\n"
@@ -918,25 +918,28 @@ The following providers have audio support:
 
 * OpenAI - full support
 * Google - partial support
-* DeepInfra - planned, but not yet supported
+* DeepInfra - partial support
 
 #### text-to-speech
 
 The `create_speech` method generates an audio clip based
-on the given input.
+on the given input. This method returns a
+[`LLM::URIData`](https://r.uby.dev/api-docs/llm.rb/LLM/URIData.html)
+object. OpenAI, and DeepInfra support this method.
 
 ```ruby
 require "llm"
 
 llm = LLM.openai(key: ENV["KEY"])
 res = llm.audio.create_speech(input: "Hello world")
-IO.copy_stream res.audio, "helloworld.mp3"
+IO.copy_stream res.audio.decoded, "helloworld.mp3"
 ```
 
 #### speech-to-text
 
 The `create_transcription` method transcribes a given
-audio clip as text.
+audio clip as text. OpenAI, Google and DeepInfra support
+this method.
 
 ```ruby
 require "llm"
@@ -949,7 +952,8 @@ res.text # => "Hello world"
 #### translation
 
 The `create_translation` method translates a given audio
-clip, then transcribes it as text.
+clip, then transcribes it as text. OpenAI, and Google
+support this method.
 
 ```ruby
 require "llm"
