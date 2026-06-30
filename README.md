@@ -327,6 +327,9 @@ and resources.
 
 ## License
 
-[BSD Zero Clause](https://choosealicense.com/licenses/0bsd/)
+[Business Source License 1.1](./LICENSE)
 <br>
-See [LICENSE](./LICENSE)
+Commercial production use requires a commercial license.
+<br>
+Each version converts to the [BSD Zero Clause](https://choosealicense.com/licenses/0bsd/)
+four years after its first public release.
