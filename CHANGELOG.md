@@ -38,7 +38,8 @@ major release: `v12.0.0`.
   have to choose a license that respects my time and effort.
 
   For those reasons, llm.rb is being relicensed under the
-  Business Open Source license. So what does that mean?
+  [Business Source license](https://mariadb.com/bsl11/).
+  So what does that mean?
 
   In a nutshell:
 
