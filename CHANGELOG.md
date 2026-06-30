@@ -13,12 +13,19 @@
 > Changelog <br>
 > a [r.uby.dev](https://r.uby.dev) project
 
-## What's next
+## Unreleased
 
-These changes have not yet been released. <br>
-They cover changes made since the last public
-release `v11.3.1` and will be part of the next
-major release: `v12.0.0`.
+## v12.0.0
+
+Changes since `v11.3.1`.
+
+This release relicenses the project under the Business Source License,
+defaults OpenAI to the Responses API and gpt-image models, adds the
+DeepInfra provider with audio and image support, introduces
+DeepSeek vector-graphics generation and schema support, extends xAI
+image editing, adds `LLM::Schema.defaults` and schema string rendering,
+and makes ActiveRecord and Sequel agent wrappers yield `LLM::Agent`
+instead of polluting the model namespace.
 
 ### Breaking
 
