@@ -22,6 +22,44 @@ major release: `v12.0.0`.
 
 ### Breaking
 
+* **License change**
+  The llm.rb runtime has been developed primarily by one
+  person for 3 years. That was done on my own time, and
+  I haven't made a dime from that work.
+
+  So when I saw a multi-million dollar company benefit from
+  the work and for it to become the backbone of their AI
+  infrastructure and then see them not contribute back or
+  offer any kind of support, I decided this is not sustainable,
+  or fair.
+
+  I assumed good faith and for people to act in the spirit of
+  open source but sadly, that's just not the case. I
+  have to choose a license that respects my time and effort.
+
+  For those reasons, llm.rb is being relicensed under the
+  Business Open Source license. So what does that mean?
+
+  In a nutshell:
+
+  * Free for personal use.
+  * Free for education.
+  * Free for evaluation, development, and testing.
+  * Commercial production use requires a commercial license.
+  * Exemptions on a case-by-case basis
+
+  After 4 years, the license expires and it will become
+  available under the 0BSDL as it was before v12.0.0.
+  These 4 years apply to a specific version, and not the
+  project overall.
+
+  Going forward, v12.0.0 will be relicensed to respect
+  my time, energy, and effort. llm.rb took an incredible
+  amount of time and effort, and continues to do so, so
+  I want to protect myself from companies who benefit
+  from my work but don't respect the time or effort that
+  was put into it.
+
 * **OpenAI: default to the Responses API** <br>
   The responses API has both models and features that are unavailable
   on the chat completions API, and the responses API appears to be

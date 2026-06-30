@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "llm.rb is not a library, framework or toolkit but " \
                      "an advanced runtime for building highly capable AI " \
                      "applications on CRuby."
-  spec.license = "0BSD"
+  spec.license = "BUSL-1.1"
   spec.required_ruby_version = ">= 3.3.0"
 
   spec.homepage = "https://r.uby.dev/llm/"
