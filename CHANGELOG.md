@@ -22,7 +22,7 @@ major release: `v12.0.0`.
 
 ### Breaking
 
-* **License change**
+* **License change** <br>
   The llm.rb runtime has been developed primarily by one
   person for 3 years. That was done on my own time, and
   I haven't made a dime from that work.
