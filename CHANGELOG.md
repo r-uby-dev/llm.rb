@@ -15,6 +15,55 @@
 
 ## Unreleased
 
+Changes since `v12.0.0`.
+
+This release adds several new built-in tools (shell, read-file, chdir, git, rg),
+fixes Symbol resolution of `tools` in `LLM::Agent`, extends the BSL additional
+use grant, and fixes a documentation link.
+
+### Add
+
+* **Add `LLM::Tool::Shell`** <br>
+  Add a built-in shell tool that can run a command with arguments. <br>
+  It must be required explicitly with `require "llm/tools/shell"` and
+  requires the `test-cmd.rb` gem.
+
+* **Add `LLM::Tool::ReadFile`** <br>
+  Add a built-in tool for reading the contents of a file, with optional
+  `start` and `stop` line offsets. <br>
+  It must be required explicitly with `require "llm/tools/read_file"`.
+
+* **Add `LLM::Tool::Chdir`** <br>
+  Add a built-in tool for changing the current working directory. <br>
+  It must be required explicitly with `require "llm/tools/chdir"`.
+
+* **Add `LLM::Tool::Git`** <br>
+  Add a built-in tool that can perform read-only git actions (`log`,
+  `diff`, `show`). <br>
+  It must be required explicitly with `require "llm/tools/git"` and requires the `test-cmd.rb` gem.
+
+* **Add `LLM::Tool::Rg`** <br>
+  Add a built-in tool that wraps the `rg` (ripgrep) command for
+  recursively searching the current directory for patterns. <br>
+  It must be required explicitly with `require "llm/tools/rg"` and requires the `test-cmd.rb` gem.
+
+### Change
+
+* **Extend BSL additional use grant** <br>
+  The Business Source License additional use grant has been extended to
+  include non-profits, charities, and companies with 50 or fewer
+  employees, in addition to the existing personal, education, and
+  evaluation uses.
+
+### Fix
+
+* **Fix `LLM::Agent.tools` Symbol resolution** <br>
+  When an agent defined tools via `tools :method_name`, the resolved
+  symbol was incorrectly forwarded as `[:method_name]` (an array) to
+  `LLM::Context`. This fix copies the same pattern used by other
+  attribute resolvers (e.g., `skills`) so a single Symbol is resolved
+  through the agent instance correctly.
+
 ## v12.0.0
 
 Changes since `v11.3.1`.
