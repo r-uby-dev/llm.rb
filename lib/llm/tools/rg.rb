@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # frozen_string_literal
 
 class LLM::Tool
@@ -27,5 +29,6 @@ class LLM::Tool
       Command.new("rg")
         .argv(*patterns.zip(switch))
         .spawn
+    end
   end
 end

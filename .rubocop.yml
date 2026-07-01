@@ -83,3 +83,5 @@ Style/TrailingCommaInHashLiteral:
   Enabled: false
 Layout/MultilineOperationIndentation:
   Enabled: false
+Lint/UnderscorePrefixedVariableName:
+  Enabled: false

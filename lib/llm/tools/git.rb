@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # frozen_string_literal
 
 class LLM::Tool
@@ -9,7 +11,7 @@ class LLM::Tool
   class Git < self
     name "git"
     description "perform an action with git"
-    parameter :action, Enum["log", "diff", "show"] "the git operation to perform"
+    parameter :action, Enum["log", "diff", "show"], "the git operation to perform"
     parameter :arguments, Array[String], "one or more arguments for the git action"
     required %i[action]
 
@@ -29,7 +31,7 @@ class LLM::Tool
       Command
         .new("git")
         .argv(action)
-        .argv[[*arguments]]
+        .argv([*arguments])
         .spawn
     end
   end
