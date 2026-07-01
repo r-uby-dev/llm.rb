@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # frozen_string_literal
 
 class LLM::Tool
@@ -9,9 +11,9 @@ class LLM::Tool
   class ReadFile < self
     name "read-file"
     description "read the contents of a file"
-    parameter :path  , String , "the path to the file"
-    parameter :start , Integer, "start line number"
-    parameter :stop  , Integer, "stop line number"
+    parameter :path, String, "the path to the file"
+    parameter :start, Integer, "start line number"
+    parameter :stop, Integer, "stop line number"
     required %i[path]
 
     ##
