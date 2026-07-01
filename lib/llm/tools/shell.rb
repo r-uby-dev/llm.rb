@@ -38,7 +38,7 @@ class LLM::Tool
     def spawn(name:, arguments:)
       Command
         .new(name)
-        .argv([*arguments])
+        .argv(*[*arguments])
         .spawn
     end
 

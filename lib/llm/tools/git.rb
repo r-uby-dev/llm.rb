@@ -31,8 +31,11 @@ class LLM::Tool
       Command
         .new("git")
         .argv(action)
-        .argv([*arguments])
+        .argv(*[*arguments])
         .spawn
     end
+
+    LLM.require "test-cmd.rb"
+    Command = Test::Cmd
   end
 end

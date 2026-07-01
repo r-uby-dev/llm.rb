@@ -30,5 +30,8 @@ class LLM::Tool
         .argv(*patterns.zip(switch))
         .spawn
     end
+
+    LLM.require "test-cmd.rb"
+    Command = Test::Cmd
   end
 end
