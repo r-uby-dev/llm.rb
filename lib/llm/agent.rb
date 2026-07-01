@@ -61,7 +61,11 @@ module LLM
     #  Returns the current tools when no argument is provided
     def self.tools(*tools, &block)
       return @tools || [] if tools.empty? && !block
-      @tools = block || tools.flatten
+      if tools.size == 1 and tools.grep(Symbol).any?
+        @tools = tools.first
+      else
+        @tools = block || tools.flatten
+      end
     end
 
     ##

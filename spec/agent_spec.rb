@@ -5,20 +5,35 @@ require_relative "setup"
 RSpec.describe LLM::Agent do
   let(:provider) { LLM.openai(key: "test") }
   let(:empty_functions) { [].extend(LLM::Function::Array) }
+  let(:tool) do
+    Class.new(LLM::Tool) do
+      name "echo"
+      description "Echo a value"
+      param :value, String, "Value", required: true
+      def call(value:) = {value:}
+    end
+  end
+
+  describe ".tools" do
+    context "when resolved via a symbol" do
+      let(:agent) do
+        _tool = tool
+        Class.new(described_class) do
+          tools :set_tools
+          define_method(:set_tools) { _tool }
+        end.new(provider)
+      end
+
+      it "resolves successfully" do
+        expect(agent.params[:tools]).to eq([tool])
+      end
+    end
+  end
 
   shared_examples "agent behavior" do
     let(:schema) do
       Class.new(LLM::Schema) do
         property :answer, String, "Answer", required: true
-      end
-    end
-
-    let(:tool) do
-      Class.new(LLM::Tool) do
-        name "echo"
-        description "Echo a value"
-        param :value, String, "Value", required: true
-        def call(value:) = {value:}
       end
     end
 
