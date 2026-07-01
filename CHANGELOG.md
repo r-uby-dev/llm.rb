@@ -17,9 +17,9 @@
 
 Changes since `v12.0.0`.
 
-This release adds several new built-in tools (shell, read-file, chdir, git, rg),
-fixes Symbol resolution of `tools` in `LLM::Agent`, extends the BSL additional
-use grant, and fixes a documentation link.
+This release adds several new built-in tools (shell, read-file, chdir, git, rg,
+swap-text), fixes Symbol resolution of `tools` in `LLM::Agent`, extends the BSL
+additional use grant, and fixes a documentation link.
 
 ### Add
 
@@ -46,6 +46,11 @@ use grant, and fixes a documentation link.
   Add a built-in tool that wraps the `rg` (ripgrep) command for
   recursively searching the current directory for patterns. <br>
   It must be required explicitly with `require "llm/tools/rg"` and requires the `test-cmd.rb` gem.
+
+* **Add `LLM::Tool::SwapText`** <br>
+  Add a built-in tool that can replace an exact snippet of text in a
+  file with a new piece of text. <br>
+  It must be required explicitly with `require "llm/tools/swap_text"`.
 
 ### Change
 
